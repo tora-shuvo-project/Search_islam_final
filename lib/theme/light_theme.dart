@@ -3,7 +3,9 @@ import 'package:search_islam/utill/dimensions.dart';
 
 ThemeData light = ThemeData(
   fontFamily: 'Rubik',
-  primaryColor: Color(0xFFFC6A57),
+  primaryColor: Color(0xFF699C78),
+  secondaryHeaderColor: Color(0xFF7DC383),
+  cardColor: Color(0xFFFFF1BC),
   brightness: Brightness.light,
   accentColor: Colors.white,
   focusColor: Color(0xFFADC4C8),

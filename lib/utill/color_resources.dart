@@ -4,7 +4,13 @@ import 'package:search_islam/provider/theme_provider.dart';
 
 class ColorResources {
   static Color getPrimaryColor(BuildContext context) {
-    return Provider.of<ThemeProvider>(context).darkTheme ? Color(0xFFba4f41) : Color(0xFFFC6A57);
+    return Provider.of<ThemeProvider>(context).darkTheme ? Color(0xFFba4f41) : Color(0xFF699C78);
+  }
+  static Color getSecondaryColor(BuildContext context) {
+    return Provider.of<ThemeProvider>(context).darkTheme ? Color(0xFFba4f41) : Color(0xFF7DC383);
+  }
+  static Color getCardBackgroundColor(BuildContext context) {
+    return Provider.of<ThemeProvider>(context).darkTheme ? Color(0xFFba4f41) : Color(0xFFFFF1BC);
   }
   static Color getGreyColor(BuildContext context) {
     return Provider.of<ThemeProvider>(context).darkTheme ? Color(0xFF6f7275) : Color(0xFFA0A4A8);
