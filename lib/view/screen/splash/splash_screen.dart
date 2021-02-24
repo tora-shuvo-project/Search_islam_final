@@ -1,27 +1,16 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:search_islam/helper/database_helper.dart';
+import 'package:search_islam/provider/quran_sorif_provider.dart';
 
-class SplashScreen extends StatefulWidget {
-  @override
-  _SplashScreenState createState() => _SplashScreenState();
-}
+class SplashScreen extends StatelessWidget {
 
-class _SplashScreenState extends State<SplashScreen> {
-  DatabaseHelper suranamedbHelpers = DatabaseHelper.instance;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    print(jsonEncode(suranamedbHelpers.getAllSuraFromSuraNameTable()));
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-
-    );
+    DatabaseHelper databaseHelper = DatabaseHelper.instance;
+    Provider.of<QuraanShareefProvider>(context, listen: false).accessDatabase(databaseHelper);
+    return Scaffold();
   }
 }

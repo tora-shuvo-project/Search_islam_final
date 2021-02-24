@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:search_islam/provider/quran_sorif_provider.dart';
 import 'package:search_islam/provider/theme_provider.dart';
 import 'package:search_islam/theme/dark_theme.dart';
 import 'package:search_islam/theme/light_theme.dart';
@@ -12,6 +13,7 @@ Future<void> main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => di.sl<ThemeProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<QuraanShareefProvider>()),
     ],
     child: MyApp(),
   ));
@@ -19,7 +21,7 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
+    //Provider.of<ThemeProvider>(context,listen: false).toggleTheme();
     return MaterialApp(
       title: 'Search Islam',
       debugShowCheckedModeBanner: false,
