@@ -4,6 +4,7 @@ import 'package:search_islam/provider/quran_sorif_provider.dart';
 import 'package:search_islam/provider/theme_provider.dart';
 import 'package:search_islam/theme/dark_theme.dart';
 import 'package:search_islam/theme/light_theme.dart';
+import 'package:search_islam/view/screen/dashboard/dashboard_screen.dart';
 import 'package:search_islam/view/screen/splash/splash_screen.dart';
 import 'di_container.dart' as di;
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       title: 'Search Islam',
       debugShowCheckedModeBanner: false,
       theme: Provider.of<ThemeProvider>(context).darkTheme ? dark : light,
-      home: SplashScreen(),
+      home: DashBoardScreen(),
     );
   }
 }
