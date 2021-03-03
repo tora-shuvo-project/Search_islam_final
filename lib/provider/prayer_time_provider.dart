@@ -21,7 +21,7 @@ class PrayerTimeProvider with ChangeNotifier {
   String ifTarTime = '';
   String ishaTimeStart = '';
   String ishaTimeEnd = '';
-  String currentPrayerTime = '';
+  String currentPrayerTimeStart = '';
   String nextPrayerTime = '';
   String currentPrayerName = '';
   String nextPrayerName = '';
@@ -110,7 +110,7 @@ class PrayerTimeProvider with ChangeNotifier {
   }
 
   checkCurrentAndNextPrayerTime(DateTime cPrayerTime, String cPrayerName, DateTime nPrayerTime, String nPrayerName) {
-    currentPrayerTime = DateFormat.jm().format(cPrayerTime);
+    currentPrayerTimeStart = DateFormat.jm().format(cPrayerTime);
     currentPrayerName = '$cPrayerName';
     nextPrayerName = '$nPrayerName';
     nextPrayerTime = DateFormat.jm().format(nPrayerTime);
@@ -124,6 +124,7 @@ class PrayerTimeProvider with ChangeNotifier {
       minutes = duration.inMinutes - (24 * days * 60) - (hours * 60);
       seconds = duration.inSeconds - (24 * days * 60 * 60) - (hours * 60 * 60) - (minutes * 60);
     }
+
     notifyListeners();
   }
 }

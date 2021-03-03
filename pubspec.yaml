@@ -41,6 +41,9 @@ dependencies:
   #SVG Show
   flutter_svg: ^0.19.0
   adhan: ^1.1.15
+  intl: ^0.16.1
+  deivao_drawer: ^1.0.0+6
+  animated_text_kit: ^2.2.0
 
 dev_dependencies:
   flutter_test:

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:search_islam/provider/home_provider.dart';
 import 'package:search_islam/provider/prayer_time_provider.dart';
 import 'package:search_islam/provider/quran_sorif_provider.dart';
 import 'package:search_islam/provider/theme_provider.dart';
-import 'package:search_islam/theme/dark_theme.dart';
-import 'package:search_islam/theme/light_theme.dart';
 import 'package:search_islam/view/screen/splash/splash_screen.dart';
 
 import 'di_container.dart' as di;
@@ -17,6 +17,7 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (context) => di.sl<ThemeProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<QuraanShareefProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<PrayerTimeProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<HomeProvider>()),
     ],
     child: MyApp(),
   ));
@@ -25,11 +26,15 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //Provider.of<ThemeProvider>(context,listen: false).toggleTheme();
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.green, statusBarBrightness: Brightness.dark));
     return MaterialApp(
       title: 'Search Islam',
       debugShowCheckedModeBanner: false,
-      theme: Provider.of<ThemeProvider>(context).darkTheme ? dark : light,
+      theme: ThemeData(
+        fontFamily: 'kalpurus',
+        primarySwatch: Colors.green,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
       home: SplashScreen(),
     );
   }

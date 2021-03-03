@@ -8,6 +8,12 @@ class Images {
   static const String other_svg = 'assets/icons/other.svg';
   static const String prayer_time_svg = 'assets/icons/prayer_time.svg';
   static const String history_svg = 'assets/icons/history.svg';
+  static const String sunrise_svg = 'assets/icons/sunrise.svg';
+  static const String sunset_svg = 'assets/icons/sunset.svg';
+  static const String document_svg = 'assets/icons/document.svg';
+  static const String ojifa_svg = 'assets/icons/ojifa.svg';
+  static const String question_svg = 'assets/icons/question.svg';
+  static const String method_svg = 'assets/icons/method.svg';
 
 
   // for image
@@ -19,4 +25,6 @@ class Images {
   static const String pink_background = 'assets/images/pink_background.png';
   static const String pink2_background = 'assets/images/pink2_background.png';
   static const String quran_header_top = 'assets/images/quran_header_top.png';
+  static const String mosque = 'assets/images/mosque.png';
+  static const String background10 = 'assets/images/background_10.png';
 }

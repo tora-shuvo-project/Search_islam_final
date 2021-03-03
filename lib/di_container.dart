@@ -1,5 +1,6 @@
 
 import 'package:get_it/get_it.dart';
+import 'package:search_islam/provider/home_provider.dart';
 import 'package:search_islam/provider/prayer_time_provider.dart';
 import 'package:search_islam/provider/quran_sorif_provider.dart';
 import 'package:search_islam/provider/theme_provider.dart';
@@ -17,6 +18,7 @@ Future<void> init() async {
   sl.registerFactory(() => ThemeProvider(sharedPreferences: sl()));
   sl.registerFactory(() => QuraanShareefProvider());
   sl.registerFactory(() => PrayerTimeProvider());
+  sl.registerFactory(() => HomeProvider());
 
   // External
   final sharedPreferences = await SharedPreferences.getInstance();
