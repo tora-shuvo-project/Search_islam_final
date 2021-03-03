@@ -22,6 +22,7 @@ class PrayerTimeProvider with ChangeNotifier {
   String ishaTimeStart = '';
   String ishaTimeEnd = '';
   String currentPrayerTimeStart = '';
+  String currentPrayerTimeEnd = '';
   String nextPrayerTime = '';
   String currentPrayerName = '';
   String nextPrayerName = '';
@@ -33,6 +34,9 @@ class PrayerTimeProvider with ChangeNotifier {
     final params = CalculationMethod.karachi.getParameters();
     params.madhab = Madhab.hanafi;
     currentPrayerTimes = PrayerTimes.today(myCoordinates, params);
+
+
+
 
     sehriTime = DateFormat.jm().format(currentPrayerTimes.fajr.subtract(Duration(minutes: 4)));
     fajrTimeStart = DateFormat.jm().format(currentPrayerTimes.fajr);
@@ -66,44 +70,63 @@ class PrayerTimeProvider with ChangeNotifier {
           DateTime.now().isAfter(currentPrayerTimes.fajr.subtract(Duration(hours: 1)))) {
         checkCurrentAndNextPrayerTime(currentPrayerTimes.fajr.subtract(Duration(minutes: 4)), 'নফল', currentPrayerTimes.fajr, 'ফজর');
         timeCalculation(DateTime.now().difference(currentPrayerTimes.fajr.subtract(Duration(minutes: 4))).abs());
+        currentPrayerTimeEnd= DateFormat.jm().format(currentPrayerTimes.fajr);
+
       } else if (DateTime.now().isBefore(currentPrayerTimes.sunrise.subtract(Duration(minutes: 1))) &&
           DateTime.now().isAfter(currentPrayerTimes.fajr)) {
         checkCurrentAndNextPrayerTime(currentPrayerTimes.fajr, 'ফজর', currentPrayerTimes.sunrise, 'সূর্যোদয়');
         timeCalculation(DateTime.now().difference(currentPrayerTimes.sunrise.subtract(Duration(minutes: 1))).abs());
+        currentPrayerTimeEnd= DateFormat.jm().format(currentPrayerTimes.sunrise.subtract(Duration(minutes: 1)));
+
       } else if ((DateTime.now().isBefore(currentPrayerTimes.sunrise.add(Duration(minutes: 23)))) &&
           (DateTime.now().isAfter(currentPrayerTimes.sunrise) || DateTime.now() == currentPrayerTimes.sunrise)) {
         checkCurrentAndNextPrayerTime(
             currentPrayerTimes.sunrise, 'নামাজের জন্য হারাম', currentPrayerTimes.sunrise.add(Duration(minutes: 23)), 'সালাতুল দোহা');
         timeCalculation(DateTime.now().difference(currentPrayerTimes.sunrise.add(Duration(minutes: 24))).abs());
+        currentPrayerTimeEnd= DateFormat.jm().format(currentPrayerTimes.sunrise.add(Duration(minutes: 23)));
+
       } else if ((DateTime.now().hour == currentPrayerTimes.sunrise.add(Duration(minutes: 23)).hour) &&
           (DateTime.now().minute == currentPrayerTimes.sunrise.add(Duration(minutes: 23)).minute)) {
         checkCurrentAndNextPrayerTime(
             currentPrayerTimes.sunrise, 'নামাজের জন্য হারাম', currentPrayerTimes.sunrise.add(Duration(minutes: 23)), 'সালাতুল দোহা');
         timeCalculation(DateTime.now().difference(currentPrayerTimes.sunrise.add(Duration(minutes: 24))).abs());
+        currentPrayerTimeEnd= DateFormat.jm().format(currentPrayerTimes.sunrise.add(Duration(minutes: 23)));
+
       } else if (DateTime.now().isBefore(currentPrayerTimes.dhuhr.subtract(Duration(minutes: 1))) &&
           (DateTime.now().isAfter(currentPrayerTimes.sunrise.add(Duration(minutes: 24))))) {
         checkCurrentAndNextPrayerTime(currentPrayerTimes.sunrise.add(Duration(minutes: 24)), 'সালাতুল দোহা', currentPrayerTimes.dhuhr, 'যোহর');
         timeCalculation(DateTime.now().difference(currentPrayerTimes.dhuhr.subtract(Duration(minutes: 1))).abs());
+        currentPrayerTimeEnd= DateFormat.jm().format(currentPrayerTimes.dhuhr.subtract(Duration(minutes: 1)));
+
       } else if (DateTime.now().isBefore(currentPrayerTimes.asr) &&
           (DateTime.now().isAfter(currentPrayerTimes.dhuhr) || DateTime.now() == currentPrayerTimes.dhuhr)) {
         checkCurrentAndNextPrayerTime(currentPrayerTimes.dhuhr, 'যোহর', currentPrayerTimes.asr, 'আছর');
         timeCalculation(DateTime.now().difference(currentPrayerTimes.asr).abs());
+        currentPrayerTimeEnd= DateFormat.jm().format(currentPrayerTimes.asr.subtract(Duration(minutes: 1)));
+
       } else if (DateTime.now().isBefore(currentPrayerTimes.maghrib.subtract(Duration(minutes: 4))) &&
           (DateTime.now().isAfter(currentPrayerTimes.asr) || DateTime.now() == currentPrayerTimes.asr)) {
         checkCurrentAndNextPrayerTime(currentPrayerTimes.asr, 'আছর', currentPrayerTimes.maghrib.subtract(Duration(minutes: 4)), 'নামাজের জন্য হারাম');
         timeCalculation(DateTime.now().difference(currentPrayerTimes.maghrib.subtract(Duration(minutes: 4))).abs());
+        currentPrayerTimeEnd= DateFormat.jm().format(currentPrayerTimes.maghrib.subtract(Duration(minutes: 4)));
+
       } else if (DateTime.now().isBefore(currentPrayerTimes.maghrib) &&
           (DateTime.now().isAfter(currentPrayerTimes.maghrib.subtract(Duration(minutes: 4))))) {
         checkCurrentAndNextPrayerTime(
             currentPrayerTimes.maghrib.subtract(Duration(minutes: 4)), 'নামাজের জন্য হারাম', currentPrayerTimes.maghrib, 'মাগরিব');
         timeCalculation(DateTime.now().difference(currentPrayerTimes.maghrib).abs());
+        currentPrayerTimeEnd= DateFormat.jm().format(currentPrayerTimes.maghrib);
+
       } else if (DateTime.now().isBefore(currentPrayerTimes.isha) &&
           (DateTime.now().isAfter(currentPrayerTimes.maghrib) || DateTime.now() == currentPrayerTimes.maghrib)) {
         checkCurrentAndNextPrayerTime(currentPrayerTimes.maghrib, 'মাগরিব', currentPrayerTimes.isha, 'ইশা');
         timeCalculation(DateTime.now().difference(currentPrayerTimes.isha).abs());
+        currentPrayerTimeEnd= DateFormat.jm().format(currentPrayerTimes.isha.subtract(Duration(minutes: 1)));
+
       } else {
         checkCurrentAndNextPrayerTime(currentPrayerTimes.isha, 'ইশা', currentPrayerTimes.fajr.subtract(Duration(minutes: 4)), 'নফল');
         timeCalculation(DateTime.now().difference(currentPrayerTimes.fajr.add(Duration(hours: 24))).abs());
+        currentPrayerTimeEnd= DateFormat.jm().format(currentPrayerTimes.fajr.subtract(Duration(minutes: 5)));
       }
       notifyListeners();
     });

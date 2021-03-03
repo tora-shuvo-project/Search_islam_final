@@ -48,10 +48,10 @@ class HomeScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         gradient: LinearGradient(colors: [const Color(0xff178723), const Color(0xff27AB4B)]),
-                        image: DecorationImage(
-                          image: AssetImage(Images.background10),
-                          fit: BoxFit.cover,
-                        ),
+                        // image: DecorationImage(
+                        //   image: AssetImage(Images.background10),
+                        //   fit: BoxFit.cover,
+                        // ),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -133,7 +133,8 @@ class HomeScreen extends StatelessWidget {
                                         style: kalpurus.copyWith(color: Colors.white, fontSize: Dimensions.FONT_SIZE_LARGE)),
                                     Text('${Provider.of<PrayerTimeProvider>(context).currentPrayerName}',
                                         style: kalpurus.copyWith(color: Colors.white, fontSize: Dimensions.FONT_SIZE_LARGE)),
-                                    Text('${Provider.of<PrayerTimeProvider>(context).currentPrayerTimeStart}',
+                                    Text(
+                                        '${Provider.of<PrayerTimeProvider>(context).currentPrayerTimeStart} থেকে ${Provider.of<PrayerTimeProvider>(context).currentPrayerTimeEnd}',
                                         style: poppinsExtraLight.copyWith(color: Colors.white, fontSize: Dimensions.FONT_SIZE_LARGE)),
                                   ],
                                 ),
@@ -143,7 +144,7 @@ class HomeScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
-                                        '${Provider.of<PrayerTimeProvider>(context, listen: false).currentPrayerName} ${Strings.oyakto_ses_hote_baki}',
+                                        '${Provider.of<PrayerTimeProvider>(context, listen: false).currentPrayerName == 'ইশা' ? Strings.isa_tahajjut : Provider.of<PrayerTimeProvider>(context, listen: false).currentPrayerName} ${Strings.oyakto_ses_hote_baki}',
                                         textAlign: TextAlign.center,
                                         style: kalpurus.copyWith(color: Colors.white, fontSize: Dimensions.FONT_SIZE_LARGE)),
                                     Text(

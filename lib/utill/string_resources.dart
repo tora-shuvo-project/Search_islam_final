@@ -15,7 +15,7 @@ class Strings {
   static const String sunset = 'সূর্যাস্ত';
   static const String today = 'আজকের তারিখঃ';
   static const String current_oyakto = 'চলমান ওয়াক্ত';
-  static const String oyakto_ses_hote_baki = 'ওয়াক্ত শেষ \nহতে বাকি';
+  static const String oyakto_ses_hote_baki = 'ওয়াক্ত শেষ  হতে বাকি';
   static const String sehri = 'সেহরি';
   static const String iftar = 'ইফতার';
   static const String somay_baki_ace = 'সময় বাকি আছেঃ ';
@@ -24,4 +24,5 @@ class Strings {
   static const String questions = 'জিজ্ঞাসা';
   static const String ojifa = 'অজিফা';
   static const String niyom = 'নিয়ম';
+  static const String isa_tahajjut = 'ইশা ও তাহাজ্জুদের';
 }
