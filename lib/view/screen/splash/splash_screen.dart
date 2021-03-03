@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:search_islam/helper/database_helper.dart';
 import 'package:search_islam/provider/quran_sorif_provider.dart';
 import 'package:search_islam/utill/images.dart';
-import 'package:search_islam/view/screen/home_screen/home_screen.dart';
+import 'package:search_islam/view/screen/home/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
