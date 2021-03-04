@@ -25,4 +25,19 @@ class Strings {
   static const String ojifa = 'অজিফা';
   static const String niyom = 'নিয়ম';
   static const String isa_tahajjut = 'ইশা ও তাহাজ্জুদের';
+  static const String fajr = 'ফজর';
+  static const String dhaur = 'যুহর';
+  static const String asor = 'আসর';
+  static const String magrib = 'মাগরিব';
+  static const String isha = 'ইশা';
+  static const String apps_name = 'Search Islam';
+  static const String namajer_somoysuci = 'নামাজের সময়সূচি';
+  static const String ajker_namajer_somoysuci = 'আজকের নামাজের সময়সূচিঃ';
+  static const String agami_kalker_namajer_somoysuci = 'আগামিকালের নামাজের সময়সূচিঃ';
+  static const String salater = 'সালাতের';
+  static const String vor = 'ভোরঃ';
+  static const String nisiddo_somoy = 'নিষিদ্ধ সময়';
+  static const String sondha = 'সন্ধাঃ';
+  static const String puro_maser_namajer_somoy_suci_dekhun = 'পুরো মাসের নামাজের সময়সূচি দেখুন';
+  static const String date = 'তারিখ';
 }

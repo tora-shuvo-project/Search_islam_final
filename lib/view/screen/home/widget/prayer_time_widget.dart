@@ -29,7 +29,7 @@ class PrayerTimeWidget extends StatelessWidget {
                 //   fit: BoxFit.cover,
                 // ),
                 boxShadow: [
-                  BoxShadow(color: Colors.grey.withOpacity(0.3), spreadRadius: 3, blurRadius: 3, offset: Offset(0, 3) // changes position of shadow
+                  BoxShadow(color: Colors.grey.withOpacity(0.1), spreadRadius: 3, blurRadius: 3, offset: Offset(0, 3) // changes position of shadow
                       ),
                 ],
               ),
@@ -55,7 +55,7 @@ class PrayerTimeWidget extends StatelessWidget {
                             Row(
                               children: [
                                 SizedBox(width: 30),
-                                Text('   ${Provider.of<PrayerTimeProvider>(context, listen: false).sunriseTimeStart}',
+                                Text('   ${Provider.of<PrayerTimeProvider>(context, listen: false).sunriseTime}',
                                     style: poppinsExtraLight.copyWith(
                                         color: isPrayerTimeScreen ? Colors.black : Colors.white, fontSize: Dimensions.FONT_SIZE_LARGE)),
                               ],
@@ -78,7 +78,7 @@ class PrayerTimeWidget extends StatelessWidget {
                                         color: isPrayerTimeScreen ? Colors.black : Colors.white, fontSize: Dimensions.FONT_SIZE_LARGE)),
                               ],
                             ),
-                            Text('${Provider.of<PrayerTimeProvider>(context, listen: false).magribTimeStart}',
+                            Text('${Provider.of<PrayerTimeProvider>(context, listen: false).ifTarTime}',
                                 style: poppinsExtraLight.copyWith(
                                     color: isPrayerTimeScreen ? Colors.black : Colors.white, fontSize: Dimensions.FONT_SIZE_LARGE)),
                           ],
@@ -175,7 +175,7 @@ class PrayerTimeWidget extends StatelessWidget {
                       Text('${Strings.iftar}',
                           textAlign: TextAlign.center,
                           style: kalpurus.copyWith(color: isPrayerTimeScreen ? Colors.black : Colors.white, fontSize: Dimensions.FONT_SIZE_LARGE)),
-                      Text('${Provider.of<PrayerTimeProvider>(context).magribTimeStart}',
+                      Text('${Provider.of<PrayerTimeProvider>(context).ifTarTime}',
                           style: poppinsExtraLight.copyWith(
                               color: isPrayerTimeScreen ? Colors.black : Colors.white, fontSize: Dimensions.FONT_SIZE_LARGE)),
                     ],
