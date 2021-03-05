@@ -2,9 +2,16 @@ import 'dart:async';
 
 import 'package:adhan/adhan.dart';
 import 'package:flutter/foundation.dart';
+import 'package:search_islam/data/repository/location_repo.dart';
 import 'package:search_islam/helper/date_converter.dart';
+import 'package:search_islam/utill/string_resources.dart';
 
 class PrayerTimeProvider with ChangeNotifier {
+
+  final LocationRepo locationRepo;
+
+  PrayerTimeProvider({this.locationRepo});
+
   String sehriTime = '';
   String fajrTimeStart = '';
   String fajrTimeEnd = '';
@@ -32,7 +39,7 @@ class PrayerTimeProvider with ChangeNotifier {
   PrayerTimes currentPrayerTimes;
 
   initializeCurrentPrayerTime() {
-    final myCoordinates = Coordinates(24.0178, 90.4182); // Replace with your own location lat, lng.
+    final myCoordinates = Coordinates(locationRepo.getLatitude(), locationRepo.getLongitude());
     final params = CalculationMethod.karachi.getParameters()..madhab = Madhab.hanafi;
     currentPrayerTimes = PrayerTimes.today(myCoordinates, params);
 
@@ -63,9 +70,21 @@ class PrayerTimeProvider with ChangeNotifier {
   int hours;
   int minutes;
   int seconds;
+  int iftarSehriDays;
+  int iftarSehriHours;
+  int iftarSehriMinutes;
+  int iftarSehriSeconds;
+  String statusSehriIftar = '';
+  int dayIndex = 0;
 
   checkPrayerTimeCondition() {
     Timer.periodic(Duration(seconds: 1), (timer) {
+      if (DateTime.now().isAfter(currentPrayerTimes.fajr.subtract(Duration(minutes: 4))) && DateTime.now().isBefore(currentPrayerTimes.maghrib)) {
+        timeCalculationForSehriIftar(DateTime.now().difference(currentPrayerTimes.maghrib).abs(), Strings.iftar);
+      } else {
+        timeCalculationForSehriIftar(DateTime.now().difference(currentPrayerTimes.fajr.add(Duration(hours: 24))).abs(), Strings.sehri);
+      }
+
       if (DateTime.now().isBefore(currentPrayerTimes.fajr.subtract(Duration(minutes: 4))) &&
           DateTime.now().isAfter(currentPrayerTimes.fajr.subtract(Duration(hours: 1)))) {
         selectCurrentPrayerCode = -1;
@@ -94,7 +113,7 @@ class PrayerTimeProvider with ChangeNotifier {
         currentPrayerTimeEnd = DateConverter.formatDateHHMM(currentPrayerTimes.sunrise.add(Duration(minutes: 23)));
       } else if (DateTime.now().isBefore(currentPrayerTimes.dhuhr.subtract(Duration(minutes: 1))) &&
           (DateTime.now().isAfter(currentPrayerTimes.sunrise.add(Duration(minutes: 24))))) {
-        selectCurrentPrayerCode = -1;
+        selectCurrentPrayerCode = -2;
         checkCurrentAndNextPrayerTime(currentPrayerTimes.sunrise.add(Duration(minutes: 24)), 'সালাতুল দোহা', currentPrayerTimes.dhuhr, 'যোহর');
         timeCalculation(DateTime.now().difference(currentPrayerTimes.dhuhr.subtract(Duration(minutes: 1))).abs());
         currentPrayerTimeEnd = DateConverter.formatDateHHMM(currentPrayerTimes.dhuhr.subtract(Duration(minutes: 1)));
@@ -129,6 +148,7 @@ class PrayerTimeProvider with ChangeNotifier {
         timeCalculation(DateTime.now().difference(currentPrayerTimes.fajr.add(Duration(hours: 24))).abs());
         currentPrayerTimeEnd = DateConverter.formatDateHHMM(currentPrayerTimes.fajr.subtract(Duration(minutes: 5)));
       }
+      dayIndex = DateTime.now().day;
       notifyListeners();
     });
   }
@@ -147,6 +167,18 @@ class PrayerTimeProvider with ChangeNotifier {
       hours = duration.inHours - days * 24;
       minutes = duration.inMinutes - (24 * days * 60) - (hours * 60);
       seconds = duration.inSeconds - (24 * days * 60 * 60) - (hours * 60 * 60) - (minutes * 60);
+    }
+
+    notifyListeners();
+  }
+
+  timeCalculationForSehriIftar(Duration duration, String status) {
+    if (duration != null) {
+      iftarSehriDays = duration.inDays;
+      iftarSehriHours = duration.inHours - iftarSehriDays * 24;
+      iftarSehriMinutes = duration.inMinutes - (24 * iftarSehriDays * 60) - (iftarSehriHours * 60);
+      iftarSehriSeconds = duration.inSeconds - (24 * iftarSehriDays * 60 * 60) - (iftarSehriHours * 60 * 60) - (iftarSehriMinutes * 60);
+      statusSehriIftar = status;
     }
 
     notifyListeners();
@@ -173,7 +205,7 @@ class PrayerTimeProvider with ChangeNotifier {
   String tommorwIshaTimeEnd = '';
 
   initializeTommorwPrayerTime() {
-    final myCoordinates = Coordinates(24.0178, 90.4182); // Replace with your own location lat, lng.
+    final myCoordinates = Coordinates(locationRepo.getLatitude(), locationRepo.getLongitude());
     final params = CalculationMethod.karachi.getParameters()..madhab = Madhab.hanafi;
     final nextPrayerTimes = PrayerTimes.getByDatePrayerTime(myCoordinates, params, DateTime.now().add(Duration(days: 1)));
 
@@ -213,7 +245,7 @@ class PrayerTimeProvider with ChangeNotifier {
   List<PrayerTimePojoClass> prayerTimePojoClass = [];
 
   initializeAllMonthPrayerTimeData() {
-    final myCoordinates = Coordinates(24.0178, 90.4182); // Replace with your own location lat, lng.
+    final myCoordinates = Coordinates(locationRepo.getLatitude(), locationRepo.getLongitude());
     final params = CalculationMethod.karachi.getParameters()..madhab = Madhab.hanafi;
 
     prayerTimePojoClass = [];
@@ -221,6 +253,7 @@ class PrayerTimeProvider with ChangeNotifier {
     for (int i = 0; i < monthLength; i++) {
       final nextPrayerTimes = PrayerTimes.getByDatePrayerTime(myCoordinates, params, DateTime(DateTime.now().year, DateTime.now().month, i + 1));
       prayerTimePojoClass.add(PrayerTimePojoClass(
+          i + 1,
           DateConverter.formatDateMMDD(DateTime(DateTime.now().year, DateTime.now().month, i + 1)),
           DateConverter.formatDateHHMMAA(nextPrayerTimes.fajr.subtract(Duration(minutes: 4))),
           DateConverter.formatDateHHMMAA(nextPrayerTimes.fajr),
@@ -232,9 +265,12 @@ class PrayerTimeProvider with ChangeNotifier {
     }
     notifyListeners();
   }
+
+
 }
 
 class PrayerTimePojoClass {
+  int selectIndex;
   String date;
   String sehri;
   String fajr;
@@ -244,5 +280,5 @@ class PrayerTimePojoClass {
   String magrib;
   String isha;
 
-  PrayerTimePojoClass(this.date, this.sehri, this.fajr, this.sunrise, this.dhur, this.asor, this.magrib, this.isha);
+  PrayerTimePojoClass(this.selectIndex, this.date, this.sehri, this.fajr, this.sunrise, this.dhur, this.asor, this.magrib, this.isha);
 }

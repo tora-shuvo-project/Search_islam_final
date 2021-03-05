@@ -183,7 +183,7 @@ class PrayerTimeWidget extends StatelessWidget {
                   SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                   Center(
                     child: Text(
-                        '${Strings.iftar} ${Strings.somay_baki_ace}${Provider.of<PrayerTimeProvider>(context).hours.toString().padLeft(2, '0')}:${Provider.of<PrayerTimeProvider>(context).minutes.toString().padLeft(2, '0')}:${Provider.of<PrayerTimeProvider>(context).seconds.toString().padLeft(2, '0')}',
+                        '${Provider.of<PrayerTimeProvider>(context, listen: false).statusSehriIftar} ${Strings.somay_baki_ace}${Provider.of<PrayerTimeProvider>(context).iftarSehriHours.toString().padLeft(2, '0')}:${Provider.of<PrayerTimeProvider>(context).iftarSehriMinutes.toString().padLeft(2, '0')}:${Provider.of<PrayerTimeProvider>(context).iftarSehriSeconds.toString().padLeft(2, '0')}',
                         style: kalpurus.copyWith(color: isPrayerTimeScreen ? Colors.black : Colors.white, fontSize: Dimensions.FONT_SIZE_LARGE)),
                   ),
                 ],

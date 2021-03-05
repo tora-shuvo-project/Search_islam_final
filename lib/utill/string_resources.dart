@@ -40,4 +40,10 @@ class Strings {
   static const String sondha = 'সন্ধাঃ';
   static const String puro_maser_namajer_somoy_suci_dekhun = 'পুরো মাসের নামাজের সময়সূচি দেখুন';
   static const String date = 'তারিখ';
+  static const String location = 'লোকেশন';
+  static const String zila_nirbacon_korun = 'জেলা নির্বাচন করুন';
+  static const String nirdistro_zila_select_korun = 'নির্দিষ্ট একটি জেলা নির্বাচন করতে চাই।';
+  static const String gps_er_maddome_automatc = 'gps এর মাধ্যমে অটোমেটিক পদ্ধতি';
+  static const String elaka_nirbaconer_jonno = 'এলাকা নির্বাচনের জন্য কোন পদ্ধতিটি ব্যাবহার করতে চান?';
+  static const String gps_na_paoya_gele = 'GPS বন্ধ থাকলে বা ডিভাইসের লোকেশন পাওয়া না গেলে Dhaka শহরের লোকেশনের উপর ভিত্তি করে সকল সময় দেখানো হবে। ';
 }

@@ -4,4 +4,7 @@ class AppConstants {
   // sharePreference
   static const String TOKEN = '';
   static const String THEME = 'theme';
+  static const String ZILA_NAME = 'zila_name';
+  static const String LATITUDE = 'latitude';
+  static const String LONGITUDE = 'longitude';
 }

@@ -2,6 +2,7 @@ import 'package:deivao_drawer/deivao_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:search_islam/provider/home_provider.dart';
+import 'package:search_islam/provider/location_provider.dart';
 import 'package:search_islam/provider/prayer_time_provider.dart';
 import 'package:search_islam/utill/color_resources.dart';
 import 'package:search_islam/utill/dimensions.dart';
@@ -11,6 +12,7 @@ import 'package:search_islam/utill/styles.dart';
 import 'package:search_islam/view/screen/home/widget/category_widget.dart';
 import 'package:search_islam/view/screen/home/widget/drawer.dart';
 import 'package:search_islam/view/screen/home/widget/prayer_time_widget.dart';
+import 'package:search_islam/view/screen/prayer_time/location_set_screen.dart';
 import 'package:search_islam/view/screen/prayer_time/prayer_time_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -20,6 +22,7 @@ class HomeScreen extends StatelessWidget {
     Provider.of<PrayerTimeProvider>(context, listen: false).initializeTommorwPrayerTime();
     Provider.of<PrayerTimeProvider>(context, listen: false).checkDaysInMonth();
     Provider.of<HomeProvider>(context, listen: false).initializeAllDate();
+    Provider.of<LocationProvider>(context, listen: false).getAllDistrictName();
     final drawerController = DeivaoDrawerController();
     return DeivaoDrawer(
       controller: drawerController,
@@ -30,11 +33,17 @@ class HomeScreen extends StatelessWidget {
           leading: IconButton(icon: Icon(Icons.menu, color: ColorResources.primaryColor), onPressed: drawerController.toggle),
           title: Text(Strings.apps_name, style: poppinsMedium.copyWith(color: ColorResources.primaryColor, fontSize: 18)),
           actions: [
-            Row(
-              children: <Widget>[
-                Icon(Icons.location_on, color: ColorResources.primaryColor),
-                Text('| Dhaka   ', style: poppinsRegular.copyWith(color: ColorResources.primaryColor, fontSize: 17))
-              ],
+            InkWell(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => LocationSetScreen()));
+              },
+              child: Row(
+                children: <Widget>[
+                  Icon(Icons.location_on, color: ColorResources.primaryColor),
+                  Text('| ${Provider.of<LocationProvider>(context).getDistrictName()}   ',
+                      style: poppinsRegular.copyWith(color: ColorResources.primaryColor, fontSize: 17))
+                ],
+              ),
             )
           ],
         ),

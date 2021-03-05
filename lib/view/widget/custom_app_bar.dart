@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:search_islam/provider/location_provider.dart';
 import 'package:search_islam/utill/styles.dart';
+import 'package:search_islam/view/screen/prayer_time/location_set_screen.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String title;
@@ -29,11 +32,14 @@ class CustomAppBar extends StatelessWidget {
             Expanded(child: Text(title, style: poppinsMedium.copyWith(color: Colors.white, fontSize: 18))),
             isLocation
                 ? InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (_)=>LocationSetScreen()));
+                    },
                     child: Row(
                       children: <Widget>[
                         Icon(Icons.location_on, color: Colors.white),
-                        Text('| Dhaka   ', style: poppinsRegular.copyWith(color: Colors.white, fontSize: 17))
+                        Text('| ${Provider.of<LocationProvider>(context).getDistrictName()}   ',
+                            style: poppinsRegular.copyWith(color: Colors.white, fontSize: 17))
                       ],
                     ),
                   )

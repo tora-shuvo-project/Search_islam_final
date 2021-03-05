@@ -14,7 +14,6 @@ class PrayerTimeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Provider.of<PrayerTimeProvider>(context,listen: false).initializeAllMonthPrayerTimeData();
-
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
@@ -169,7 +168,7 @@ class PrayerTimeScreen extends StatelessWidget {
                             ],
                           ),
                           SizedBox(height: 15),
-                          _haramTimeWidget(context: context, prayerTimeProvider: timeProvider, isTodayPrayerTime: false),
+                          _tomorrowIftarSehriWidget(context: context, prayerTimeProvider: timeProvider),
                         ],
                       ),
                     )),
@@ -239,6 +238,35 @@ class PrayerTimeScreen extends StatelessWidget {
             children: [
               Text(Strings.nisiddo_somoy, style: kalpurus.copyWith(color: Colors.white, fontSize: Dimensions.FONT_SIZE_LARGE)),
               Text('${Strings.sondha} ${prayerTimeProvider.asrTimeEnd} - ${prayerTimeProvider.ifTarTime}',
+                  style: kalpurus.copyWith(color: Colors.white, fontSize: Dimensions.FONT_SIZE_LARGE, fontWeight: FontWeight.w600))
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _tomorrowIftarSehriWidget({BuildContext context, PrayerTimeProvider prayerTimeProvider}) {
+    return Container(
+      padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
+      decoration: BoxDecoration(
+          color:  Color(0xFF9F9594),
+          borderRadius: BorderRadius.circular(Dimensions.PADDING_SIZE_EXTRA_SMALL)),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(Strings.sehri, style: kalpurus.copyWith(color: Colors.white, fontSize: Dimensions.FONT_SIZE_LARGE)),
+              Text('${prayerTimeProvider.tommorwSehriTime}',
+                  style: kalpurus.copyWith(color: Colors.white, fontSize: Dimensions.FONT_SIZE_LARGE, fontWeight: FontWeight.w600))
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(Strings.iftar, style: kalpurus.copyWith(color: Colors.white, fontSize: Dimensions.FONT_SIZE_LARGE)),
+              Text('${prayerTimeProvider.tommorwIfTarTime}',
                   style: kalpurus.copyWith(color: Colors.white, fontSize: Dimensions.FONT_SIZE_LARGE, fontWeight: FontWeight.w600))
             ],
           ),

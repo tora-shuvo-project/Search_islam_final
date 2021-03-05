@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:search_islam/provider/prayer_time_provider.dart';
-import 'package:search_islam/utill/dimensions.dart';
 import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
 import 'package:search_islam/view/widget/custom_app_bar.dart';
@@ -35,17 +34,28 @@ class MonthAllPrayerTimeScreen extends StatelessWidget {
                   ],
                   rows: timeProvider.prayerTimePojoClass
                       .map((prayerTime) => DataRow(
-                      //selected: true,
-                      cells: [
-                            DataCell(Text('${prayerTime.date}', style: poppinsExtraLight)),
-                            DataCell(Text('${prayerTime.sehri}', style: poppinsExtraLight)),
-                            DataCell(Text('${prayerTime.fajr}', style: poppinsExtraLight)),
-                            DataCell(Text('${prayerTime.sunrise}', style: poppinsExtraLight)),
-                            DataCell(Text('${prayerTime.dhur}', style: poppinsExtraLight)),
-                            DataCell(Text('${prayerTime.asor}', style: poppinsExtraLight)),
-                            DataCell(Text('${prayerTime.magrib}', style: poppinsExtraLight)),
-                            DataCell(Text('${prayerTime.isha}', style: poppinsExtraLight)),
-                          ]))
+                              //selected: true,
+                              color: MaterialStateProperty.all<Color>(
+                                  timeProvider.dayIndex == prayerTime.selectIndex ? Colors.green : Colors.transparent),
+                              cells: [
+                                DataCell(Text('${prayerTime.date}',
+                                    style: poppinsExtraLight.copyWith(
+                                        color: timeProvider.dayIndex == prayerTime.selectIndex ? Colors.white : Colors.black))),
+                                DataCell(Text('${prayerTime.sehri}', style: poppinsExtraLight.copyWith(
+                                    color: timeProvider.dayIndex == prayerTime.selectIndex ? Colors.white : Colors.black))),
+                                DataCell(Text('${prayerTime.fajr}', style: poppinsExtraLight.copyWith(
+                                    color: timeProvider.dayIndex == prayerTime.selectIndex ? Colors.white : Colors.black))),
+                                DataCell(Text('${prayerTime.sunrise}', style: poppinsExtraLight.copyWith(
+                                    color: timeProvider.dayIndex == prayerTime.selectIndex ? Colors.white : Colors.black))),
+                                DataCell(Text('${prayerTime.dhur}', style: poppinsExtraLight.copyWith(
+                                    color: timeProvider.dayIndex == prayerTime.selectIndex ? Colors.white : Colors.black))),
+                                DataCell(Text('${prayerTime.asor}', style: poppinsExtraLight.copyWith(
+                                    color: timeProvider.dayIndex == prayerTime.selectIndex ? Colors.white : Colors.black))),
+                                DataCell(Text('${prayerTime.magrib}', style: poppinsExtraLight.copyWith(
+                                    color: timeProvider.dayIndex == prayerTime.selectIndex ? Colors.white : Colors.black))),
+                                DataCell(Text('${prayerTime.isha}', style: poppinsExtraLight.copyWith(
+                                    color: timeProvider.dayIndex == prayerTime.selectIndex ? Colors.white : Colors.black))),
+                              ]))
                       .toList(),
                 ),
               ),
