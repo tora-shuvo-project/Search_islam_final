@@ -18,19 +18,11 @@ class CustomButton extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
             boxShadow: [
-              BoxShadow(color: Colors.grey.withOpacity(0.2), spreadRadius: 1, blurRadius: 7, offset: Offset(0, 1)), // changes position of shadow
+              BoxShadow(color: Colors.grey.withOpacity(0.2), spreadRadius: 1, blurRadius: 7, offset: Offset(0, 1)) // changes position of shadow
             ],
-            gradient: LinearGradient(colors: [
-              ColorResources.primaryColor,
-              ColorResources.primaryColor,
-              ColorResources.primaryColor,
-            ]),
+            gradient: LinearGradient(colors: [ColorResources.primaryColor, ColorResources.primaryColor, ColorResources.primaryColor]),
             borderRadius: BorderRadius.circular(10)),
-        child: Text(buttonText,
-            style: poppinsSemiBold.copyWith(
-              fontSize: 16,
-              color: Colors.white,
-            )),
+        child: Text(buttonText, textAlign: TextAlign.center, style: poppinsSemiBold.copyWith(fontSize: 16, color: Colors.white)),
       ),
     );
   }

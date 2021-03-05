@@ -14,6 +14,7 @@ import 'package:search_islam/view/screen/home/widget/drawer.dart';
 import 'package:search_islam/view/screen/home/widget/prayer_time_widget.dart';
 import 'package:search_islam/view/screen/prayer_time/location_set_screen.dart';
 import 'package:search_islam/view/screen/prayer_time/prayer_time_screen.dart';
+import 'package:search_islam/view/screen/quran/select_quran_option.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -57,7 +58,7 @@ class HomeScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CategoryWidget(title: Strings.quran_sharif, iconUrl: Images.quran_svg),
+                CategoryWidget(title: Strings.quran_sharif, iconUrl: Images.quran_svg, routeWidget: SelectQuranScreen()),
                 CategoryWidget(title: Strings.doya, iconUrl: Images.dua_svg),
                 CategoryWidget(title: Strings.quran_sound, iconUrl: Images.document_svg),
                 CategoryWidget(title: Strings.questions, iconUrl: Images.question_svg),

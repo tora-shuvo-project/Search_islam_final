@@ -46,4 +46,10 @@ class Strings {
   static const String gps_er_maddome_automatc = 'gps এর মাধ্যমে অটোমেটিক পদ্ধতি';
   static const String elaka_nirbaconer_jonno = 'এলাকা নির্বাচনের জন্য কোন পদ্ধতিটি ব্যাবহার করতে চান?';
   static const String gps_na_paoya_gele = 'GPS বন্ধ থাকলে বা ডিভাইসের লোকেশন পাওয়া না গেলে Dhaka শহরের লোকেশনের উপর ভিত্তি করে সকল সময় দেখানো হবে। ';
+  static const String pocondo_onujaye_jekono = 'পছন্দ অনুযায়ী যেকোন ১ টা ক্যাটাগরি সিলেক্ট করুণঃ';
+  static const String sura_krome = 'সূরা ক্রমে';
+  static const String para_krome = 'পারা ক্রমে';
+  static const String sorboses_pora_hoyeche = 'সর্বশেষ পড়া হয়েছে';
+  static const String sura = 'সূরা';
+  static const String probesh_korun = 'প্রবেশ করুণ';
 }
