@@ -22,7 +22,13 @@ class SuraWidget extends StatelessWidget {
             children: <Widget>[
               Stack(
                 children: <Widget>[
-                  Image.asset(Images.number_icon, height: 50, width: 50, fit: BoxFit.cover,color: Colors.grey,),
+                  Image.asset(
+                    Images.number_icon,
+                    height: 50,
+                    width: 50,
+                    fit: BoxFit.cover,
+                    color: Colors.grey,
+                  ),
                   Container(width: 50, height: 50, alignment: Alignment.center, child: Text('${convertEngToBangla(suraModel.suraNo)}'))
                 ],
               ),
@@ -38,8 +44,26 @@ class SuraWidget extends StatelessWidget {
                 ]),
               ),
               InkWell(
-                  onTap: (){
-
+                  onTap: () {
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Container(
+                            color: Color(0xFF737373),
+                            child: ClipRRect(
+                              clipBehavior: Clip.hardEdge,
+                              borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25)),
+                              child: Container(
+                                color: Color(0xFFFFFFFF),
+                                height: 330,
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.only(topLeft: const Radius.circular(10), topRight: const Radius.circular(10))),
+                                    child: suraInfoBotomNavigationBar()),
+                              ),
+                            ),
+                          );
+                        });
                   },
                   child: Icon(Icons.info, color: Colors.grey)),
             ],
@@ -49,6 +73,139 @@ class SuraWidget extends StatelessWidget {
               height: 3,
               decoration:
                   BoxDecoration(gradient: LinearGradient(colors: [const Color(0xffffffff), const Color(0xff178723), const Color(0xffffffff)])))
+        ],
+      ),
+    );
+  }
+
+  SingleChildScrollView suraInfoBotomNavigationBar() {
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              'সূরা ${suraModel.banglaTranslator}',
+              style: TextStyle(fontSize: 16, color: Colors.green),
+            ),
+          ),
+          Container(
+              height: 3,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [
+                const Color(0xffffffff),
+                const Color(0xff178723),
+                const Color(0xffffffff),
+              ]))),
+          Container(
+            padding: const EdgeInsets.only(left: 16, top: 8, bottom: 4),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                    child: Text(
+                  'আরবি নামঃ:',
+                  style: TextStyle(fontSize: 18, color: Colors.blueGrey),
+                )),
+                Expanded(
+                    flex: 2,
+                    child: Text(
+                      '${suraModel.arbiSuraNam}',
+                      style: TextStyle(fontSize: 19, color: Colors.green),
+                    ))
+              ],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.only(left: 16, top: 8, bottom: 4),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                    child: Text(
+                  'বাংলা অর্থঃ',
+                  style: TextStyle(fontSize: 18, color: Colors.blueGrey),
+                )),
+                Expanded(
+                    flex: 2,
+                    child: Text(
+                      '${suraModel.banglaMeaning}',
+                      style: TextStyle(fontSize: 19, color: Colors.green),
+                    ))
+              ],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.only(left: 16, top: 8, bottom: 4),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                    child: Text(
+                  'সূরা নংঃ',
+                  style: TextStyle(fontSize: 18, color: Colors.blueGrey),
+                )),
+                Expanded(
+                    flex: 2,
+                    child: Text(
+                      '${suraModel.suraNo}',
+                      style: TextStyle(fontSize: 19, color: Colors.green),
+                    ))
+              ],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.only(left: 16, top: 8, bottom: 4),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                    child: Text(
+                  'মোট আয়াতঃ',
+                  style: TextStyle(fontSize: 18, color: Colors.blueGrey),
+                )),
+                Expanded(
+                    flex: 2,
+                    child: Text(
+                      '${suraModel.ayatNo}',
+                      style: TextStyle(fontSize: 19, color: Colors.green),
+                    ))
+              ],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.only(left: 16, top: 8, bottom: 4),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                    child: Text(
+                  'পারাঃ',
+                  style: TextStyle(fontSize: 18, color: Colors.blueGrey),
+                )),
+                Expanded(
+                    flex: 2,
+                    child: Text(
+                      '${suraModel.paraNumber}',
+                      style: TextStyle(fontSize: 19, color: Colors.green),
+                    ))
+              ],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.only(left: 16, top: 8, bottom: 4),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                    child: Text(
+                  'অবতীর্ণঃ',
+                  style: TextStyle(fontSize: 18, color: Colors.blueGrey),
+                )),
+                Expanded(
+                    flex: 2,
+                    child: Text(
+                      '${suraModel.obotirno}',
+                      style: TextStyle(fontSize: 19, color: Colors.green),
+                    ))
+              ],
+            ),
+          ),
         ],
       ),
     );
