@@ -14,7 +14,7 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30), bottomRight: Radius.circular(isBackgroundPrimaryColor ? 0 : 30)),
+      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(isBackgroundPrimaryColor ? 0 :30), bottomRight: Radius.circular(isBackgroundPrimaryColor ? 0 : 30)),
       child: Container(
         height: 70,
         width: MediaQuery.of(context).size.width,

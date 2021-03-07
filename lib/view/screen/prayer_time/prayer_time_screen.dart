@@ -13,11 +13,13 @@ import 'package:search_islam/view/widget/custom_button.dart';
 class PrayerTimeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Provider.of<PrayerTimeProvider>(context,listen: false).initializeAllMonthPrayerTimeData();
+    Provider.of<PrayerTimeProvider>(context, listen: false).initializeAllMonthPrayerTimeData();
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
-            child: CustomAppBar(title: Strings.namajer_somoysuci, isLocation: true), preferredSize: Size(MediaQuery.of(context).size.width, 120)),
+          child: CustomAppBar(title: Strings.namajer_somoysuci, isLocation: true),
+          preferredSize: Size(MediaQuery.of(context).size.width, 120),
+        ),
         body: ListView(
           physics: BouncingScrollPhysics(),
           padding: EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT),
@@ -249,9 +251,7 @@ class PrayerTimeScreen extends StatelessWidget {
   Widget _tomorrowIftarSehriWidget({BuildContext context, PrayerTimeProvider prayerTimeProvider}) {
     return Container(
       padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
-      decoration: BoxDecoration(
-          color:  Color(0xFF9F9594),
-          borderRadius: BorderRadius.circular(Dimensions.PADDING_SIZE_EXTRA_SMALL)),
+      decoration: BoxDecoration(color: Color(0xFF9F9594), borderRadius: BorderRadius.circular(Dimensions.PADDING_SIZE_EXTRA_SMALL)),
       child: Column(
         children: [
           Row(

@@ -14,7 +14,7 @@ import 'package:search_islam/view/screen/home/widget/drawer.dart';
 import 'package:search_islam/view/screen/home/widget/prayer_time_widget.dart';
 import 'package:search_islam/view/screen/prayer_time/location_set_screen.dart';
 import 'package:search_islam/view/screen/prayer_time/prayer_time_screen.dart';
-import 'package:search_islam/view/screen/quran/select_quran_option.dart';
+import 'package:search_islam/view/screen/quran/select_quran_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -64,7 +64,7 @@ class HomeScreen extends StatelessWidget {
                 CategoryWidget(title: Strings.questions, iconUrl: Images.question_svg),
               ],
             ),
-            SizedBox(height: 5),
+            SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -74,7 +74,7 @@ class HomeScreen extends StatelessWidget {
                 CategoryWidget(title: Strings.niyom, iconUrl: Images.method_svg),
               ],
             ),
-            SizedBox(height: 5),
+            SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -84,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                 CategoryWidget(title: Strings.questions, iconUrl: Images.question_svg),
               ],
             ),
-            SizedBox(height: 5),
+            SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -94,6 +94,7 @@ class HomeScreen extends StatelessWidget {
                 CategoryWidget(title: Strings.niyom, iconUrl: Images.method_svg),
               ],
             ),
+            SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -103,7 +104,7 @@ class HomeScreen extends StatelessWidget {
                 CategoryWidget(title: Strings.questions, iconUrl: Images.question_svg),
               ],
             ),
-            SizedBox(height: 5),
+            SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -113,7 +114,7 @@ class HomeScreen extends StatelessWidget {
                 CategoryWidget(title: Strings.niyom, iconUrl: Images.method_svg),
               ],
             ),
-            SizedBox(height: 5),
+            SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -123,7 +124,7 @@ class HomeScreen extends StatelessWidget {
                 CategoryWidget(title: Strings.questions, iconUrl: Images.question_svg),
               ],
             ),
-            SizedBox(height: 5),
+            SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

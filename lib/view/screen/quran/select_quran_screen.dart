@@ -4,8 +4,8 @@ import 'package:search_islam/utill/dimensions.dart';
 import 'package:search_islam/utill/images.dart';
 import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
+import 'package:search_islam/view/screen/quran/sura_para_list_screen.dart';
 import 'package:search_islam/view/widget/custom_app_bar.dart';
-import 'package:search_islam/view/widget/custom_button.dart';
 
 class SelectQuranScreen extends StatelessWidget {
   @override
@@ -70,7 +70,12 @@ class SelectQuranScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-            _itemCategoryWidget(title: Strings.sura_krome, onTap: () {}, context: context),
+            _itemCategoryWidget(
+                title: Strings.sura_krome,
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => SuraParaListScreen(title: Strings.sura_krome)));
+                },
+                context: context),
             SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
             _itemCategoryWidget(title: Strings.para_krome, onTap: () {}, context: context),
             SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
@@ -79,8 +84,6 @@ class SelectQuranScreen extends StatelessWidget {
             _itemCategoryWidget(title: Strings.quran_sound, onTap: () {}, context: context),
             SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
             _itemCategoryWidget(title: Strings.kayda, onTap: () {}, context: context),
-
-
           ],
         ),
       ),
@@ -104,7 +107,10 @@ class SelectQuranScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(title, style: kalpurus.copyWith(fontWeight: FontWeight.w400, color: Colors.white, fontSize: 17)),
-              Icon(Icons.keyboard_arrow_right,color: Colors.white,)
+              Icon(
+                Icons.keyboard_arrow_right,
+                color: Colors.white,
+              )
             ],
           ),
         ),
