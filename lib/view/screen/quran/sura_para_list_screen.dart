@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:search_islam/provider/quran_sorif_provider.dart';
 import 'package:search_islam/utill/dimensions.dart';
+import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
 import 'package:search_islam/view/screen/quran/widget/sura_widget.dart';
 import 'package:search_islam/view/widget/custom_app_bar.dart';
@@ -18,11 +19,7 @@ class SuraParaListScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
           appBar: PreferredSize(
-              child: CustomAppBar(
-                title: title,
-                isBackgroundPrimaryColor: true,
-              ),
-              preferredSize: Size(MediaQuery.of(context).size.width, 120)),
+              child: CustomAppBar(title: title, isBackgroundPrimaryColor: true), preferredSize: Size(MediaQuery.of(context).size.width, 120)),
           body: Consumer<QuraanShareefProvider>(
               builder: (context, quranProvider, child) => Column(
                     children: [
@@ -30,7 +27,7 @@ class SuraParaListScreen extends StatelessWidget {
                         decoration: BoxDecoration(gradient: LinearGradient(colors: [const Color(0xff178723), const Color(0xff27AB4B)])),
                         padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_DEFAULT),
                         child: CustomTextField(
-                          hintText: 'Search',
+                          hintText: Strings.search,
                           controller: quranProvider.controller,
                           isShowSuffixIcon: true,
                           inputAction: TextInputAction.search,
@@ -52,7 +49,7 @@ class SuraParaListScreen extends StatelessWidget {
                                 decoration: BoxDecoration(gradient: LinearGradient(colors: [const Color(0xff178723), const Color(0xff27AB4B)])),
                                 padding: EdgeInsets.only(bottom: 10, top: 5),
                                 alignment: Alignment.topCenter,
-                                child: Text("بسم الله الرحمن الرحيم",
+                                child: Text(Strings.bismillahirahmanirRahim,
                                     style: qulammajid.copyWith(fontSize: 30, fontWeight: FontWeight.w600, color: Colors.white))),
                             Container(
                               margin: EdgeInsets.only(top: 60, left: 10, right: 10),
@@ -62,7 +59,7 @@ class SuraParaListScreen extends StatelessWidget {
                                   color: Colors.white,
                                   child: ListView.builder(
                                     shrinkWrap: true,
-                                    padding: EdgeInsets.only(top: 20,bottom: 20),
+                                    padding: EdgeInsets.only(top: 20, bottom: 20),
                                     physics: BouncingScrollPhysics(),
                                     itemBuilder: (context, index) => SuraWidget(suraModel: quranProvider.suraModels[index]),
                                     itemCount: quranProvider.suraModels.length,

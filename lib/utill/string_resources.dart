@@ -49,7 +49,20 @@ class Strings {
   static const String pocondo_onujaye_jekono = 'পছন্দ অনুযায়ী যেকোন ১ টা ক্যাটাগরি সিলেক্ট করুণঃ';
   static const String sura_krome = 'সূরা ক্রমে';
   static const String para_krome = 'পারা ক্রমে';
+  static const String para = 'পারাঃ';
   static const String sorboses_pora_hoyeche = 'সর্বশেষ পড়া হয়েছে';
   static const String sura = 'সূরা';
   static const String probesh_korun = 'প্রবেশ করুণ';
+  static const String search = 'Search';
+  static const String arabic_name = 'আরবি নামঃ';
+  static const String bangla_ortho = 'বাংলা অর্থঃ';
+  static const String sura_no = 'সূরা নংঃ';
+  static const String total_ayat = 'মোট আয়াতঃ';
+  static const String obotirno = 'অবতীর্ণঃ';
+  static const String bismillahirahmanirRahim = 'بسم الله الرحمن الرحيم';
+  static const String arabi = 'আরবি';
+  static const String bangla_uccaron = 'বাংলা উচ্চারণ';
+  static const String bangla_meaning = 'বাংলা অর্থ';
+  static const String copied_to_clipboard = 'Copied to Clipboard';
+  static const String ayat_no_english = 'Ayat No:';
 }

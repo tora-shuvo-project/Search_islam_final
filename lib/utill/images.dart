@@ -28,4 +28,5 @@ class Images {
   static const String mosque = 'assets/images/mosque.png';
   static const String background10 = 'assets/images/background_10.png';
   static const String number_icon = 'assets/images/number_Icon.png';
+  static const String ayat_number_icon = 'assets/images/ayat_number_icon.png';
 }

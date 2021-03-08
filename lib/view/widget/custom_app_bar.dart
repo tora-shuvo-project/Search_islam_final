@@ -3,18 +3,21 @@ import 'package:provider/provider.dart';
 import 'package:search_islam/provider/location_provider.dart';
 import 'package:search_islam/utill/styles.dart';
 import 'package:search_islam/view/screen/prayer_time/location_set_screen.dart';
+import 'package:search_islam/view/screen/quran/widget/quran_details_settings_dialog.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String title;
   final bool isLocation;
   final bool isBackgroundPrimaryColor;
+  final bool isAyatScreen;
 
-  CustomAppBar({this.title, this.isLocation = false, this.isBackgroundPrimaryColor = false});
+  CustomAppBar({this.title, this.isLocation = false, this.isBackgroundPrimaryColor = false, this.isAyatScreen = false});
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(isBackgroundPrimaryColor ? 0 :30), bottomRight: Radius.circular(isBackgroundPrimaryColor ? 0 : 30)),
+      borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(isBackgroundPrimaryColor ? 0 : 30), bottomRight: Radius.circular(isBackgroundPrimaryColor ? 0 : 30)),
       child: Container(
         height: 70,
         width: MediaQuery.of(context).size.width,
@@ -33,7 +36,7 @@ class CustomAppBar extends StatelessWidget {
             isLocation
                 ? InkWell(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (_)=>LocationSetScreen()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (_) => LocationSetScreen()));
                     },
                     child: Row(
                       children: <Widget>[
@@ -43,7 +46,21 @@ class CustomAppBar extends StatelessWidget {
                       ],
                     ),
                   )
-                : SizedBox.shrink(),
+                : isAyatScreen
+                    ? InkWell(
+                        onTap: () {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Dialog(
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)), child: QuranDetailsSettingsDialog());
+                              });
+                        },
+                        child: Icon(
+                          Icons.settings_outlined,
+                          color: Colors.white,
+                        ))
+                    : SizedBox.shrink(),
           ],
         ),
       ),
