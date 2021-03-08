@@ -29,6 +29,41 @@ class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        bottomNavigationBar: Consumer<QuraanShareefProvider>(
+          builder: (context, quranProvider, child) => Container(
+            height: 60,
+            alignment: Alignment.centerRight,
+            padding: EdgeInsets.all(8),
+            color: Colors.green,
+            width: double.infinity,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Expanded(
+                    flex: 3,
+                    child: Text(
+                      quranProvider.getQareName(),
+                      style: poppinsExtraLight.copyWith(color: Colors.white,fontSize: 16)
+                    )),
+                IconButton(
+                  icon: Icon(!quranProvider.isPlaying ? Icons.play_arrow : Icons.pause, color: Colors.white),
+                  onPressed: () {
+                    quranProvider.playAudioANdDownload(
+                        context: context,
+                        suraNo: widget.suraID,
+                        url: quranProvider.audioModel.suraLink.trim(),
+                        qareName: quranProvider.getQareName());
+                  },
+                ),
+                IconButton(
+                    icon: Icon(Icons.stop, color: Colors.white),
+                    onPressed: () {
+                      quranProvider.stopSuraAudioPlayer();
+                    })
+              ],
+            ),
+          ),
+        ),
         appBar: PreferredSize(
             child: CustomAppBar(title: widget.title, isBackgroundPrimaryColor: true, isAyatScreen: true),
             preferredSize: Size(MediaQuery.of(context).size.width, 120)),

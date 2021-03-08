@@ -22,6 +22,7 @@ class AyatModel {
       this.surano,
       this.para});
 
+  // ignore: missing_return
   Map<String, dynamic> tomap() {
     var map = new Map<String, dynamic>();
     map['AYATNO'] = ayatno;

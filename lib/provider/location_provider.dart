@@ -18,7 +18,7 @@ class LocationProvider with ChangeNotifier {
   }
 
   void getUserLocation() async {
-    currentLocation = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    currentLocation = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     notifyListeners();
   }
 

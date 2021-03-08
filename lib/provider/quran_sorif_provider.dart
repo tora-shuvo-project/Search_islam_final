@@ -1,13 +1,21 @@
 import 'dart:io';
 
 import 'package:audioplayer/audioplayer.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:search_islam/data/model/audio_model.dart';
 import 'package:search_islam/data/model/sura_model.dart';
+import 'package:search_islam/data/repository/quran_repo.dart';
 import 'package:search_islam/helper/database_helper.dart';
 import 'package:search_islam/provider/ayat_model.dart';
 
 class QuraanShareefProvider with ChangeNotifier {
+  final QuranRepo quranRepo;
+
+  QuraanShareefProvider({@required this.quranRepo});
+
   DatabaseHelper _getDatabaseHelper;
 
   DatabaseHelper get getDatabaseHelper => _getDatabaseHelper;
@@ -74,8 +82,6 @@ class QuraanShareefProvider with ChangeNotifier {
     _getDatabaseHelper.getAllAyatFromAyatTable(id).then((rows) {
       rows.forEach((row) {
         _getAllSuraAyat.add(AyatModel.formMap(row));
-        //print(row.toString());
-        print(_getAllSuraAyat.length);
       });
       notifyListeners();
     });
@@ -131,45 +137,43 @@ class QuraanShareefProvider with ChangeNotifier {
   // for audio section
 
   AudioPlayer ayatPlayer = AudioPlayer();
-  bool _isPlayAyatAudio=false;
-  bool get isPlayAyatAudio=>_isPlayAyatAudio;
-  int _playAudioIndex=0;
-  int get playAudioIndex=>_playAudioIndex;
+  bool _isPlayAyatAudio = false;
 
-  playAyatAudio({@required BuildContext context, @required String audioUrl,int index}) async {
+  bool get isPlayAyatAudio => _isPlayAyatAudio;
+  int _playAudioIndex = 0;
+
+  int get playAudioIndex => _playAudioIndex;
+
+  playAyatAudio({@required BuildContext context, @required String audioUrl, int index}) async {
     try {
       final result = await InternetAddress.lookup('google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-
-
         try {
           ayatPlayer.play(audioUrl);
           ayatPlayer.onPlayerStateChanged.listen((s) {
-            if(s== AudioPlayerState.PLAYING){
-              _isPlayAyatAudio=true;
-              _playAudioIndex=index-1;
+            if (s == AudioPlayerState.PLAYING) {
+              _isPlayAyatAudio = true;
+              _playAudioIndex = index - 1;
               notifyListeners();
-            } else if(s==AudioPlayerState.COMPLETED){
-              print('complete');
-              _isPlayAyatAudio=false;
+            } else if (s == AudioPlayerState.COMPLETED) {
+              _isPlayAyatAudio = false;
               notifyListeners();
             }
-
           });
         }
 
         /// on catching Exception return null
         catch (err) {
+          // ignore: deprecated_member_use
           Scaffold.of(context).showSnackBar(new SnackBar(
             content: new Text('Audio Path Error'),
           ));
           return null;
         }
-
-
       }
     } on SocketException catch (_) {
       print('not connected');
+      // ignore: deprecated_member_use
       Scaffold.of(context).showSnackBar(new SnackBar(
           backgroundColor: Colors.red,
           elevation: 2,
@@ -181,6 +185,97 @@ class QuraanShareefProvider with ChangeNotifier {
             ),
           )));
     }
-    //print('Finished');
+  }
+
+  // for play sura sudio
+
+  AudioPlayer suraPlayer = AudioPlayer();
+  bool isPlaying = true;
+  double showPercentage = 0.0;
+  String downloadMessahge = '';
+  bool isDownload = true;
+  AudioModel audioModel = AudioModel();
+
+  playAudioANdDownload({int suraNo, String qareName, String url, BuildContext context}) async {
+    _getDatabaseHelper.getAudioBySuraAndQareName(suraNo, qareName).then((rows) async {
+      audioModel = rows;
+
+      final filename = 'sura ${rows.suraNo} ${rows.qareName}.mp3';
+
+      /// getting application doc directory's path in dir variable
+      String dir = (await getExternalStorageDirectory()).path;
+
+      /// if `filename` File exists in local system then return that file.
+      /// This is the fastest among all.
+
+      Dio dio = Dio();
+      if (await File('$dir/$filename').exists()) {
+        print('$dir/$filename');
+
+        if (isPlaying) {
+          suraPlayer.play('$dir/$filename');
+          isPlaying = false;
+        } else {
+          suraPlayer.pause();
+          isPlaying = true;
+        }
+
+        ayatPlayer.onPlayerStateChanged.listen((s) {
+          if (s == AudioPlayerState.COMPLETED) {
+            isPlaying = false;
+            notifyListeners();
+          }
+        });
+      } else {
+        return await dio.download('$url', '$dir/$filename', onReceiveProgress: (actualBytes, totalBytes) {
+          var percentage = actualBytes / totalBytes * 100;
+          if (percentage <= 100) {
+            showPercentage = percentage / 100;
+            isDownload = false;
+            downloadMessahge = 'Downloading.......${percentage.floor()}';
+            if (percentage == 100) {
+              isDownload = true;
+              if (isPlaying) {
+                suraPlayer.play('$dir/$filename');
+                isPlaying = false;
+              } else {
+                suraPlayer.pause();
+                isPlaying = true;
+              }
+            }
+          }
+        }).catchError((error) {
+          print('Shuvo');
+          Scaffold.of(context).showSnackBar(new SnackBar(
+              backgroundColor: Colors.red,
+              elevation: 2,
+              duration: Duration(seconds: 5),
+              content: Text(
+                'Please check your internet connection first time it download for you from server \'Thanks',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              )));
+        });
+      }
+    });
+    notifyListeners();
+  }
+
+  stopSuraAudioPlayer() async {
+    await suraPlayer.stop();
+    notifyListeners();
+  }
+
+  // sharefernce
+
+// Save District Name
+
+  saveQareName(String name) async {
+    return quranRepo.saveQareNameInPreference(name);
+  }
+
+  String getQareName() {
+    return quranRepo.getQareNameFromPreference();
   }
 }

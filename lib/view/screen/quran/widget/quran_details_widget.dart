@@ -95,6 +95,7 @@ class QuranDetailsWidget extends StatelessWidget {
                                               text:
                                                   '${quranProvider.isShowArabic ? ayatModel.arabicUtmanic : ''}\n${quranProvider.isShowBanglaTranslate ? ayatModel.banglaTranslator : ''}\n${quranProvider.isShowBanglaMeaning ? ayatModel.banglaMeaning : ''}'));
 
+                                          // ignore: deprecated_member_use
                                           Scaffold.of(context).showSnackBar(new SnackBar(
                                               content: new Text(Strings.copied_to_clipboard, style: poppinsRegular.copyWith(color: Colors.white)),
                                               backgroundColor: Colors.green));

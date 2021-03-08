@@ -10,6 +10,7 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: deprecated_member_use
     return FlatButton(
       onPressed: onTap,
       padding: EdgeInsets.all(0),
