@@ -192,30 +192,28 @@ class QuraanShareefProvider with ChangeNotifier {
   AudioPlayer suraPlayer = AudioPlayer();
   bool isPlaying = false;
   double showPercentage = 0.0;
-  String downloadMessahge = '';
+  String downloadMessahge = '0';
   bool isDownload = true;
   AudioModel audioModel = AudioModel();
+  Dio dio = Dio();
+  CancelToken cancelToken = CancelToken();
+  bool cancelTokenStatus = false;
 
-  initializeAudioModel(
-    int suraNo,
-    String qareName,
-  ) async {
+  initializeAudioModel(int suraNo, String qareName) async {
     _getDatabaseHelper.getAudioBySuraAndQareName(suraNo, qareName).then((rows) async {
       audioModel = rows;
     });
     notifyListeners();
   }
 
+  cancelDownload() {
+    cancelToken.cancel('cancelled');
+    notifyListeners();
+  }
+
   playAudioANdDownload({int suraNo, String qareName, String url, BuildContext context}) async {
-    final filename = 'sura ${suraNo} ${qareName}.mp3';
-
-    /// getting application doc directory's path in dir variable
+    final filename = 'sura $suraNo $qareName.mp3';
     String dir = (await getExternalStorageDirectory()).path;
-
-    /// if `filename` File exists in local system then return that file.
-    /// This is the fastest among all.
-
-    Dio dio = Dio();
     if (await File('$dir/$filename').exists()) {
       print('$dir/$filename');
 
@@ -234,12 +232,17 @@ class QuraanShareefProvider with ChangeNotifier {
         }
       });
     } else {
-      return await dio.download('$url', '$dir/$filename', onReceiveProgress: (actualBytes, totalBytes) {
+      showPercentage = 0.0;
+      cancelToken = CancelToken();
+      cancelTokenStatus = false;
+      await dio.download('$url', '$dir/$filename', onReceiveProgress: (actualBytes, totalBytes) {
         var percentage = actualBytes / totalBytes * 100;
         if (percentage <= 100) {
           showPercentage = percentage / 100;
           isDownload = false;
-          downloadMessahge = 'Downloading.......${percentage.floor()}';
+          downloadMessahge = '${percentage.floor()}';
+          print(downloadMessahge);
+          notifyListeners();
           if (percentage == 100) {
             isDownload = true;
             if (isPlaying) {
@@ -251,17 +254,15 @@ class QuraanShareefProvider with ChangeNotifier {
             }
           }
         }
-      }).catchError((error) {
-        print('Shuvo');
-        Scaffold.of(context).showSnackBar(new SnackBar(
+      }, cancelToken: cancelToken).catchError((error) {
+
+        ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
             backgroundColor: Colors.red,
             elevation: 2,
             duration: Duration(seconds: 5),
-            content: Text(
-              'Please check your internet connection first time it download for you from server \'Thanks',
-              style: TextStyle(
-                color: Colors.white,
-              ),
+            content: Text(error.message=='cancelled'?'Download Canceled':
+            'Please check your internet connection first time it download for you from server \'Thanks',
+              style: TextStyle(color: Colors.white),
             )));
       });
     }

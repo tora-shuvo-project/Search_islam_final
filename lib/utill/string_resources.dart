@@ -71,10 +71,14 @@ class Strings {
   static const String sad_al_gamidi_bangla = 'সাদ আল গামিদি';
   static const String sad_al_gamidi_english = 'Saad al Ghamidi';
   static const String misare_bin_rased_al_afsi_bangla = 'মিসারী বিন রাসেদ আল আফসি';
-  static const String misare_bin_rased_al_afsi_english = 'মal-mishary';
+  static const String misare_bin_rased_al_afsi_english = 'al-mishary';
   static const String salah_budir_bangla = 'সালাহ বুদির';
   static const String salah_budir_english = 'Salah Budair';
   static const String ahmed_al_ajimi_bangla = 'আহমেদ আল আজিমি';
   static const String ahmed_al_ajimi_english = 'Ahmed al Ajmi';
-  static const String qare_select_korun = 'কারী সিলেক্ট করুণ';
+  static const String boundho_korun = 'ডাউনলোডটি বন্ধ করুণ';
+  static const String odioti = 'অডিওটি';
+  static const String download_hoccce = 'ডাউনলোড হচ্ছে!';
+  static const String sompurno_vabe_download_hocce = 'সম্পূর্ণভাবে ডাউনলোড হয়েছে:)';
+  static const String somponno_hoccce = 'সম্পন্ন হয়েছে';
 }

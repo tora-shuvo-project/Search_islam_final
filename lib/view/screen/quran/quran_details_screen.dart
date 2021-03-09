@@ -6,6 +6,7 @@ import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
 import 'package:search_islam/view/screen/quran/widget/quran_details_widget.dart';
 import 'package:search_islam/view/widget/custom_app_bar.dart';
+import 'package:search_islam/view/widget/download_dialog_widget.dart';
 
 class QuranDetailsScreen extends StatefulWidget {
   final int suraID;
@@ -46,6 +47,14 @@ class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
                 IconButton(
                   icon: Icon(quranProvider.isPlaying ? Icons.play_arrow : Icons.pause, color: Colors.white),
                   onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Dialog(
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+                              child: DownloadDialogWidget(title: Strings.odioti, percent: quranProvider.showPercentage));
+                        });
+
                     quranProvider.playAudioANdDownload(
                         context: context,
                         suraNo: widget.suraID,
