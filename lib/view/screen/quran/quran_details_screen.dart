@@ -23,6 +23,9 @@ class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
     // TODO: implement initState
     super.initState();
     Provider.of<QuraanShareefProvider>(context, listen: false).initializeAyatBySuraId(widget.suraID);
+
+    Provider.of<QuraanShareefProvider>(context, listen: false)
+        .initializeAudioModel(widget.suraID, Provider.of<QuraanShareefProvider>(context, listen: false).getQareName());
   }
 
   @override
@@ -39,14 +42,9 @@ class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Expanded(
-                    flex: 3,
-                    child: Text(
-                      quranProvider.getQareName(),
-                      style: poppinsExtraLight.copyWith(color: Colors.white,fontSize: 16)
-                    )),
+                Expanded(flex: 3, child: Text(quranProvider.getQareName(), style: poppinsExtraLight.copyWith(color: Colors.white, fontSize: 16))),
                 IconButton(
-                  icon: Icon(!quranProvider.isPlaying ? Icons.play_arrow : Icons.pause, color: Colors.white),
+                  icon: Icon(quranProvider.isPlaying ? Icons.play_arrow : Icons.pause, color: Colors.white),
                   onPressed: () {
                     quranProvider.playAudioANdDownload(
                         context: context,

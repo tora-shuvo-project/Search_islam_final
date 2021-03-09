@@ -42,6 +42,7 @@ class Strings {
   static const String date = 'তারিখ';
   static const String location = 'লোকেশন';
   static const String zila_nirbacon_korun = 'জেলা নির্বাচন করুন';
+  static const String kare_nirbacon_korun = 'ক্বারি নির্বাচন করুন';
   static const String nirdistro_zila_select_korun = 'নির্দিষ্ট একটি জেলা নির্বাচন করতে চাই।';
   static const String gps_er_maddome_automatc = 'gps এর মাধ্যমে অটোমেটিক পদ্ধতি';
   static const String elaka_nirbaconer_jonno = 'এলাকা নির্বাচনের জন্য কোন পদ্ধতিটি ব্যাবহার করতে চান?';
@@ -65,4 +66,15 @@ class Strings {
   static const String bangla_meaning = 'বাংলা অর্থ';
   static const String copied_to_clipboard = 'Copied to Clipboard';
   static const String ayat_no_english = 'Ayat No:';
+  static const String abdur_rahman_sudaies_bangla = 'আব্দুর রহমান সুদাইস';
+  static const String abdur_rahman_sudaies_english = 'Abdurrahman Sudais';
+  static const String sad_al_gamidi_bangla = 'সাদ আল গামিদি';
+  static const String sad_al_gamidi_english = 'Saad al Ghamidi';
+  static const String misare_bin_rased_al_afsi_bangla = 'মিসারী বিন রাসেদ আল আফসি';
+  static const String misare_bin_rased_al_afsi_english = 'মal-mishary';
+  static const String salah_budir_bangla = 'সালাহ বুদির';
+  static const String salah_budir_english = 'Salah Budair';
+  static const String ahmed_al_ajimi_bangla = 'আহমেদ আল আজিমি';
+  static const String ahmed_al_ajimi_english = 'Ahmed al Ajmi';
+  static const String qare_select_korun = 'কারী সিলেক্ট করুণ';
 }

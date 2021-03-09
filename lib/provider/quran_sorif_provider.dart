@@ -190,86 +190,115 @@ class QuraanShareefProvider with ChangeNotifier {
   // for play sura sudio
 
   AudioPlayer suraPlayer = AudioPlayer();
-  bool isPlaying = true;
+  bool isPlaying = false;
   double showPercentage = 0.0;
   String downloadMessahge = '';
   bool isDownload = true;
   AudioModel audioModel = AudioModel();
 
-  playAudioANdDownload({int suraNo, String qareName, String url, BuildContext context}) async {
+  initializeAudioModel(
+    int suraNo,
+    String qareName,
+  ) async {
     _getDatabaseHelper.getAudioBySuraAndQareName(suraNo, qareName).then((rows) async {
       audioModel = rows;
+    });
+    notifyListeners();
+  }
 
-      final filename = 'sura ${rows.suraNo} ${rows.qareName}.mp3';
+  playAudioANdDownload({int suraNo, String qareName, String url, BuildContext context}) async {
+    final filename = 'sura ${suraNo} ${qareName}.mp3';
 
-      /// getting application doc directory's path in dir variable
-      String dir = (await getExternalStorageDirectory()).path;
+    /// getting application doc directory's path in dir variable
+    String dir = (await getExternalStorageDirectory()).path;
 
-      /// if `filename` File exists in local system then return that file.
-      /// This is the fastest among all.
+    /// if `filename` File exists in local system then return that file.
+    /// This is the fastest among all.
 
-      Dio dio = Dio();
-      if (await File('$dir/$filename').exists()) {
-        print('$dir/$filename');
+    Dio dio = Dio();
+    if (await File('$dir/$filename').exists()) {
+      print('$dir/$filename');
 
-        if (isPlaying) {
-          suraPlayer.play('$dir/$filename');
-          isPlaying = false;
-        } else {
-          suraPlayer.pause();
-          isPlaying = true;
-        }
-
-        ayatPlayer.onPlayerStateChanged.listen((s) {
-          if (s == AudioPlayerState.COMPLETED) {
-            isPlaying = false;
-            notifyListeners();
-          }
-        });
+      if (isPlaying) {
+        suraPlayer.play('$dir/$filename');
+        isPlaying = false;
       } else {
-        return await dio.download('$url', '$dir/$filename', onReceiveProgress: (actualBytes, totalBytes) {
-          var percentage = actualBytes / totalBytes * 100;
-          if (percentage <= 100) {
-            showPercentage = percentage / 100;
-            isDownload = false;
-            downloadMessahge = 'Downloading.......${percentage.floor()}';
-            if (percentage == 100) {
-              isDownload = true;
-              if (isPlaying) {
-                suraPlayer.play('$dir/$filename');
-                isPlaying = false;
-              } else {
-                suraPlayer.pause();
-                isPlaying = true;
-              }
+        suraPlayer.pause();
+        isPlaying = true;
+      }
+
+      ayatPlayer.onPlayerStateChanged.listen((s) {
+        if (s == AudioPlayerState.COMPLETED) {
+          isPlaying = true;
+          notifyListeners();
+        }
+      });
+    } else {
+      return await dio.download('$url', '$dir/$filename', onReceiveProgress: (actualBytes, totalBytes) {
+        var percentage = actualBytes / totalBytes * 100;
+        if (percentage <= 100) {
+          showPercentage = percentage / 100;
+          isDownload = false;
+          downloadMessahge = 'Downloading.......${percentage.floor()}';
+          if (percentage == 100) {
+            isDownload = true;
+            if (isPlaying) {
+              suraPlayer.play('$dir/$filename');
+              isPlaying = false;
+            } else {
+              suraPlayer.pause();
+              isPlaying = true;
             }
           }
-        }).catchError((error) {
-          print('Shuvo');
-          Scaffold.of(context).showSnackBar(new SnackBar(
-              backgroundColor: Colors.red,
-              elevation: 2,
-              duration: Duration(seconds: 5),
-              content: Text(
-                'Please check your internet connection first time it download for you from server \'Thanks',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              )));
-        });
-      }
-    });
+        }
+      }).catchError((error) {
+        print('Shuvo');
+        Scaffold.of(context).showSnackBar(new SnackBar(
+            backgroundColor: Colors.red,
+            elevation: 2,
+            duration: Duration(seconds: 5),
+            content: Text(
+              'Please check your internet connection first time it download for you from server \'Thanks',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            )));
+      });
+    }
     notifyListeners();
   }
 
   stopSuraAudioPlayer() async {
     await suraPlayer.stop();
+    isPlaying = true;
     notifyListeners();
   }
 
   // sharefernce
+  List<QareModel> _qares = [];
+  QareModel qareModel = QareModel();
 
-// Save District Name
+  List<QareModel> get qares => _qares;
+
+  initializeAllQare() {
+    if (_qares.length == 0) {
+      _qares.clear();
+      _qares = quranRepo.qareodels;
+      qareModel = _qares.first;
+      notifyListeners();
+    }
+  }
+
+  String qareName = '';
+
+  changeQareName(QareModel qareM) {
+    qareModel = qareM;
+    qareName = qareM.banglaName;
+    saveQareName(qareM.englishName);
+    notifyListeners();
+  }
+
+// Save Qare Name
 
   saveQareName(String name) async {
     return quranRepo.saveQareNameInPreference(name);
