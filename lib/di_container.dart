@@ -20,7 +20,7 @@ Future<void> init() async {
 
   // Provider
   sl.registerFactory(() => ThemeProvider(sharedPreferences: sl()));
-  sl.registerFactory(() => QuraanShareefProvider(quranRepo: sl()));
+  sl.registerFactory(() => QuraanShareefProvider(quraanRepo: sl()));
   sl.registerFactory(() => PrayerTimeProvider(locationRepo: sl()));
   sl.registerFactory(() => HomeProvider());
   sl.registerFactory(() => LocationProvider(locationRepo: sl()));

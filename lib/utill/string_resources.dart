@@ -42,7 +42,7 @@ class Strings {
   static const String date = 'তারিখ';
   static const String location = 'লোকেশন';
   static const String zila_nirbacon_korun = 'জেলা নির্বাচন করুন';
-  static const String kare_nirbacon_korun = 'ক্বারি নির্বাচন করুন';
+  static const String kare_nirbacon_korun = 'ক্বারি নির্বাচন করুনঃ';
   static const String nirdistro_zila_select_korun = 'নির্দিষ্ট একটি জেলা নির্বাচন করতে চাই।';
   static const String gps_er_maddome_automatc = 'gps এর মাধ্যমে অটোমেটিক পদ্ধতি';
   static const String elaka_nirbaconer_jonno = 'এলাকা নির্বাচনের জন্য কোন পদ্ধতিটি ব্যাবহার করতে চান?';
@@ -81,4 +81,13 @@ class Strings {
   static const String download_hoccce = 'ডাউনলোড হচ্ছে!';
   static const String sompurno_vabe_download_hocce = 'সম্পূর্ণভাবে ডাউনলোড হয়েছে:)';
   static const String somponno_hoccce = 'সম্পন্ন হয়েছে';
+  static const String change_font_size = 'ফন্ট সাইজ পরিবর্তন করুনঃ';
+  static const String change_font_style_for_only_arabic = 'আরবি ফন্ট স্টাইল পরিবর্তন করুনঃ';
+  static const String change_style_for_only_arabic = 'আরবি স্টাইল পরিবর্তন করুনঃ';
+  static const String araby_simple_bangla = 'আরবি সিম্পল';
+  static const String araby_simple_english = 'Arabi Simple';
+  static const String araby_uth_manik_bangla = 'আরাবি উঠ-মানিক';
+  static const String araby_uth_manik_english = 'Arabi Utmanic';
+  static const String araby_indopak_bangla = 'আরাবি ইন্ডোপাক';
+  static const String araby_indopak_english = 'Arabi Indopak';
 }

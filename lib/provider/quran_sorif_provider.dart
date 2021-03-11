@@ -12,9 +12,9 @@ import 'package:search_islam/helper/database_helper.dart';
 import 'package:search_islam/provider/ayat_model.dart';
 
 class QuraanShareefProvider with ChangeNotifier {
-  final QuranRepo quranRepo;
+  final QuranRepo quraanRepo;
 
-  QuraanShareefProvider({@required this.quranRepo});
+  QuraanShareefProvider({@required this.quraanRepo});
 
   DatabaseHelper _getDatabaseHelper;
 
@@ -88,49 +88,52 @@ class QuraanShareefProvider with ChangeNotifier {
   }
 
   // for hide section
-  bool _isShowBanglaMeaning = true;
-  bool _isShowBanglaTranslate = true;
-  bool _isShowArabic = true;
   bool _isShowOther = true;
-  bool _isExpanded = false;
 
-  bool get isShowBanglaMeaning => _isShowBanglaMeaning;
+  bool isShowBanglaMeaning() {
+    return quraanRepo.getBanglaMeaningFromPreference();
+  }
 
-  bool get isShowBanglaTranslate => _isShowBanglaTranslate;
+  bool isShowBanglaTranslate() {
+    return quraanRepo.getBanglaTranslatorFromPreference();
+  }
 
-  bool get isShowArabic => _isShowArabic;
+  bool isShowArabic() {
+    return quraanRepo.getArabicFromPreference();
+  }
 
   bool get isShowOther => _isShowOther;
 
-  bool get isExpanded => _isExpanded;
+  void checkTemp() async {
+    if (!quraanRepo.getBanglaMeaningFromPreference() &&
+        !quraanRepo.getBanglaTranslatorFromPreference() &&
+        !quraanRepo.getArabicFromPreference() &&
+        !_isShowOther) quraanRepo.saveArabicInPreference(true);
+  }
 
   updateBanglaMeaningStatus(bool status) {
-    _isShowBanglaMeaning = status;
-    if (!_isShowBanglaMeaning && !_isShowBanglaTranslate && !_isShowArabic && !_isShowOther) _isShowArabic = true;
+    quraanRepo.saveBanglaMeaningInPreference(status);
+
+    checkTemp();
+
     notifyListeners();
   }
 
   updateBanglaTranslateStatus(bool status) {
-    _isShowBanglaTranslate = status;
-    if (!_isShowBanglaMeaning && !_isShowBanglaTranslate && !_isShowArabic && !_isShowOther) _isShowArabic = true;
+    quraanRepo.saveBanglaTranslatorInPreference(status);
+    checkTemp();
     notifyListeners();
   }
 
   updateArabicStatus(bool status) {
-    _isShowArabic = status;
-    print(_isShowArabic);
-    if (!_isShowBanglaMeaning && !_isShowBanglaTranslate && !_isShowArabic && !_isShowOther) _isShowArabic = true;
+    quraanRepo.saveArabicInPreference(status);
+    checkTemp();
     notifyListeners();
   }
 
   updateOtherStatus(bool status) {
     _isShowOther = status;
-    if (!_isShowBanglaMeaning && !_isShowBanglaTranslate && !_isShowArabic && !_isShowOther) _isShowArabic = true;
-    notifyListeners();
-  }
-
-  updateExpandStatus() {
-    _isExpanded = !_isExpanded;
+    checkTemp();
     notifyListeners();
   }
 
@@ -149,7 +152,10 @@ class QuraanShareefProvider with ChangeNotifier {
       final result = await InternetAddress.lookup('google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
         try {
+          ayatPlayer = AudioPlayer();
+          suraPlayer.stop();
           ayatPlayer.play(audioUrl);
+
           ayatPlayer.onPlayerStateChanged.listen((s) {
             if (s == AudioPlayerState.PLAYING) {
               _isPlayAyatAudio = true;
@@ -172,7 +178,6 @@ class QuraanShareefProvider with ChangeNotifier {
         }
       }
     } on SocketException catch (_) {
-      print('not connected');
       // ignore: deprecated_member_use
       Scaffold.of(context).showSnackBar(new SnackBar(
           backgroundColor: Colors.red,
@@ -180,9 +185,7 @@ class QuraanShareefProvider with ChangeNotifier {
           duration: Duration(seconds: 5),
           content: Text(
             'Please check your internet connection \'Thanks',
-            style: TextStyle(
-              color: Colors.white,
-            ),
+            style: TextStyle(color: Colors.white),
           )));
     }
   }
@@ -193,11 +196,18 @@ class QuraanShareefProvider with ChangeNotifier {
   bool isPlaying = false;
   double showPercentage = 0.0;
   String downloadMessahge = '0';
-  bool isDownload = true;
+  bool isDownload = false;
   AudioModel audioModel = AudioModel();
   Dio dio = Dio();
   CancelToken cancelToken = CancelToken();
-  bool cancelTokenStatus = false;
+  bool showDownloadWidget = false;
+  int statusCode = 0;
+
+  dismissAudio() async {
+    await suraPlayer.stop();
+    await ayatPlayer.stop();
+    notifyListeners();
+  }
 
   initializeAudioModel(int suraNo, String qareName) async {
     _getDatabaseHelper.getAudioBySuraAndQareName(suraNo, qareName).then((rows) async {
@@ -211,57 +221,65 @@ class QuraanShareefProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  playAudioANdDownload({int suraNo, String qareName, String url, BuildContext context}) async {
+  playAudioANdDownload({int suraNo, String qareName, String url, BuildContext context, Function percentFunction}) async {
     final filename = 'sura $suraNo $qareName.mp3';
     String dir = (await getExternalStorageDirectory()).path;
+    statusCode = 0;
     if (await File('$dir/$filename').exists()) {
       print('$dir/$filename');
+      showDownloadWidget = false;
+      isPlaying = !isPlaying;
 
       if (isPlaying) {
         suraPlayer.play('$dir/$filename');
-        isPlaying = false;
       } else {
         suraPlayer.pause();
-        isPlaying = true;
       }
 
-      ayatPlayer.onPlayerStateChanged.listen((s) {
+      suraPlayer.onPlayerStateChanged.listen((s) {
         if (s == AudioPlayerState.COMPLETED) {
-          isPlaying = true;
+          isPlaying = false;
           notifyListeners();
         }
       });
     } else {
       showPercentage = 0.0;
       cancelToken = CancelToken();
-      cancelTokenStatus = false;
+      showDownloadWidget = true;
+      isDownload = true;
+      statusCode = 0;
       await dio.download('$url', '$dir/$filename', onReceiveProgress: (actualBytes, totalBytes) {
         var percentage = actualBytes / totalBytes * 100;
         if (percentage <= 100) {
           showPercentage = percentage / 100;
+          print(isDownload);
+          if (isDownload) {
+            statusCode = 1;
+            print(statusCode);
+            percentFunction(statusCode);
+          }
           isDownload = false;
           downloadMessahge = '${percentage.floor()}';
-          print(downloadMessahge);
+          print(showPercentage);
           notifyListeners();
           if (percentage == 100) {
             isDownload = true;
             if (isPlaying) {
               suraPlayer.play('$dir/$filename');
-              isPlaying = false;
             } else {
               suraPlayer.pause();
-              isPlaying = true;
             }
           }
         }
       }, cancelToken: cancelToken).catchError((error) {
-
         ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
             backgroundColor: Colors.red,
             elevation: 2,
             duration: Duration(seconds: 5),
-            content: Text(error.message=='cancelled'?'Download Canceled':
-            'Please check your internet connection first time it download for you from server \'Thanks',
+            content: Text(
+              error.message == 'cancelled'
+                  ? 'Download Canceled'
+                  : 'Please check your internet connection first time it download for you from server \'Thanks',
               style: TextStyle(color: Colors.white),
             )));
       });
@@ -271,7 +289,8 @@ class QuraanShareefProvider with ChangeNotifier {
 
   stopSuraAudioPlayer() async {
     await suraPlayer.stop();
-    isPlaying = true;
+    await ayatPlayer.stop();
+    isPlaying = false;
     notifyListeners();
   }
 
@@ -284,7 +303,7 @@ class QuraanShareefProvider with ChangeNotifier {
   initializeAllQare() {
     if (_qares.length == 0) {
       _qares.clear();
-      _qares = quranRepo.qareodels;
+      _qares = quraanRepo.qareodels;
       qareModel = _qares.first;
       notifyListeners();
     }
@@ -296,16 +315,28 @@ class QuraanShareefProvider with ChangeNotifier {
     qareModel = qareM;
     qareName = qareM.banglaName;
     saveQareName(qareM.englishName);
+    showPercentage = 0.0;
+    stopSuraAudioPlayer();
     notifyListeners();
   }
 
 // Save Qare Name
 
   saveQareName(String name) async {
-    return quranRepo.saveQareNameInPreference(name);
+    return quraanRepo.saveQareNameInPreference(name);
   }
 
   String getQareName() {
-    return quranRepo.getQareNameFromPreference();
+    return quraanRepo.getQareNameFromPreference();
+  }
+
+  // for general Settings
+
+  // for Font Size Range Slider
+  double fontSize = 18;
+
+  changeFontSize(double value) {
+    fontSize = value;
+    notifyListeners();
   }
 }

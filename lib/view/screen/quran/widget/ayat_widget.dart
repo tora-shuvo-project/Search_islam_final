@@ -10,11 +10,11 @@ import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
 import 'package:share/share.dart';
 
-class QuranDetailsWidget extends StatelessWidget {
+class AyatWidget extends StatelessWidget {
   final AyatModel ayatModel;
   final int index;
 
-  QuranDetailsWidget({this.ayatModel, @required this.index});
+  AyatWidget({this.ayatModel, @required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +43,7 @@ class QuranDetailsWidget extends StatelessWidget {
                       //SizedBox(height: 20,),
                     ],
                   ),
-                  SizedBox(
-                    width: 10,
-                  ),
+                  SizedBox(width: 10),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,17 +54,17 @@ class QuranDetailsWidget extends StatelessWidget {
                             Expanded(
                                 child: Directionality(
                                     textDirection: TextDirection.rtl,
-                                    child: quranProvider.isShowArabic
+                                    child: quranProvider.isShowArabic()
                                         ? Text(ayatModel.arabicSimple, style: qulammajid.copyWith(fontSize: 22))
                                         : SizedBox.shrink())),
                           ],
                         ),
-                        SizedBox(height: quranProvider.isShowBanglaTranslate ? 3 : 0),
-                        quranProvider.isShowBanglaTranslate
+                        SizedBox(height: quranProvider.isShowBanglaTranslate() ? 3 : 0),
+                        quranProvider.isShowBanglaTranslate()
                             ? Text(ayatModel.banglaTranslator, style: kalpurus.copyWith(fontSize: 18))
                             : SizedBox.shrink(),
-                        SizedBox(height: quranProvider.isShowBanglaMeaning ? 3 : 0),
-                        quranProvider.isShowBanglaMeaning
+                        SizedBox(height: quranProvider.isShowBanglaMeaning() ? 3 : 0),
+                        quranProvider.isShowBanglaMeaning()
                             ? Text(ayatModel.banglaMeaning, style: kalpurus.copyWith(fontSize: 18, color: Colors.black54))
                             : SizedBox.shrink(),
                         SizedBox(height: quranProvider.isShowOther ? 7 : 4),
@@ -83,6 +81,9 @@ class QuranDetailsWidget extends StatelessWidget {
                                         onTap: () {
                                           quranProvider.playAyatAudio(
                                               context: context, audioUrl: ayatModel.ayatAudio.trim(), index: ayatModel.ayatno);
+                                          print(quranProvider.playAudioIndex);
+                                          print(quranProvider.isPlayAyatAudio);
+                                          print(ayatModel.ayatno);
                                         },
                                         child: Icon(
                                             quranProvider.isPlayAyatAudio && index == quranProvider.playAudioIndex ? Icons.pause : Icons.play_arrow,
@@ -93,7 +94,7 @@ class QuranDetailsWidget extends StatelessWidget {
                                         onTap: () {
                                           Clipboard.setData(new ClipboardData(
                                               text:
-                                                  '${quranProvider.isShowArabic ? ayatModel.arabicUtmanic : ''}\n${quranProvider.isShowBanglaTranslate ? ayatModel.banglaTranslator : ''}\n${quranProvider.isShowBanglaMeaning ? ayatModel.banglaMeaning : ''}'));
+                                                  '${quranProvider.isShowArabic() ? ayatModel.arabicUtmanic : ''}\n${quranProvider.isShowBanglaTranslate() ? ayatModel.banglaTranslator : ''}\n${quranProvider.isShowBanglaMeaning() ? ayatModel.banglaMeaning : ''}'));
 
                                           // ignore: deprecated_member_use
                                           Scaffold.of(context).showSnackBar(new SnackBar(
@@ -105,7 +106,7 @@ class QuranDetailsWidget extends StatelessWidget {
                                     InkWell(
                                         onTap: () {
                                           Share.share(
-                                              '${quranProvider.isShowArabic ? ayatModel.arabicUtmanic : ''}\n${quranProvider.isShowBanglaTranslate ? ayatModel.banglaTranslator : ''}\n${quranProvider.isShowBanglaMeaning ? ayatModel.banglaMeaning : ''}',
+                                              '${quranProvider.isShowArabic() ? ayatModel.arabicUtmanic : ''}\n${quranProvider.isShowBanglaTranslate() ? ayatModel.banglaTranslator : ''}\n${quranProvider.isShowBanglaMeaning() ? ayatModel.banglaMeaning : ''}',
                                               subject: '${Strings.ayat_no_english} ${ayatModel.ayatno}');
                                         },
                                         child: Icon(Icons.share, color: Colors.white, size: 20))

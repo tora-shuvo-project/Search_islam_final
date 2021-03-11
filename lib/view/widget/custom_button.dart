@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:search_islam/utill/color_resources.dart';
 import 'package:search_islam/utill/styles.dart';
 
 class CustomButton extends StatelessWidget {
