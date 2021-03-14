@@ -14,4 +14,5 @@ class AppConstants {
   static const String SHOW_AYAT_FONT_SIZE = 'show ayat Font Size';
   static const String SHOW_AYAT_FONT_STYLE = 'show ayat Font Style';
   static const String SHOW_AYAT_ARABIC_STYLE = 'show ayat Arabic Style';
+  static const String SAVE_SURA_NO = 'SURA_NO';
 }

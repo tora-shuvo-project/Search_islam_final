@@ -90,4 +90,16 @@ class Strings {
   static const String araby_uth_manik_english = 'Arabi Utmanic';
   static const String araby_indopak_bangla = 'আরাবি ইন্ডোপাক';
   static const String araby_indopak_english = 'Arabi Indopak';
+  static const String sejdha_ayat = '---->>ছিজদাহ আয়াত<<----';
+  static const String monserat_font_bangla = 'মনসেরাত ফন্ট';
+  static const String monserat_font_english = 'Monserat';
+  static const String mukadimh_font_bangla = 'মুকাদিমাহ ফন্ট';
+  static const String mukadimh_font_english = 'Mukadimah';
+  static const String qalam_majid_font_bangla = 'কালাম মাজিদ(হাফীজি কুরআন) ফন্ট';
+  static const String qalam_majid_font_english = 'QalamMajid';
+  static const String utman_font_bangla = 'উটমান ফন্ট';
+  static const String utman_font_english = 'utman';
+  static const String madina_font_bangla = 'মাদিনা ফন্ট';
+  static const String madina_font_english = 'Maddina';
+  static const String arabic_font_select_korun = 'আরাবি ফন্ট সিলেক্ট করুণঃ ';
 }

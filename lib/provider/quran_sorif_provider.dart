@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:search_islam/data/model/audio_model.dart';
+import 'package:search_islam/data/model/key_model.dart';
 import 'package:search_islam/data/model/sura_model.dart';
 import 'package:search_islam/data/repository/quran_repo.dart';
 import 'package:search_islam/helper/database_helper.dart';
@@ -32,13 +33,15 @@ class QuraanShareefProvider with ChangeNotifier {
   List<SuraModel> get suraModels => _suraList;
 
   Future<void> initializeSuraModels() async {
-    _getDatabaseHelper.getAllSuraFromSuraNameTable().then((rows) {
-      rows.forEach((row) {
-        _suraList.add(SuraModel.formMap(row));
-        _allSuraList.add(SuraModel.formMap(row));
+    if (_allSuraList.length == 0) {
+      _getDatabaseHelper.getAllSuraFromSuraNameTable().then((rows) {
+        rows.forEach((row) {
+          _suraList.add(SuraModel.formMap(row));
+          _allSuraList.add(SuraModel.formMap(row));
+        });
       });
-    });
-    notifyListeners();
+      notifyListeners();
+    }
   }
 
   // For Search
@@ -221,8 +224,9 @@ class QuraanShareefProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  playAudioANdDownload({int suraNo, String qareName, String url, BuildContext context, Function percentFunction}) async {
+  playAudioANdDownload({String qareName, String url, BuildContext context, Function percentFunction}) async {
     final filename = 'sura $suraNo $qareName.mp3';
+    print(url);
     String dir = (await getExternalStorageDirectory()).path;
     statusCode = 0;
     if (await File('$dir/$filename').exists()) {
@@ -291,6 +295,7 @@ class QuraanShareefProvider with ChangeNotifier {
     await suraPlayer.stop();
     await ayatPlayer.stop();
     isPlaying = false;
+    saveSuraNo(null);
     notifyListeners();
   }
 
@@ -311,7 +316,12 @@ class QuraanShareefProvider with ChangeNotifier {
 
   String qareName = '';
 
-  changeQareName(QareModel qareM) {
+  changeQareName(QareModel qareM) async {
+    print(suraNo);
+    await _getDatabaseHelper.getAudioBySuraAndQareName(suraNo, qareM.englishName).then((rows) {
+      audioModel = rows;
+    });
+    notifyListeners();
     qareModel = qareM;
     qareName = qareM.banglaName;
     saveQareName(qareM.englishName);
@@ -330,13 +340,68 @@ class QuraanShareefProvider with ChangeNotifier {
     return quraanRepo.getQareNameFromPreference();
   }
 
+  // for Arabic style
+  List<KeyModel> _arabyStyles = [];
+  KeyModel arabicStyleKeyModel = KeyModel();
+
+  List<KeyModel> get arabyStyles => _arabyStyles;
+
+  initializeAllArabicStyle() {
+    if (_arabyStyles.length == 0) {
+      _arabyStyles.clear();
+      _arabyStyles = quraanRepo.allArabicStyle;
+      arabicStyleKeyModel = _arabyStyles.first;
+      notifyListeners();
+    }
+  }
+
+  changeArabicStyle(KeyModel arabicStyle) async {
+    arabicStyleKeyModel = arabicStyle;
+    await quraanRepo.saveArabicStyleInPreference(arabicStyle.value);
+    notifyListeners();
+  }
+
+  String get getQuranStyle => quraanRepo.getArabicStyleFromPreference();
+
+  // for Font style
+  List<KeyModel> _fontStyles = [];
+  KeyModel fontStyleKeyModel = KeyModel();
+
+  List<KeyModel> get fontStyles => _fontStyles;
+
+  initializeAllFontStyle() {
+    if (_fontStyles.length == 0) {
+      _fontStyles.clear();
+      _fontStyles = quraanRepo.allFontStyle;
+      fontStyleKeyModel = _fontStyles.first;
+      notifyListeners();
+    }
+  }
+
+  changeFontStyle(KeyModel arabicStyle) async {
+    fontStyleKeyModel = arabicStyle;
+    await quraanRepo.saveAyatFontStyleInPreference(arabicStyle.keyName);
+    notifyListeners();
+  }
+
+  String get getFontStyle => quraanRepo.getAyatFontStyleFromPreference();
+
   // for general Settings
 
   // for Font Size Range Slider
-  double fontSize = 18;
 
-  changeFontSize(double value) {
-    fontSize = value;
+  double get fontSize => quraanRepo.getAyatFontSizeFromPreference();
+
+  changeFontSize(double value) async {
+    await quraanRepo.saveAyatFontSizeInPreference(value);
     notifyListeners();
   }
+
+  // save Sura No
+  saveSuraNo(int suraNo) async {
+    await quraanRepo.saveSuraNoInPreference(suraNo);
+    notifyListeners();
+  }
+
+  int get suraNo => quraanRepo.getSuraNoFromPreference();
 }

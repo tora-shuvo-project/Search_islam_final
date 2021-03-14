@@ -23,6 +23,19 @@ class QuranRepo {
     return sharedPreferences.getString(AppConstants.QARE_NAME) ?? 'Abdurrahman Sudais';
   }
 
+  // Save Sura No
+  Future<void> saveSuraNoInPreference(int suraNo) async {
+    try {
+      await sharedPreferences.setInt(AppConstants.SAVE_SURA_NO, suraNo);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  int getSuraNoFromPreference() {
+    return sharedPreferences.getInt(AppConstants.SAVE_SURA_NO) ?? 0;
+  }
+
   // for general ayat style
   Future<void> saveArabicInPreference(bool value) async {
     try {
@@ -70,8 +83,9 @@ class QuranRepo {
   }
 
   double getAyatFontSizeFromPreference() {
-    return sharedPreferences.getBool(AppConstants.SHOW_AYAT_FONT_SIZE) ?? 18.0;
+    return sharedPreferences.getDouble(AppConstants.SHOW_AYAT_FONT_SIZE) ?? 18.0;
   }
+
   // font style
   Future<void> saveAyatFontStyleInPreference(String value) async {
     try {
@@ -82,8 +96,9 @@ class QuranRepo {
   }
 
   String getAyatFontStyleFromPreference() {
-    return sharedPreferences.getBool(AppConstants.SHOW_AYAT_FONT_STYLE) ?? 'Maddina';
+    return sharedPreferences.getString(AppConstants.SHOW_AYAT_FONT_STYLE) ?? 'Maddina';
   }
+
   // Arabic Style
   Future<void> saveArabicStyleInPreference(String value) async {
     try {
@@ -105,9 +120,16 @@ class QuranRepo {
     QareModel(banglaName: Strings.ahmed_al_ajimi_bangla, englishName: Strings.ahmed_al_ajimi_english),
   ];
 
-  List<KeyModel> allArabicStyle=[
-    KeyModel(keyName: Strings.araby_simple_english,value: Strings.araby_simple_bangla),
-    KeyModel(keyName: Strings.araby_uth_manik_english,value: Strings.araby_uth_manik_bangla),
-    KeyModel(keyName: Strings.araby_indopak_english,value: Strings.araby_indopak_bangla),
+  List<KeyModel> allArabicStyle = [
+    KeyModel(keyName: Strings.araby_simple_bangla, value: Strings.araby_simple_english),
+    KeyModel(keyName: Strings.araby_uth_manik_bangla, value: Strings.araby_uth_manik_english),
+    KeyModel(keyName: Strings.araby_indopak_bangla, value: Strings.araby_indopak_english),
+  ];
+  List<KeyModel> allFontStyle = [
+    KeyModel(keyName: Strings.monserat_font_english, value: Strings.monserat_font_bangla),
+    KeyModel(keyName: Strings.mukadimh_font_english, value: Strings.mukadimh_font_bangla),
+    KeyModel(keyName: Strings.qalam_majid_font_english, value: Strings.qalam_majid_font_bangla),
+    KeyModel(keyName: Strings.utman_font_english, value: Strings.utman_font_bangla),
+    KeyModel(keyName: Strings.madina_font_english, value: Strings.madina_font_bangla),
   ];
 }

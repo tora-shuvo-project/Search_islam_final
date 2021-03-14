@@ -40,6 +40,8 @@ class AyatWidget extends StatelessWidget {
                               child: Text('${convertEngToBangla(ayatModel.ayatno)}', style: kalpurus.copyWith(color: Colors.black87, fontSize: 13)))
                         ],
                       ),
+
+
                       //SizedBox(height: 20,),
                     ],
                   ),
@@ -55,17 +57,26 @@ class AyatWidget extends StatelessWidget {
                                 child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: quranProvider.isShowArabic()
-                                        ? Text(ayatModel.arabicSimple, style: qulammajid.copyWith(fontSize: 22))
+                                        ? Text(
+                                            quranProvider.arabicStyleKeyModel.value == Strings.araby_simple_english
+                                                ? ayatModel.arabicSimple
+                                                : quranProvider.arabicStyleKeyModel.value == Strings.araby_uth_manik_english
+                                                    ? ayatModel.arabicUtmanic
+                                                    : ayatModel.arabicIndopak,
+                                            style: TextStyle(fontSize: quranProvider.fontSize + 4.00,fontFamily: quranProvider.getFontStyle))
                                         : SizedBox.shrink())),
                           ],
                         ),
+                        SizedBox(height: ayatModel.sejda!="0"?  3 : 0),
+                        ayatModel.sejda!="0"? Text(Strings.sejdha_ayat, style: kalpurus.copyWith(fontSize: quranProvider.fontSize,color: Colors.red))
+                            : SizedBox.shrink(),
                         SizedBox(height: quranProvider.isShowBanglaTranslate() ? 3 : 0),
                         quranProvider.isShowBanglaTranslate()
-                            ? Text(ayatModel.banglaTranslator, style: kalpurus.copyWith(fontSize: 18))
+                            ? Text(ayatModel.banglaTranslator, style: kalpurus.copyWith(fontSize: quranProvider.fontSize))
                             : SizedBox.shrink(),
                         SizedBox(height: quranProvider.isShowBanglaMeaning() ? 3 : 0),
                         quranProvider.isShowBanglaMeaning()
-                            ? Text(ayatModel.banglaMeaning, style: kalpurus.copyWith(fontSize: 18, color: Colors.black54))
+                            ? Text(ayatModel.banglaMeaning, style: kalpurus.copyWith(fontSize: quranProvider.fontSize, color: Colors.black54))
                             : SizedBox.shrink(),
                         SizedBox(height: quranProvider.isShowOther ? 7 : 4),
                         quranProvider.isShowOther

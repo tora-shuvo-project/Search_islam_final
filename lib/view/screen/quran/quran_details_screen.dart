@@ -5,6 +5,7 @@ import 'package:search_islam/utill/dimensions.dart';
 import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
 import 'package:search_islam/view/screen/quran/widget/ayat_widget.dart';
+import 'package:search_islam/view/screen/quran/widget/quran_settings_drawer.dart';
 import 'package:search_islam/view/widget/custom_app_bar.dart';
 import 'package:search_islam/view/widget/download_dialog_widget.dart';
 
@@ -23,14 +24,15 @@ class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Provider.of<QuraanShareefProvider>(context, listen: false).initializeAyatBySuraId(widget.suraID);
-
     Provider.of<QuraanShareefProvider>(context, listen: false)
         .initializeAudioModel(widget.suraID, Provider.of<QuraanShareefProvider>(context, listen: false).getQareName());
+    Provider.of<QuraanShareefProvider>(context, listen: false).initializeAyatBySuraId(widget.suraID);
+    Provider.of<QuraanShareefProvider>(context, listen: false).saveSuraNo(widget.suraID);
   }
 
   @override
   Widget build(BuildContext context) {
+    GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
     return SafeArea(
       child: WillPopScope(
         onWillPop: () {
@@ -39,12 +41,13 @@ class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
           return Future.value(true);
         },
         child: Scaffold(
+          key: _drawerKey,
+          endDrawer: QuranSettingsDrawer(suraNo: widget.suraID),
           floatingActionButton: Consumer<QuraanShareefProvider>(
             builder: (context, quranProvider, child) => FloatingActionButton(
               onPressed: () {
                 quranProvider.playAudioANdDownload(
                     context: context,
-                    suraNo: widget.suraID,
                     url: quranProvider.audioModel.suraLink.trim(),
                     qareName: quranProvider.getQareName(),
                     percentFunction: (value) {
@@ -64,7 +67,7 @@ class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
           ),
           floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
           appBar: PreferredSize(
-              child: CustomAppBar(title: widget.title, isBackgroundPrimaryColor: true, isAyatScreen: true),
+              child: CustomAppBar(title: widget.title, isBackgroundPrimaryColor: true, isAyatScreen: true, drawerKey: _drawerKey),
               preferredSize: Size(MediaQuery.of(context).size.width, 120)),
           body: Consumer<QuraanShareefProvider>(
             builder: (context, quranProvider, child) => ListView(
