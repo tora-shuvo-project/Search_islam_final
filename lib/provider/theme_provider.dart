@@ -9,7 +9,7 @@ class ThemeProvider with ChangeNotifier {
     _loadCurrentTheme();
   }
 
-  bool _darkTheme = true;
+  bool _darkTheme = false;
   bool get darkTheme => _darkTheme;
 
   toggleTheme() {
