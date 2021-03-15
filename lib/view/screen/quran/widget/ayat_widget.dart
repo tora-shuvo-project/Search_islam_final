@@ -13,8 +13,9 @@ import 'package:share/share.dart';
 class AyatWidget extends StatelessWidget {
   final AyatModel ayatModel;
   final int index;
+  final bool isSuraWiseShowAyat;
 
-  AyatWidget({this.ayatModel, @required this.index});
+  AyatWidget({this.ayatModel, @required this.index, this.isSuraWiseShowAyat = true});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,6 @@ class AyatWidget extends StatelessWidget {
                         ],
                       ),
 
-
                       //SizedBox(height: 20,),
                     ],
                   ),
@@ -50,6 +50,13 @@ class AyatWidget extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        isSuraWiseShowAyat
+                            ? null
+                            : ayatModel.ayatno == 1
+                                ? Center(
+                                    child: Text(Strings.bismillahirahmanirRahim,
+                                        style: madina.copyWith(fontSize: 19, color: Colors.red, fontWeight: FontWeight.bold)))
+                                : SizedBox.shrink(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -63,20 +70,30 @@ class AyatWidget extends StatelessWidget {
                                                 : quranProvider.arabicStyleKeyModel.value == Strings.araby_uth_manik_english
                                                     ? ayatModel.arabicUtmanic
                                                     : ayatModel.arabicIndopak,
-                                            style: TextStyle(fontSize: quranProvider.fontSize + 4.00,fontFamily: quranProvider.getFontStyle))
+                                            style: TextStyle(
+                                                fontSize: quranProvider.fontSize + 4.00,
+                                                fontFamily: quranProvider.getFontStyle,
+                                                color: !isSuraWiseShowAyat && ayatModel.ayatno == 1 ? Colors.green : Colors.black))
                                         : SizedBox.shrink())),
                           ],
                         ),
-                        SizedBox(height: ayatModel.sejda!="0"?  3 : 0),
-                        ayatModel.sejda!="0"? Text(Strings.sejdha_ayat, style: kalpurus.copyWith(fontSize: quranProvider.fontSize,color: Colors.red))
+                        SizedBox(height: ayatModel.sejda != "0" ? 3 : 0),
+                        ayatModel.sejda != "0"
+                            ? Text(Strings.sejdha_ayat, style: kalpurus.copyWith(fontSize: quranProvider.fontSize, color: Colors.red))
                             : SizedBox.shrink(),
                         SizedBox(height: quranProvider.isShowBanglaTranslate() ? 3 : 0),
                         quranProvider.isShowBanglaTranslate()
-                            ? Text(ayatModel.banglaTranslator, style: kalpurus.copyWith(fontSize: quranProvider.fontSize))
+                            ? Text(ayatModel.banglaTranslator,
+                                style: kalpurus.copyWith(
+                                    fontSize: quranProvider.fontSize,
+                                    color: !isSuraWiseShowAyat && ayatModel.ayatno == 1 ? Colors.green : Colors.black))
                             : SizedBox.shrink(),
                         SizedBox(height: quranProvider.isShowBanglaMeaning() ? 3 : 0),
                         quranProvider.isShowBanglaMeaning()
-                            ? Text(ayatModel.banglaMeaning, style: kalpurus.copyWith(fontSize: quranProvider.fontSize, color: Colors.black54))
+                            ? Text(ayatModel.banglaMeaning,
+                                style: kalpurus.copyWith(
+                                    fontSize: quranProvider.fontSize,
+                                    color: !isSuraWiseShowAyat && ayatModel.ayatno == 1 ? Colors.green.withOpacity(.54) : Colors.black54))
                             : SizedBox.shrink(),
                         SizedBox(height: quranProvider.isShowOther ? 7 : 4),
                         quranProvider.isShowOther

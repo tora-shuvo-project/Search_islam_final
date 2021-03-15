@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:search_islam/data/model/para_models.dart';
 import 'package:search_islam/provider/quran_sorif_provider.dart';
 import 'package:search_islam/utill/dimensions.dart';
 import 'package:search_islam/utill/string_resources.dart';
@@ -12,8 +13,10 @@ import 'package:search_islam/view/widget/download_dialog_widget.dart';
 class QuranDetailsScreen extends StatefulWidget {
   final int suraID;
   final String title;
+  final ParaModel paraModel;
+  final bool isFromSuraScreen;
 
-  QuranDetailsScreen({@required this.suraID, @required this.title});
+  QuranDetailsScreen({this.suraID, @required this.title, this.paraModel, this.isFromSuraScreen = true});
 
   @override
   _QuranDetailsScreenState createState() => _QuranDetailsScreenState();
@@ -24,15 +27,20 @@ class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Provider.of<QuraanShareefProvider>(context, listen: false)
-        .initializeAudioModel(widget.suraID, Provider.of<QuraanShareefProvider>(context, listen: false).getQareName());
-    Provider.of<QuraanShareefProvider>(context, listen: false).initializeAyatBySuraId(widget.suraID);
-    Provider.of<QuraanShareefProvider>(context, listen: false).saveSuraNo(widget.suraID);
   }
 
   @override
   Widget build(BuildContext context) {
     GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+    if (widget.isFromSuraScreen) {
+      Provider.of<QuraanShareefProvider>(context, listen: false)
+          .initializeAudioModel(widget.suraID, Provider.of<QuraanShareefProvider>(context, listen: false).getQareName);
+      Provider.of<QuraanShareefProvider>(context, listen: false).initializeAyatBySuraId(widget.suraID);
+      Provider.of<QuraanShareefProvider>(context, listen: false).saveSuraNo(widget.suraID);
+    } else {
+      Provider.of<QuraanShareefProvider>(context, listen: false).initializeAyatByParaId(widget.paraModel.paraNo);
+    }
+
     return SafeArea(
       child: WillPopScope(
         onWillPop: () {
@@ -46,21 +54,35 @@ class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
           floatingActionButton: Consumer<QuraanShareefProvider>(
             builder: (context, quranProvider, child) => FloatingActionButton(
               onPressed: () {
-                quranProvider.playAudioANdDownload(
-                    context: context,
-                    url: quranProvider.audioModel.suraLink.trim(),
-                    qareName: quranProvider.getQareName(),
-                    percentFunction: (value) {
-                      if (value == 1) {
-                        showDialog(
-                            context: context,
-                            builder: (_) {
-                              return Dialog(
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-                                  child: DownloadDialogWidget(title: Strings.odioti));
-                            });
-                      }
-                    });
+                if (widget.isFromSuraScreen) {
+                  quranProvider.playAudioANdDownload(
+                      context: context,
+                      url: quranProvider.audioModel.suraLink.trim(),
+                      qareName: quranProvider.getQareName,
+                      percentFunction: (value) {
+                        if (value == 1) {
+                          showDialog(
+                              context: context,
+                              builder: (_) {
+                                return Dialog(
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+                                    child: DownloadDialogWidget(title: Strings.odioti));
+                              });
+                        }
+                      });
+                } else {
+                  quranProvider.playAudioByOnline(
+                      context: context,
+                      audioUrl: quranProvider.getQareName == Strings.abdur_rahman_sudaies_english
+                          ? widget.paraModel.audioSudais
+                          : quranProvider.getQareName == Strings.sad_al_gamidi_english
+                              ? widget.paraModel.audioGumadi
+                              : quranProvider.getQareName == Strings.misare_bin_rased_al_afsi_english
+                                  ? widget.paraModel.audioMishary
+                                  : quranProvider.getQareName == Strings.salah_budir_english
+                                      ? widget.paraModel.audioBudair
+                                      : widget.paraModel.audioAlajmi);
+                }
               },
               child: Icon(!quranProvider.isPlaying ? Icons.play_arrow : Icons.pause, color: Colors.white),
             ),
@@ -86,15 +108,19 @@ class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
                   ),
                 ),
                 SizedBox(height: 20),
-                quranProvider.getAllSuraAyat != null
+                quranProvider.getAllAyat.length > 0
                     ? ListView.builder(
-                        itemCount: quranProvider.getAllSuraAyat.length,
+                        itemCount: quranProvider.getAllAyat.length,
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
-                          return AyatWidget(ayatModel: quranProvider.getAllSuraAyat[index], index: index);
+                          return AyatWidget(ayatModel: quranProvider.getAllAyat[index], index: index, isSuraWiseShowAyat: widget.isFromSuraScreen);
                         })
-                    : CircularProgressIndicator()
+                    : Container(
+                        height: MediaQuery.of(context).size.height * 0.70,
+                        child: Center(
+                            child: Text(Strings.onugroho_kore_ektu_wait_korun,
+                                style: kalpurus.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, color: Colors.green))))
               ],
             ),
           ),

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:search_islam/data/model/audio_model.dart';
 import 'package:search_islam/data/model/key_model.dart';
+import 'package:search_islam/data/model/para_models.dart';
 import 'package:search_islam/data/model/sura_model.dart';
 import 'package:search_islam/data/repository/quran_repo.dart';
 import 'package:search_islam/helper/database_helper.dart';
@@ -24,9 +25,12 @@ class QuraanShareefProvider with ChangeNotifier {
   accessDatabase(DatabaseHelper db) {
     _getDatabaseHelper = db;
     initializeSuraModels();
+    initializeParaModels();
     notifyListeners();
   }
 
+
+  // for sura List
   List<SuraModel> _suraList = [];
   List<SuraModel> _allSuraList = [];
 
@@ -44,13 +48,33 @@ class QuraanShareefProvider with ChangeNotifier {
     }
   }
 
+  // for para list
+
+  List<ParaModel> _paraList = [];
+  List<ParaModel> _allParaList = [];
+
+  List<ParaModel> get paraList => _paraList;
+
+  Future<void> initializeParaModels() async {
+    if (_allParaList.length == 0) {
+      _paraList.clear();
+      _getDatabaseHelper.getAllParaNameFromTable().then((rows) {
+        rows.forEach((row) {
+          _paraList.add(ParaModel.formMap(row));
+          _allParaList.add(ParaModel.formMap(row));
+        });
+      });
+      notifyListeners();
+    }
+  }
+
   // For Search
   bool _notEmptyText = false;
 
   bool get notEmptyText => _notEmptyText;
   TextEditingController controller = TextEditingController();
 
-  searchProduct(String query) {
+  searchSura(String query) {
     if (query.isEmpty) {
       _suraList.clear();
       _suraList = _allSuraList;
@@ -67,24 +91,56 @@ class QuraanShareefProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  clearSearchList() {
+  searchAyat(String query) {
+    if (query.isEmpty) {
+      _paraList.clear();
+      _paraList = _allParaList;
+      _notEmptyText = false;
+    } else {
+      _notEmptyText = true;
+      _paraList = [];
+      _allParaList.forEach((paraModel) async {
+        if (paraModel.paraNo.toString().contains(query.toLowerCase())) {
+          _paraList.add(paraModel);
+        }
+      });
+    }
+    notifyListeners();
+  }
+
+  clearSearchList({bool isFromSuraScreen=true}) {
     _notEmptyText = false;
-    _suraList.clear();
-    _suraList = _allSuraList;
+    if(isFromSuraScreen){
+      _suraList.clear();
+      _suraList = _allSuraList;
+    }else{
+      _paraList.clear();
+      _paraList = _allParaList;
+    }
+
     controller.clear();
     notifyListeners();
   }
 
   // For Ayat
-  List<AyatModel> _getAllSuraAyat = [];
+  List<AyatModel> _getAllAyat = [];
 
-  List<AyatModel> get getAllSuraAyat => _getAllSuraAyat;
+  List<AyatModel> get getAllAyat => _getAllAyat;
 
   initializeAyatBySuraId(int id) async {
-    _getAllSuraAyat.clear();
+    _getAllAyat.clear();
     _getDatabaseHelper.getAllAyatFromAyatTable(id).then((rows) {
       rows.forEach((row) {
-        _getAllSuraAyat.add(AyatModel.formMap(row));
+        _getAllAyat.add(AyatModel.formMap(row));
+      });
+      notifyListeners();
+    });
+  }
+  initializeAyatByParaId(int id) async {
+    _getAllAyat.clear();
+    _getDatabaseHelper.getAllAyatFromParaTable(id).then((rows) {
+      rows.forEach((row) {
+        _getAllAyat.add(AyatModel.formMap(row));
       });
       notifyListeners();
     });
@@ -150,7 +206,7 @@ class QuraanShareefProvider with ChangeNotifier {
 
   int get playAudioIndex => _playAudioIndex;
 
-  playAyatAudio({@required BuildContext context, @required String audioUrl, int index}) async {
+  playAyatAudio({@required BuildContext context, @required String audioUrl, int index=0}) async {
     try {
       final result = await InternetAddress.lookup('google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
@@ -196,6 +252,7 @@ class QuraanShareefProvider with ChangeNotifier {
   // for play sura sudio
 
   AudioPlayer suraPlayer = AudioPlayer();
+  AudioPlayer paraPlayer = AudioPlayer();
   bool isPlaying = false;
   double showPercentage = 0.0;
   String downloadMessahge = '0';
@@ -209,6 +266,7 @@ class QuraanShareefProvider with ChangeNotifier {
   dismissAudio() async {
     await suraPlayer.stop();
     await ayatPlayer.stop();
+    await paraPlayer.stop();
     notifyListeners();
   }
 
@@ -226,7 +284,6 @@ class QuraanShareefProvider with ChangeNotifier {
 
   playAudioANdDownload({String qareName, String url, BuildContext context, Function percentFunction}) async {
     final filename = 'sura $suraNo $qareName.mp3';
-    print(url);
     String dir = (await getExternalStorageDirectory()).path;
     statusCode = 0;
     if (await File('$dir/$filename').exists()) {
@@ -291,9 +348,55 @@ class QuraanShareefProvider with ChangeNotifier {
     notifyListeners();
   }
 
+
+
+  playAudioByOnline({@required BuildContext context, @required String audioUrl}) async {
+    try {
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        try {
+          paraPlayer = AudioPlayer();
+          suraPlayer.stop();
+          ayatPlayer.stop();
+          paraPlayer.play(audioUrl);
+
+          paraPlayer.onPlayerStateChanged.listen((s) {
+            if (s == AudioPlayerState.PLAYING) {
+              isPlaying = true;
+              notifyListeners();
+            } else if (s == AudioPlayerState.COMPLETED) {
+              isPlaying = false;
+              notifyListeners();
+            }
+          });
+        }
+
+        /// on catching Exception return null
+        catch (err) {
+          // ignore: deprecated_member_use
+          Scaffold.of(context).showSnackBar(new SnackBar(
+            content: new Text('Audio Path Error'),
+          ));
+          return null;
+        }
+      }
+    } on SocketException catch (_) {
+      // ignore: deprecated_member_use
+      Scaffold.of(context).showSnackBar(new SnackBar(
+          backgroundColor: Colors.red,
+          elevation: 2,
+          duration: Duration(seconds: 5),
+          content: Text(
+            'Please check your internet connection \'Thanks',
+            style: TextStyle(color: Colors.white),
+          )));
+    }
+  }
+
   stopSuraAudioPlayer() async {
     await suraPlayer.stop();
     await ayatPlayer.stop();
+    await paraPlayer.stop();
     isPlaying = false;
     saveSuraNo(null);
     notifyListeners();
@@ -336,9 +439,7 @@ class QuraanShareefProvider with ChangeNotifier {
     return quraanRepo.saveQareNameInPreference(name);
   }
 
-  String getQareName() {
-    return quraanRepo.getQareNameFromPreference();
-  }
+  String get getQareName=> quraanRepo.getQareNameFromPreference();
 
   // for Arabic style
   List<KeyModel> _arabyStyles = [];

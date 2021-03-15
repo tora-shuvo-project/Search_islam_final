@@ -84,62 +84,62 @@ class DatabaseHelper {
     return result.toList();
   }
 
-  static Future<List> getAllHadisFromHadisTable() async {
+  Future<List> getAllHadisFromHadisTable() async {
     Database db = await instance.database;
     var result = await db.query(hadisTable);
     return result.toList();
   }
 
-  static Future<List> getAllParaNameFromTable() async {
+   Future<List> getAllParaNameFromTable() async {
     Database db = await instance.database;
     var result = await db.query(paraTable);
     return result.toList();
   }
 
-  static Future<List> getAllQuranWordFromTable() async {
+  Future<List> getAllQuranWordFromTable() async {
     Database db = await instance.database;
     var result = await db.query(quranWordTable);
     return result.toList();
   }
 
-  static Future<List> getAllAyatFromParaTable(int paraNo) async {
+  Future<List> getAllAyatFromParaTable(int paraNo) async {
     Database db = await instance.database;
 //    var result=await db.rawQuery('SELECT * FROM $ayatTable WHERE SURANO=$suraNo;');
     var result = await db.query(ayatTable, where: '$columnparaNo= ?', whereArgs: [paraNo]);
     return result.toList();
   }
 
-  static Future<List> getAllSubOjifaFromOjifaTable(int topicno) async {
+  Future<List> getAllSubOjifaFromOjifaTable(int topicno) async {
     Database db = await instance.database;
     var result = await db.query(ojifaTable, where: '$columntopicNo = ? ', whereArgs: [topicno]);
     return result.toList();
   }
 
-  static Future<List> getDuyaNameFromTable() async {
+  Future<List> getDuyaNameFromTable() async {
     Database db = await instance.database;
     var result = await db.query(dunaNameTable);
     return result.toList();
   }
 
-  static Future<List> getDuyaCategoryNameFromTable(int category) async {
+  Future<List> getDuyaCategoryNameFromTable(int category) async {
     Database db = await instance.database;
     var result = await db.query(dunaNameTable, where: '$columnCategory = ? ', whereArgs: [category]);
     return result.toList();
   }
 
-  static Future<List> getDuyaDetailsFromTable(String id) async {
+  Future<List> getDuyaDetailsFromTable(String id) async {
     Database db = await instance.database;
     var result = await db.query(duyaDetailsTable, where: '$columndoyaID = ? ', whereArgs: [id]);
     return result.toList();
   }
 
-  static Future<List> getNiyomCategoryFromNiyomTable(int category) async {
+  Future<List> getNiyomCategoryFromNiyomTable(int category) async {
     Database db = await instance.database;
     var result = await db.query(niyomTable, where: '$columnCategory = ? ', whereArgs: [category]);
     return result.toList();
   }
 
-  static Future<OjifaModel> getAllOjifaFromOjifaTable(int topicno, int subtopicno) async {
+  Future<OjifaModel> getAllOjifaFromOjifaTable(int topicno, int subtopicno) async {
     Database db = await instance.database;
     final List<Map<String, dynamic>> result =
         await db.query(ojifaTable, where: '$columntopicNo = ? AND $columnsubtopicNo = ? ', whereArgs: [topicno, subtopicno]);
@@ -156,7 +156,7 @@ class DatabaseHelper {
     return result.toList();
   }
 
-  static Future<List> searchDoyaFromDoyaNameTable(String name) async {
+   Future<List> searchDoyaFromDoyaNameTable(String name) async {
     Database db = await instance.database;
     var result = await db.rawQuery(" SELECT * FROM $dunaNameTable WHERE  $columnGlobalId LIKE '%$name%' OR $columnduyaName LIKE '%$name%'");
     return result.toList();

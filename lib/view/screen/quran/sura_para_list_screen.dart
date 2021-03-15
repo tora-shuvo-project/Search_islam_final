@@ -34,11 +34,11 @@ class SuraParaListScreen extends StatelessWidget {
                           inputType: TextInputType.text,
                           suffixIconUrl: quranProvider.notEmptyText ? Icons.close_outlined : Icons.search,
                           onSuffixTap: () {
-                            quranProvider.clearSearchList();
+                            quranProvider.clearSearchList(isFromSuraScreen: isShowSura ? true : false);
                           },
                           isIcon: true,
                           onChanged: (value) {
-                            quranProvider.searchProduct(value);
+                            isShowSura ? quranProvider.searchSura(value) : quranProvider.searchAyat(value);
                           },
                         ),
                       ),
@@ -61,8 +61,11 @@ class SuraParaListScreen extends StatelessWidget {
                                     shrinkWrap: true,
                                     padding: EdgeInsets.only(top: 20, bottom: 20),
                                     physics: BouncingScrollPhysics(),
-                                    itemBuilder: (context, index) => SuraWidget(suraModel: quranProvider.suraModels[index]),
-                                    itemCount: quranProvider.suraModels.length,
+                                    itemBuilder: (context, index) => SuraWidget(
+                                        suraModel: isShowSura ? quranProvider.suraModels[index] : null,
+                                        paraModel: isShowSura ? null : quranProvider.paraList[index],
+                                        isFromSuraListScreen: isShowSura ? true : false),
+                                    itemCount: isShowSura ? quranProvider.suraModels.length : quranProvider.paraList.length,
                                   ),
                                 ),
                               ),

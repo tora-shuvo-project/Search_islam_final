@@ -102,4 +102,5 @@ class Strings {
   static const String madina_font_bangla = 'মাদিনা ফন্ট';
   static const String madina_font_english = 'Maddina';
   static const String arabic_font_select_korun = 'আরাবি ফন্ট সিলেক্ট করুণঃ ';
+  static const String onugroho_kore_ektu_wait_korun = 'অনুগ্রহ করে একটু সময় অপেক্ষা করুণ....... ';
 }

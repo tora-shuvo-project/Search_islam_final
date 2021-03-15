@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:search_islam/data/model/para_models.dart';
 import 'package:search_islam/data/model/sura_model.dart';
 import 'package:search_islam/helper/convert_eng_to_bangla_number.dart';
 import 'package:search_islam/utill/dimensions.dart';
@@ -9,15 +10,22 @@ import 'package:search_islam/view/screen/quran/quran_details_screen.dart';
 
 class SuraWidget extends StatelessWidget {
   final SuraModel suraModel;
+  final ParaModel paraModel;
+  final bool isFromSuraListScreen;
 
-  SuraWidget({this.suraModel});
+  SuraWidget({this.suraModel, this.paraModel, this.isFromSuraListScreen = true});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (_) => QuranDetailsScreen(suraID: suraModel.suraNo, title: suraModel.banglaTranslator)));
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (_) => QuranDetailsScreen(
+                  suraID: isFromSuraListScreen ? suraModel.suraNo : null,
+                  title: isFromSuraListScreen ? suraModel.banglaTranslator : 'পারা নংঃ ${paraModel.paraNo}',
+                  paraModel: isFromSuraListScreen ? null : paraModel,
+                  isFromSuraScreen: isFromSuraListScreen ? true : false,
+                )));
       },
       child: Container(
         padding: EdgeInsets.all(10),
@@ -27,52 +35,52 @@ class SuraWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Stack(
-                  children: <Widget>[
-                    Image.asset(
-                      Images.number_icon,
-                      height: 50,
+                Stack(children: <Widget>[
+                  Image.asset(Images.number_icon, height: 50, width: 50, fit: BoxFit.cover, color: Colors.grey),
+                  Container(
                       width: 50,
-                      fit: BoxFit.cover,
-                      color: Colors.grey,
-                    ),
-                    Container(width: 50, height: 50, alignment: Alignment.center, child: Text('${convertEngToBangla(suraModel.suraNo)}'))
-                  ],
-                ),
+                      height: 50,
+                      alignment: Alignment.center,
+                      child: Text('${convertEngToBangla(isFromSuraListScreen ? suraModel.suraNo : paraModel.paraNo)}'))
+                ]),
                 SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
                 Expanded(
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-                    Row(children: [
-                      Text(suraModel.banglaTranslator),
-                      SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
-                      Text('( ${suraModel.arbiSuraNam} )', style: madina.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE))
-                    ]),
-                    Text(suraModel.banglaMeaning)
+                    isFromSuraListScreen
+                        ? Row(children: [
+                            Text(suraModel.banglaTranslator),
+                            SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
+                            Text('( ${suraModel.arbiSuraNam} )', style: madina.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE))
+                          ])
+                        : Text(paraModel.nameAraby, style: madina.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+                    isFromSuraListScreen ? Text(suraModel.banglaMeaning) : Text(paraModel.nameBangla)
                   ]),
                 ),
-                InkWell(
-                    onTap: () {
-                      showModalBottomSheet(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return Container(
-                              color: Color(0xFF737373),
-                              child: ClipRRect(
-                                clipBehavior: Clip.hardEdge,
-                                borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25)),
-                                child: Container(
-                                  color: Color(0xFFFFFFFF),
-                                  height: 330,
-                                  child: Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.only(topLeft: const Radius.circular(10), topRight: const Radius.circular(10))),
-                                      child: suraInfoBotomNavigationBar()),
-                                ),
-                              ),
-                            );
-                          });
-                    },
-                    child: Icon(Icons.info, color: Colors.grey)),
+                isFromSuraListScreen
+                    ? InkWell(
+                        onTap: () {
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Container(
+                                  color: Color(0xFF737373),
+                                  child: ClipRRect(
+                                    clipBehavior: Clip.hardEdge,
+                                    borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25)),
+                                    child: Container(
+                                        color: Color(0xFFFFFFFF),
+                                        height: 330,
+                                        child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.only(topLeft: const Radius.circular(10), topRight: const Radius.circular(10))),
+                                            child: suraInfoBotomNavigationBar())),
+                                  ),
+                                );
+                              });
+                        },
+                        child: Icon(Icons.info, color: Colors.grey))
+                    : SizedBox.shrink()
               ],
             ),
             SizedBox(height: 5),

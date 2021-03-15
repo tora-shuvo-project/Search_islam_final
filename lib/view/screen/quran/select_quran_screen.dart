@@ -77,7 +77,12 @@ class SelectQuranScreen extends StatelessWidget {
                 },
                 context: context),
             SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-            _itemCategoryWidget(title: Strings.para_krome, onTap: () {}, context: context),
+            _itemCategoryWidget(
+                title: Strings.para_krome,
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => SuraParaListScreen(title: Strings.para_krome, isShowSura: false)));
+                },
+                context: context),
             SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
             _itemCategoryWidget(title: Strings.hafeji_quran, onTap: () {}, context: context),
             SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
