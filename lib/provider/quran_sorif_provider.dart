@@ -8,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:search_islam/data/model/audio_model.dart';
 import 'package:search_islam/data/model/key_model.dart';
 import 'package:search_islam/data/model/para_models.dart';
+import 'package:search_islam/data/model/quran_word_models.dart';
 import 'package:search_islam/data/model/sura_model.dart';
 import 'package:search_islam/data/repository/quran_repo.dart';
 import 'package:search_islam/helper/database_helper.dart';
@@ -567,4 +568,17 @@ class QuraanShareefProvider with ChangeNotifier {
 
   int get suraNo => quraanRepo.getSuraNoFromPreference();
 
+  // quran sound
+  List<QuranWordModels> getAllQuranWords = [];
+
+  Future<void> initializeAllQuranWords() async {
+    if (getAllQuranWords.length == 0) {
+      _getDatabaseHelper.getAllQuranWordFromTable().then((rows) {
+        rows.forEach((row) {
+          getAllQuranWords.add(QuranWordModels.fromMap(row));
+        });
+      });
+      notifyListeners();
+    }
+  }
 }

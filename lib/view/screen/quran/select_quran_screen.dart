@@ -8,6 +8,7 @@ import 'package:search_islam/utill/images.dart';
 import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
 import 'package:search_islam/view/screen/quran/pdf_view_screen.dart';
+import 'package:search_islam/view/screen/quran/quran_sound/quran_sound_screen.dart';
 import 'package:search_islam/view/screen/quran/sura_para_list_screen.dart';
 import 'package:search_islam/view/widget/custom_app_bar.dart';
 import 'package:search_islam/view/widget/download_dialog_widget.dart';
@@ -98,7 +99,12 @@ class SelectQuranScreen extends StatelessWidget {
                 },
                 context: context),
             SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-            _itemCategoryWidget(title: Strings.quran_sound, onTap: () {}, context: context),
+            _itemCategoryWidget(
+                title: Strings.quran_sound,
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => QuranSoundScreen()));
+                },
+                context: context),
             SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
             Consumer<QuraanShareefProvider>(
                 builder: (context, quranProvider, child) => _itemCategoryWidget(
