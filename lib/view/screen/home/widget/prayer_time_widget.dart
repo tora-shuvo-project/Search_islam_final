@@ -90,25 +90,19 @@ class PrayerTimeWidget extends StatelessWidget {
                       width: MediaQuery.of(context).size.width,
                       height: 2,
                       color: isPrayerTimeScreen ? ColorResources.primaryColor : Colors.white,
-                      margin: EdgeInsets.only(top: 5)),
+                      margin: EdgeInsets.only(top: 5,bottom: 7)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('${Strings.today}', style: kalpurus.copyWith(color: isPrayerTimeScreen ? Colors.black : Colors.white, fontSize: 17)),
-                      RotateAnimatedTextKit(
-                          onTap: () {
-                            // Navigator.of(context).push(MaterialPageRoute(
-                            //     builder: (context)=>CalenderScreen()
-                            // ));
-                          },
-                          duration: Duration(milliseconds: 5000),
-                          text: homeProvider.allDate(),
-                          isRepeatingAnimation: true,
-                          textStyle: poppinsMedium.copyWith(fontSize: 17.0, color: isPrayerTimeScreen ? Colors.black : Colors.white),
-                          textAlign: TextAlign.center,
-                          repeatForever: true
-                          // or Alignment.topLeft
-                          ),
+
+                      ScaleAnimatedTextKit(
+                        duration: Duration(milliseconds: 5000),
+                        isRepeatingAnimation: true,
+                        text: homeProvider.allDate(),
+                        textStyle: poppinsMedium.copyWith(fontSize: 17.0, color: isPrayerTimeScreen ? Colors.black : Colors.white),
+                        textAlign: TextAlign.start,
+                      ),
                     ],
                   ),
                   Container(

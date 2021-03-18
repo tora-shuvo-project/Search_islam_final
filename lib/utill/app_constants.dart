@@ -1,5 +1,5 @@
 class AppConstants {
-  static const String BASE_URL = 'http://dev.6amtech.com/api/';
+  static const String nadeyatul_quran_url = 'https://duetinmehedi.000webhostapp.com/wp-content/uploads/2021/03/nadiyatul_quran.pdf';
 
   // sharePreference
   static const String TOKEN = '';

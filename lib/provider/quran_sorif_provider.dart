@@ -29,7 +29,6 @@ class QuraanShareefProvider with ChangeNotifier {
     notifyListeners();
   }
 
-
   // for sura List
   List<SuraModel> _suraList = [];
   List<SuraModel> _allSuraList = [];
@@ -108,12 +107,12 @@ class QuraanShareefProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  clearSearchList({bool isFromSuraScreen=true}) {
+  clearSearchList({bool isFromSuraScreen = true}) {
     _notEmptyText = false;
-    if(isFromSuraScreen){
+    if (isFromSuraScreen) {
       _suraList.clear();
       _suraList = _allSuraList;
-    }else{
+    } else {
       _paraList.clear();
       _paraList = _allParaList;
     }
@@ -136,6 +135,7 @@ class QuraanShareefProvider with ChangeNotifier {
       notifyListeners();
     });
   }
+
   initializeAyatByParaId(int id) async {
     _getAllAyat.clear();
     _getDatabaseHelper.getAllAyatFromParaTable(id).then((rows) {
@@ -206,7 +206,7 @@ class QuraanShareefProvider with ChangeNotifier {
 
   int get playAudioIndex => _playAudioIndex;
 
-  playAyatAudio({@required BuildContext context, @required String audioUrl, int index=0}) async {
+  playAyatAudio({@required BuildContext context, @required String audioUrl, int index = 0}) async {
     try {
       final result = await InternetAddress.lookup('google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
@@ -348,7 +348,68 @@ class QuraanShareefProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  String storagePath = '';
+  bool isAvailableFile = false;
 
+  changeAvailableFileStatus() {
+    isAvailableFile = false;
+    storagePath = '';
+    notifyListeners();
+  }
+
+  downloadFile({String url, BuildContext context, String fileName, Function percentFunction}) async {
+    /// getting application doc directory's path in dir variable
+
+    String dir = (await getExternalStorageDirectory()).path;
+
+    Dio dio = Dio();
+
+    if (await File('$dir/$fileName').exists()) {
+      print('$dir/$fileName');
+      storagePath = '$dir/$fileName';
+      isAvailableFile = true;
+      notifyListeners();
+    } else {
+      showPercentage = 0.0;
+      cancelToken = CancelToken();
+      showDownloadWidget = true;
+      isDownload = true;
+      statusCode = 0;
+      isAvailableFile = false;
+      await dio.download('$url', '$dir/$fileName', onReceiveProgress: (actualBytes, totalBytes) {
+        var percentage = actualBytes / totalBytes * 100;
+        if (percentage <= 100) {
+          showPercentage = percentage / 100;
+          print(isDownload);
+          if (isDownload) {
+            statusCode = 1;
+            percentFunction(statusCode);
+          }
+          isDownload = false;
+          downloadMessahge = '${percentage.floor()}';
+          print(showPercentage);
+          notifyListeners();
+          if (percentage == 100) {
+            isDownload = true;
+            storagePath = '$dir/$fileName';
+          }
+        }
+      }, cancelToken: cancelToken).catchError((error) {
+        ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
+            backgroundColor: Colors.red,
+            elevation: 2,
+            duration: Duration(seconds: 5),
+            content: Text(
+              error.message == 'cancelled'
+                  ? 'Download Canceled'
+                  : 'Please check your internet connection first time it download for you from server \'Thanks',
+              style: TextStyle(color: Colors.white),
+            )));
+      });
+    }
+
+    notifyListeners();
+  }
 
   playAudioByOnline({@required BuildContext context, @required String audioUrl}) async {
     try {
@@ -439,7 +500,7 @@ class QuraanShareefProvider with ChangeNotifier {
     return quraanRepo.saveQareNameInPreference(name);
   }
 
-  String get getQareName=> quraanRepo.getQareNameFromPreference();
+  String get getQareName => quraanRepo.getQareNameFromPreference();
 
   // for Arabic style
   List<KeyModel> _arabyStyles = [];
@@ -505,4 +566,5 @@ class QuraanShareefProvider with ChangeNotifier {
   }
 
   int get suraNo => quraanRepo.getSuraNoFromPreference();
+
 }

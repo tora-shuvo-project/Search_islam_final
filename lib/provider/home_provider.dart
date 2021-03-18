@@ -20,44 +20,7 @@ class HomeProvider with ChangeNotifier {
   }
 
   List<String> allDate() {
-    List<String> _getAllDateData = [
-      banglaDate,
-      englishDate,
-      arabyDate,
-      banglaDate,
-      englishDate,
-      arabyDate,
-      banglaDate,
-      englishDate,
-      arabyDate,
-      banglaDate,
-      englishDate,
-      arabyDate,
-      banglaDate,
-      englishDate,
-      arabyDate,
-      banglaDate,
-      englishDate,
-      arabyDate,
-      banglaDate,
-      englishDate,
-      arabyDate,
-      banglaDate,
-      englishDate,
-      arabyDate,
-      banglaDate,
-      englishDate,
-      arabyDate,
-      banglaDate,
-      englishDate,
-      arabyDate,
-      banglaDate,
-      englishDate,
-      arabyDate,
-      banglaDate,
-      englishDate,
-      arabyDate
-    ];
+    List<String> _getAllDateData = [banglaDate, englishDate, arabyDate];
     return _getAllDateData;
   }
 }

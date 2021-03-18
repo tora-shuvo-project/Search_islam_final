@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:search_islam/provider/quran_sorif_provider.dart';
+import 'package:search_islam/utill/app_constants.dart';
 import 'package:search_islam/utill/dimensions.dart';
 import 'package:search_islam/utill/images.dart';
 import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
+import 'package:search_islam/view/screen/quran/pdf_view_screen.dart';
 import 'package:search_islam/view/screen/quran/sura_para_list_screen.dart';
 import 'package:search_islam/view/widget/custom_app_bar.dart';
+import 'package:search_islam/view/widget/download_dialog_widget.dart';
 
 class SelectQuranScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Provider.of<QuraanShareefProvider>(context, listen: false).changeAvailableFileStatus();
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(child: CustomAppBar(title: Strings.quran_sharif), preferredSize: Size(MediaQuery.of(context).size.width, 120)),
@@ -94,7 +100,32 @@ class SelectQuranScreen extends StatelessWidget {
             SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
             _itemCategoryWidget(title: Strings.quran_sound, onTap: () {}, context: context),
             SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-            _itemCategoryWidget(title: Strings.kayda, onTap: () {}, context: context),
+            Consumer<QuraanShareefProvider>(
+                builder: (context, quranProvider, child) => _itemCategoryWidget(
+                    title: Strings.kayda,
+                    onTap: () async {
+                      if (quranProvider.isAvailableFile) {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (_) => PdfViewScreen(path: quranProvider.storagePath, title: Strings.kayda)));
+                      } else {
+                        quranProvider.downloadFile(
+                            url: AppConstants.nadeyatul_quran_url,
+                            context: context,
+                            percentFunction: (value) {
+                              if (value == 1) {
+                                showDialog(
+                                    context: context,
+                                    builder: (_) {
+                                      return Dialog(
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+                                          child: DownloadDialogWidget(title: Strings.pdfti));
+                                    });
+                              }
+                            },
+                            fileName: 'cepara.pdf');
+                      }
+                    },
+                    context: context)),
           ],
         ),
       ),

@@ -78,6 +78,7 @@ class Strings {
   static const String ahmed_al_ajimi_english = 'Ahmed al Ajmi';
   static const String boundho_korun = 'ডাউনলোডটি বন্ধ করুণ';
   static const String odioti = 'অডিওটি';
+  static const String pdfti = 'পিডিএফটি';
   static const String download_hoccce = 'ডাউনলোড হচ্ছে!';
   static const String sompurno_vabe_download_hocce = 'সম্পূর্ণভাবে ডাউনলোড হয়েছে:)';
   static const String somponno_hoccce = 'সম্পন্ন হয়েছে';
