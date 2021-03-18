@@ -11,8 +11,15 @@ class CustomAppBar extends StatelessWidget {
   final bool isBackgroundPrimaryColor;
   final bool isAyatScreen;
   final GlobalKey<ScaffoldState> drawerKey;
+  final bool isShowHafejiQuran;
 
-  CustomAppBar({this.title, this.isLocation = false, this.isBackgroundPrimaryColor = false, this.isAyatScreen = false, this.drawerKey});
+  CustomAppBar(
+      {this.title,
+      this.isLocation = false,
+      this.isBackgroundPrimaryColor = false,
+      this.isAyatScreen = false,
+      this.drawerKey,
+      this.isShowHafejiQuran = false});
 
   @override
   Widget build(BuildContext context) {

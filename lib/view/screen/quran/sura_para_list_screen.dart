@@ -11,8 +11,9 @@ import 'package:search_islam/view/widget/custom_text_field.dart';
 class SuraParaListScreen extends StatelessWidget {
   final String title;
   final bool isShowSura;
+  final bool isShowHafejiQuranSystem;
 
-  SuraParaListScreen({@required this.title, this.isShowSura = true});
+  SuraParaListScreen({@required this.title, this.isShowSura = true, this.isShowHafejiQuranSystem = false});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class SuraParaListScreen extends StatelessWidget {
       child: Scaffold(
           appBar: PreferredSize(
               child: CustomAppBar(title: title, isBackgroundPrimaryColor: true), preferredSize: Size(MediaQuery.of(context).size.width, 120)),
+
           body: Consumer<QuraanShareefProvider>(
               builder: (context, quranProvider, child) => Column(
                     children: [
@@ -62,9 +64,11 @@ class SuraParaListScreen extends StatelessWidget {
                                     padding: EdgeInsets.only(top: 20, bottom: 20),
                                     physics: BouncingScrollPhysics(),
                                     itemBuilder: (context, index) => SuraWidget(
-                                        suraModel: isShowSura ? quranProvider.suraModels[index] : null,
-                                        paraModel: isShowSura ? null : quranProvider.paraList[index],
-                                        isFromSuraListScreen: isShowSura ? true : false),
+                                      suraModel: isShowSura ? quranProvider.suraModels[index] : null,
+                                      paraModel: isShowSura ? null : quranProvider.paraList[index],
+                                      isFromSuraListScreen: isShowSura ? true : false,
+                                      isShowHafejiQuranSystem: isShowHafejiQuranSystem ? true : false
+                                    ),
                                     itemCount: isShowSura ? quranProvider.suraModels.length : quranProvider.paraList.length,
                                   ),
                                 ),

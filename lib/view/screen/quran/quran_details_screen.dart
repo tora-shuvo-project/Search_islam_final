@@ -50,7 +50,7 @@ class _QuranDetailsScreenState extends State<QuranDetailsScreen> {
         },
         child: Scaffold(
           key: _drawerKey,
-          endDrawer: QuranSettingsDrawer(suraNo: widget.suraID),
+          endDrawer: QuranSettingsDrawer(),
           floatingActionButton: Consumer<QuraanShareefProvider>(
             builder: (context, quranProvider, child) => FloatingActionButton(
               onPressed: () {

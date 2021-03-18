@@ -103,6 +103,28 @@ flutter:
           weight: 800
         - asset: assets/fonts/Poppins-Black.ttf
           weight: 900
+
+    - family: Maddina
+      fonts:
+        - asset: assets/fonts/maddina.ttf
+    - family: Monserat
+      fonts:
+        - asset: assets/fonts/Monserat.ttf
+    - family: Mukadimah
+      fonts:
+        - asset: assets/fonts/Mukadimah.ttf
+    - family: QalamMajid
+      fonts:
+        - asset: assets/fonts/QalamMajid.ttf
+    - family: utman
+      fonts:
+        - asset: assets/fonts/Uthman.ttf
+    - family: mequran
+      fonts:
+        - asset: assets/fonts/me_quran.ttf
+    - family: kalpurus
+      fonts:
+        - asset: assets/fonts/Kalpurush.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

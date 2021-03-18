@@ -6,26 +6,33 @@ import 'package:search_islam/utill/dimensions.dart';
 import 'package:search_islam/utill/images.dart';
 import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
+import 'package:search_islam/view/screen/quran/hafeji_quran_screen.dart';
 import 'package:search_islam/view/screen/quran/quran_details_screen.dart';
 
 class SuraWidget extends StatelessWidget {
   final SuraModel suraModel;
   final ParaModel paraModel;
   final bool isFromSuraListScreen;
+  final bool isShowHafejiQuranSystem;
 
-  SuraWidget({this.suraModel, this.paraModel, this.isFromSuraListScreen = true});
+  SuraWidget({this.suraModel, this.paraModel, this.isFromSuraListScreen = true, this.isShowHafejiQuranSystem = false});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (_) => QuranDetailsScreen(
-                  suraID: isFromSuraListScreen ? suraModel.suraNo : null,
-                  title: isFromSuraListScreen ? suraModel.banglaTranslator : 'পারা নংঃ ${paraModel.paraNo}',
-                  paraModel: isFromSuraListScreen ? null : paraModel,
-                  isFromSuraScreen: isFromSuraListScreen ? true : false,
-                )));
+        if (isShowHafejiQuranSystem) {
+          Navigator.of(context).push(MaterialPageRoute(builder: (_) => HafejiQuranScreen(paraModel: paraModel)));
+        }else{
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) => QuranDetailsScreen(
+                suraID: isFromSuraListScreen ? suraModel.suraNo : null,
+                title: isFromSuraListScreen ? suraModel.banglaTranslator : 'পারা নংঃ ${paraModel.paraNo}',
+                paraModel: isFromSuraListScreen ? null : paraModel,
+                isFromSuraScreen: isFromSuraListScreen ? true : false,
+              )));
+        }
+
       },
       child: Container(
         padding: EdgeInsets.all(10),

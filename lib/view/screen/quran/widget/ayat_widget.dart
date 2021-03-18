@@ -51,7 +51,7 @@ class AyatWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         isSuraWiseShowAyat
-                            ? null
+                            ? SizedBox.shrink()
                             : ayatModel.ayatno == 1
                                 ? Center(
                                     child: Text(Strings.bismillahirahmanirRahim,
