@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:search_islam/provider/home_provider.dart';
 import 'package:search_islam/provider/location_provider.dart';
 import 'package:search_islam/provider/prayer_time_provider.dart';
+import 'package:search_islam/provider/quran_sorif_provider.dart';
 import 'package:search_islam/utill/color_resources.dart';
 import 'package:search_islam/utill/dimensions.dart';
 import 'package:search_islam/utill/images.dart';
@@ -24,6 +25,7 @@ class HomeScreen extends StatelessWidget {
     Provider.of<PrayerTimeProvider>(context, listen: false).checkDaysInMonth();
     Provider.of<HomeProvider>(context, listen: false).initializeAllDate();
     Provider.of<LocationProvider>(context, listen: false).getAllDistrictName();
+    Provider.of<QuraanShareefProvider>(context, listen: false).initializeSuraFromPreference();
     final drawerController = DeivaoDrawerController();
     return DeivaoDrawer(
       controller: drawerController,

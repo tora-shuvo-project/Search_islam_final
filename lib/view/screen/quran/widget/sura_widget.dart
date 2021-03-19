@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:search_islam/data/model/para_models.dart';
 import 'package:search_islam/data/model/sura_model.dart';
 import 'package:search_islam/helper/convert_eng_to_bangla_number.dart';
+import 'package:search_islam/provider/quran_sorif_provider.dart';
 import 'package:search_islam/utill/dimensions.dart';
 import 'package:search_islam/utill/images.dart';
 import 'package:search_islam/utill/string_resources.dart';
@@ -23,16 +27,16 @@ class SuraWidget extends StatelessWidget {
       onTap: () {
         if (isShowHafejiQuranSystem) {
           Navigator.of(context).push(MaterialPageRoute(builder: (_) => HafejiQuranScreen(paraModel: paraModel)));
-        }else{
+        } else {
+          Provider.of<QuraanShareefProvider>(context, listen: false).saveSurToPreference(suraModel);
           Navigator.of(context).push(MaterialPageRoute(
               builder: (_) => QuranDetailsScreen(
-                suraID: isFromSuraListScreen ? suraModel.suraNo : null,
-                title: isFromSuraListScreen ? suraModel.banglaTranslator : 'পারা নংঃ ${paraModel.paraNo}',
-                paraModel: isFromSuraListScreen ? null : paraModel,
-                isFromSuraScreen: isFromSuraListScreen ? true : false,
-              )));
+                    suraID: isFromSuraListScreen ? suraModel.suraNo : null,
+                    title: isFromSuraListScreen ? suraModel.banglaTranslator : 'পারা নংঃ ${paraModel.paraNo}',
+                    paraModel: isFromSuraListScreen ? null : paraModel,
+                    isFromSuraScreen: isFromSuraListScreen ? true : false,
+                  )));
         }
-
       },
       child: Container(
         padding: EdgeInsets.all(10),

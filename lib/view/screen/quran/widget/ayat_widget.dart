@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:search_islam/data/model/ayat_model.dart';
 import 'package:search_islam/helper/convert_eng_to_bangla_number.dart';
-import 'package:search_islam/provider/ayat_model.dart';
 import 'package:search_islam/provider/quran_sorif_provider.dart';
 import 'package:search_islam/utill/dimensions.dart';
 import 'package:search_islam/utill/images.dart';

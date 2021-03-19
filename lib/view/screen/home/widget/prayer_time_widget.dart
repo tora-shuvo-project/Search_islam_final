@@ -90,7 +90,7 @@ class PrayerTimeWidget extends StatelessWidget {
                       width: MediaQuery.of(context).size.width,
                       height: 2,
                       color: isPrayerTimeScreen ? ColorResources.primaryColor : Colors.white,
-                      margin: EdgeInsets.only(top: 5,bottom: 7)),
+                      margin: EdgeInsets.only(top: 5,bottom: 15)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -109,7 +109,7 @@ class PrayerTimeWidget extends StatelessWidget {
                       width: MediaQuery.of(context).size.width,
                       height: 2,
                       color: isPrayerTimeScreen ? ColorResources.primaryColor : Colors.white,
-                      margin: EdgeInsets.only(top: 5, bottom: 10)),
+                      margin: EdgeInsets.only(top: 10, bottom: 10)),
                   Row(
                     children: [
                       Expanded(

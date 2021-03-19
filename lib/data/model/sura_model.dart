@@ -2,7 +2,17 @@ class SuraModel{
   String ayatNo,paraNumber,arbiSuraNam,banglaMeaning,banglaTranslator,obotirno,englishSuraname,keyName;
   int suraNo;
 
-  SuraModel();
+
+  SuraModel(
+      {this.ayatNo,
+      this.paraNumber,
+      this.arbiSuraNam,
+      this.banglaMeaning,
+      this.banglaTranslator,
+      this.obotirno,
+      this.englishSuraname,
+      this.keyName,
+      this.suraNo});
 
   Map<String,dynamic> tomap(){
     var map=new Map<String,dynamic>();

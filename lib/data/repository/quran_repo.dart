@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:search_islam/data/model/audio_model.dart';
 import 'package:search_islam/data/model/key_model.dart';
+import 'package:search_islam/data/model/sura_model.dart';
 import 'package:search_islam/utill/app_constants.dart';
 import 'package:search_islam/utill/string_resources.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -109,7 +112,23 @@ class QuranRepo {
   }
 
   String getArabicStyleFromPreference() {
-    return sharedPreferences.getBool(AppConstants.SHOW_AYAT_ARABIC_STYLE) ?? 'Arabi Utmanic';
+    return sharedPreferences.getString(AppConstants.SHOW_AYAT_ARABIC_STYLE) ?? 'Arabi Utmanic';
+  }
+
+  // save sura
+
+  SuraModel getSuraNameFromPreference() {
+    return SuraModel.formMap(jsonDecode(sharedPreferences.getString(AppConstants.SAVE_SURA) ??
+        "{\"AYATNO\":\"৭\",\"SURANO\":1,\"PARANO\":\"\\t1\",\"ARABISURANAME\":\"\الفاتحة\",\"BANGLAMEANING\":\"সূচনা\",\"BANGLATRANSLATOR\":\"আল ফাতিহা\",\"OBOTIRNO\":\"মক্কা\",\"ENGLISHSURANAME\":\"Al-Faatiha\",\"KEYNAME\":\"\\tFatiha\"}"));
+  }
+
+  Future<void> saveSuraToPreference(SuraModel suraModel) async {
+    try {
+      await sharedPreferences.setString(AppConstants.SAVE_SURA, jsonEncode(suraModel.tomap()));
+    } catch (error) {
+      throw error;
+    }
+
   }
 
   List<QareModel> qareodels = [
