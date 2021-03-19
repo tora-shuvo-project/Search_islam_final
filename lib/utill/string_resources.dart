@@ -135,4 +135,5 @@ class Strings {
   static const String onuvuty ='অনুভূতি';
   static const String iman_surokkha ='ইমান-সুরক্ষা';
   static const String osustota ='অসুস্থতা';
+  static const String copy_kora_hoyeche ='কপি করা হয়েছে';
 }

@@ -4,6 +4,7 @@ import 'package:search_islam/helper/convert_eng_to_bangla_number.dart';
 import 'package:search_islam/provider/doya_provider.dart';
 import 'package:search_islam/utill/dimensions.dart';
 import 'package:search_islam/utill/string_resources.dart';
+import 'package:search_islam/view/screen/doya/doya_details_screen.dart';
 import 'package:search_islam/view/widget/custom_text_field.dart';
 
 class SokolDoyaWidget extends StatelessWidget {
@@ -49,10 +50,14 @@ class SokolDoyaWidget extends StatelessWidget {
                                   boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.2), spreadRadius: 1, blurRadius: 7, offset: Offset(0, 1))],
                                   color: Colors.white),
                               child: ListTile(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) =>
+                                            DoyaDetailsScreen(id: doyaProvider.doyaNameList[index].id, name: doyaProvider.doyaNameList[index].name)));
+                                  },
                                   title: Text('${doyaProvider.doyaNameList[index].name}'),
                                   trailing: Icon(Icons.keyboard_arrow_right),
-                                  leading: CircleAvatar(child: Text('${convertEngToBangla(index+1)}'))),
+                                  leading: CircleAvatar(child: Text('${convertEngToBangla(index + 1)}'))),
                             )),
                   )
                 ],

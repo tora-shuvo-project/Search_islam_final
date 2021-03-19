@@ -1,13 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:search_islam/data/model/doya_details_models.dart';
 import 'package:search_islam/data/model/doya_name_models.dart';
 import 'package:search_islam/data/repository/doya_repo.dart';
+import 'package:search_islam/data/repository/quran_repo.dart';
 import 'package:search_islam/helper/database_helper.dart';
 
 class DoyaProvider with ChangeNotifier {
   final DoyaRepo doyaRepo;
+  final QuranRepo quranRepo;
 
-  DoyaProvider({this.doyaRepo});
+  DoyaProvider({this.doyaRepo, this.quranRepo});
 
   DatabaseHelper _getDatabaseHelper;
 
@@ -58,6 +61,32 @@ class DoyaProvider with ChangeNotifier {
     }
   }
 
+  // bisoy vittik doya somuh
+  List<DoyaNameModels> bisoyVittikDoya = [];
+
+  initializeBisoyVittikDoya(int id) async {
+    bisoyVittikDoya = [];
+    await _getDatabaseHelper.getDuyaCategoryNameFromTable(id).then((doyaNames) {
+      doyaNames.forEach((element) {
+        bisoyVittikDoya.add(DoyaNameModels.fromMap(element));
+      });
+    });
+    notifyListeners();
+  }
+
+  // doya Details
+  List<DoyaDetailsModels> doyaDetailsModels = [];
+
+  initializeDoyaDetails(String id) async {
+    doyaDetailsModels = [];
+    await _getDatabaseHelper.getDuyaDetailsFromTable(id).then((doyaDetails) {
+      doyaDetails.forEach((element) {
+        doyaDetailsModels.add(DoyaDetailsModels.fromMap(element));
+      });
+    });
+    notifyListeners();
+  }
+
   // For Search
   bool _notEmptyText = false;
 
@@ -80,6 +109,7 @@ class DoyaProvider with ChangeNotifier {
     }
     notifyListeners();
   }
+
   clearSearchList() {
     _notEmptyText = false;
     _doyaNameList.clear();
@@ -89,4 +119,15 @@ class DoyaProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  // font size
+  double get fontSize => quranRepo.getAyatFontSizeFromPreference();
+
+  updateFontSize({bool isIncrement = true}) async {
+    var size = quranRepo.getAyatFontSizeFromPreference();
+    if (isIncrement)
+      await quranRepo.saveAyatFontSizeInPreference(++size);
+    else
+      await quranRepo.saveAyatFontSizeInPreference(--size);
+    notifyListeners();
+  }
 }

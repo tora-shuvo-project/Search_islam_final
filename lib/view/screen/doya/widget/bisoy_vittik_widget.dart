@@ -36,23 +36,11 @@ class BisoyVittikWidget extends StatelessWidget {
                     Row(
                       children: [
                         SizedBox(width: 5),
-                        CategoryWidget(iconUrl: Images.daily_svg, title: Strings.nittodin),
+                        CategoryWidget(iconUrl: Images.daily_svg, title: Strings.nittodin, category: 1, categoryName: Strings.nittodin),
                         SizedBox(width: 5),
-                        CategoryWidget(iconUrl: Images.zikir_svg, title: Strings.zikir_and_gum),
+                        CategoryWidget(iconUrl: Images.zikir_svg, title: Strings.zikir_and_gum, category: 2, categoryName: Strings.zikir_and_gum),
                         SizedBox(width: 5),
-                        CategoryWidget(iconUrl: Images.social_svg, title: Strings.samajik),
-                        SizedBox(width: 5),
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    Row(
-                      children: [
-                        SizedBox(width: 5),
-                        CategoryWidget(iconUrl: Images.kabba_svg, title: Strings.hoz_siyam),
-                        SizedBox(width: 5),
-                        CategoryWidget(iconUrl: Images.quran_svg, title: Strings.quran),
-                        SizedBox(width: 5),
-                        CategoryWidget(iconUrl: Images.salat_svg, title: Strings.salat),
+                        CategoryWidget(iconUrl: Images.social_svg, title: Strings.samajik, category: 3, categoryName: Strings.samajik),
                         SizedBox(width: 5),
                       ],
                     ),
@@ -60,15 +48,26 @@ class BisoyVittikWidget extends StatelessWidget {
                     Row(
                       children: [
                         SizedBox(width: 5),
-                        CategoryWidget(iconUrl: Images.fellings_svg, title: Strings.onuvuty),
+                        CategoryWidget(iconUrl: Images.kabba_svg, title: Strings.hoz_siyam, category: 4, categoryName: Strings.hoz_siyam),
                         SizedBox(width: 5),
-                        CategoryWidget(iconUrl: Images.iman_svg, title:Strings.iman_surokkha),
+                        CategoryWidget(iconUrl: Images.quran_svg, title: Strings.quran, category: 5, categoryName: Strings.quran),
                         SizedBox(width: 5),
-                        CategoryWidget(iconUrl: Images.ill_svg, title: Strings.osustota),
+                        CategoryWidget(iconUrl: Images.salat_svg, title: Strings.salat, category: 6, categoryName: Strings.salat),
                         SizedBox(width: 5),
                       ],
                     ),
-
+                    SizedBox(height: 10),
+                    Row(
+                      children: [
+                        SizedBox(width: 5),
+                        CategoryWidget(iconUrl: Images.fellings_svg, title: Strings.onuvuty, category: 7, categoryName: Strings.onuvuty),
+                        SizedBox(width: 5),
+                        CategoryWidget(iconUrl: Images.iman_svg, title: Strings.iman_surokkha, category: 8, categoryName: Strings.iman_surokkha),
+                        SizedBox(width: 5),
+                        CategoryWidget(iconUrl: Images.ill_svg, title: Strings.osustota, category: 9, categoryName: Strings.osustota),
+                        SizedBox(width: 5),
+                      ],
+                    ),
                   ],
                 ),
               ),

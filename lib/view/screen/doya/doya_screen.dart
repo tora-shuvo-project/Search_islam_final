@@ -37,11 +37,11 @@ class DoyaScreen extends StatelessWidget {
                           children: [
                             Text(Strings.bisoy_somuh,
                                 style: authProvider.selectedIndex == 0
-                                    ? poppinsSemiBold.copyWith(color: Colors.white70)
+                                    ? poppinsSemiBold.copyWith(color: Colors.white)
                                     : poppinsRegular.copyWith(color: Colors.white54)),
                             Container(
                                 height: 1,
-                                width: 75,
+                                width: 80,
                                 margin: EdgeInsets.only(top: 8),
                                 color: authProvider.selectedIndex == 0 ? Colors.white70 : Colors.transparent),
                           ],
@@ -54,11 +54,11 @@ class DoyaScreen extends StatelessWidget {
                           children: [
                             Text(Strings.sokol_doya_somuh,
                                 style: authProvider.selectedIndex == 1
-                                    ? poppinsSemiBold.copyWith(color: Colors.white70)
+                                    ? poppinsSemiBold.copyWith(color: Colors.white)
                                     : poppinsRegular.copyWith(color: Colors.white54)),
                             Container(
                                 height: 1,
-                                width: 90,
+                                width: 95,
                                 margin: EdgeInsets.only(top: 8),
                                 color: authProvider.selectedIndex == 1 ? Colors.white70 : Colors.transparent),
                           ],

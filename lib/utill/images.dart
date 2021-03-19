@@ -22,6 +22,8 @@ class Images {
   static const String salat_svg = 'assets/icons/salat.svg';
   static const String social_svg = 'assets/icons/social.svg';
   static const String zikir_svg = 'assets/icons/zikir.svg';
+  static const String font_size_large_to_small_svg = 'assets/icons/font_size_large_to_small.svg';
+  static const String font_size_small_to_large_svg = 'assets/icons/font_size_small_to_large.svg';
 
 
   // for image

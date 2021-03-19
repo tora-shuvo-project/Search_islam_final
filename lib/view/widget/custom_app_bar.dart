@@ -44,7 +44,7 @@ class CustomAppBar extends StatelessWidget {
                   if (isAyatScreen) Provider.of<QuraanShareefProvider>(context, listen: false).dismissAudio();
                   Navigator.of(context).pop();
                 }),
-            Expanded(child: Text(title, style: poppinsMedium.copyWith(color: Colors.white, fontSize: 18))),
+            Expanded(child: Text(title, style: poppinsMedium.copyWith(color: Colors.white, fontSize: 15))),
             isLocation
                 ? InkWell(
                     onTap: () {
