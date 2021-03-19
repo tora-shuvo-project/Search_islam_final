@@ -19,6 +19,7 @@ class DoyaDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Provider.of<DoyaProvider>(context, listen: false).initializeDoyaDetails(id);
+    print(id);
 
     return SafeArea(
       child: Scaffold(
@@ -97,11 +98,25 @@ class DoyaDetailsScreen extends StatelessWidget {
                                       style: madina.copyWith(fontSize: doyaProvider.fontSize + 2, color: Colors.black))
                                   : SizedBox.shrink()),
                           SizedBox(height: 15),
+                          doyaProvider.doyaDetailsModels[index].banglaMeaning == null
+                              ? SizedBox.shrink()
+                              : Container(
+                                  alignment: Alignment.center,
+                                  child: SelectableText('${doyaProvider.doyaDetailsModels[index].banglaMeaning}',
+                                      style: kalpurus.copyWith(fontSize: doyaProvider.fontSize,color: Colors.brown))),
+                          SizedBox(height: doyaProvider.doyaDetailsModels[index].banglaMeaning == null ? 0 : 15),
                           doyaProvider.doyaDetailsModels[index].banglaTranslator == null
                               ? SizedBox.shrink()
                               : Container(
                                   alignment: Alignment.center,
                                   child: SelectableText('${doyaProvider.doyaDetailsModels[index].banglaTranslator}',
+                                      style: kalpurus.copyWith(fontSize: doyaProvider.fontSize))),
+                          SizedBox(height: 15),
+                          doyaProvider.doyaDetailsModels[index].bottom == null
+                              ? SizedBox.shrink()
+                              : Container(
+                                  alignment: Alignment.center,
+                                  child: SelectableText('${doyaProvider.doyaDetailsModels[index].bottom}',
                                       style: kalpurus.copyWith(fontSize: doyaProvider.fontSize))),
                           SizedBox(height: 15),
                           doyaProvider.doyaDetailsModels[index].reference == null

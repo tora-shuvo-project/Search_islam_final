@@ -140,7 +140,6 @@ class QuranRepo {
   ];
 
   List<KeyModel> allArabicStyle = [
-    KeyModel(keyName: Strings.araby_simple_bangla, value: Strings.araby_simple_english),
     KeyModel(keyName: Strings.araby_uth_manik_bangla, value: Strings.araby_uth_manik_english),
     KeyModel(keyName: Strings.araby_indopak_bangla, value: Strings.araby_indopak_english),
   ];

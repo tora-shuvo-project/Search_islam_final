@@ -65,9 +65,7 @@ class AyatWidget extends StatelessWidget {
                                     textDirection: TextDirection.rtl,
                                     child: quranProvider.isShowArabic()
                                         ? Text(
-                                            quranProvider.arabicStyleKeyModel.value == Strings.araby_simple_english
-                                                ? ayatModel.arabicSimple
-                                                : quranProvider.arabicStyleKeyModel.value == Strings.araby_uth_manik_english
+                                             quranProvider.arabicStyleKeyModel.value == Strings.araby_uth_manik_english
                                                     ? ayatModel.arabicUtmanic
                                                     : ayatModel.arabicIndopak,
                                             style: TextStyle(

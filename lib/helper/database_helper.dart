@@ -117,13 +117,13 @@ class DatabaseHelper {
 
   Future<List> getDuyaNameFromTable() async {
     Database db = await instance.database;
-    var result = await db.query(dunaNameTable);
+    var result = await db.query(dunaNameTable,orderBy: 'GLOBAL_ID');
     return result.toList();
   }
 
   Future<List> getDuyaCategoryNameFromTable(int category) async {
     Database db = await instance.database;
-    var result = await db.query(dunaNameTable, where: '$columnCategory = ? ', whereArgs: [category]);
+    var result = await db.query(dunaNameTable, where: '$columnCategory = ? ', whereArgs: [category],orderBy: 'GLOBAL_ID');
     return result.toList();
   }
 

@@ -51,6 +51,7 @@ class SokolDoyaWidget extends StatelessWidget {
                                   color: Colors.white),
                               child: ListTile(
                                   onTap: () {
+
                                     Navigator.of(context).push(MaterialPageRoute(
                                         builder: (context) =>
                                             DoyaDetailsScreen(id: doyaProvider.doyaNameList[index].id, name: doyaProvider.doyaNameList[index].name)));

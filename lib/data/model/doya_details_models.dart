@@ -1,8 +1,8 @@
 class DoyaDetailsModels {
   int slNo, globalId;
-  String id, arabic, banglaMeaning, banglaTranslator, niyom, reference;
+  String id, arabic, banglaMeaning, banglaTranslator, niyom, reference,bottom;
 
-  DoyaDetailsModels({this.id, this.slNo, this.globalId, this.arabic, this.banglaMeaning, this.banglaTranslator, this.niyom, this.reference});
+  DoyaDetailsModels({this.id, this.slNo, this.globalId, this.arabic, this.banglaMeaning, this.banglaTranslator, this.niyom, this.reference,this.bottom});
 
   DoyaDetailsModels.fromMap(dynamic map) {
     this.id = map['ID'];
@@ -13,5 +13,6 @@ class DoyaDetailsModels {
     this.banglaTranslator = map['BANGLA_TRANSLATOR'];
     this.niyom = map['NIYOM'];
     this.reference = map['REFERENCE'];
+    this.bottom = map['BOTTOM'];
   }
 }
