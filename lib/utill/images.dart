@@ -14,6 +14,14 @@ class Images {
   static const String ojifa_svg = 'assets/icons/ojifa.svg';
   static const String question_svg = 'assets/icons/question.svg';
   static const String method_svg = 'assets/icons/method.svg';
+  static const String daily_svg = 'assets/icons/daily.svg';
+  static const String fellings_svg = 'assets/icons/feelings.svg';
+  static const String ill_svg = 'assets/icons/ill.svg';
+  static const String iman_svg = 'assets/icons/iman.svg';
+  static const String kabba_svg = 'assets/icons/kabba.svg';
+  static const String salat_svg = 'assets/icons/salat.svg';
+  static const String social_svg = 'assets/icons/social.svg';
+  static const String zikir_svg = 'assets/icons/zikir.svg';
 
 
   // for image

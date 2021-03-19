@@ -21,6 +21,9 @@ class Strings {
   static const String somay_baki_ace = 'সময় বাকি আছেঃ ';
   static const String quran_sorif = 'কুরআন শরীফ';
   static const String doya = 'দোয়া';
+  static const String doya_somuh = 'দোয়া সমূহ';
+  static const String bisoy_somuh = 'বিষয় ভিত্তিক';
+  static const String sokol_doya_somuh= 'সকল দোয়াসমূহ';
   static const String questions = 'জিজ্ঞাসা';
   static const String ojifa = 'অজিফা';
   static const String niyom = 'নিয়ম';
@@ -124,4 +127,12 @@ class Strings {
       "প্রতিটি  শব্দের অর্থ এবং কোরআন হতে এগুলোর সহজ উদাহরণ দেয়া হলো । "
       " উদাহরণ গুলোর বেশির ভাগই আল-কোরআনের ২৯ ও ৩০ পারার ছোট ছোট আয়াত থেকে নেয়া হয়েছে ।  ";
   static const String surur_kotha ='শুরুর কথা';
+  static const String nittodin ='নিত্যদিন';
+  static const String zikir_and_gum ='যিকর-ঘুম';
+  static const String samajik ='সামাজিক';
+  static const String hoz_siyam ='হজ - সিয়াম';
+  static const String salat ='সালাত';
+  static const String onuvuty ='অনুভূতি';
+  static const String iman_surokkha ='ইমান-সুরক্ষা';
+  static const String osustota ='অসুস্থতা';
 }

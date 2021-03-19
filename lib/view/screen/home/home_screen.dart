@@ -10,6 +10,7 @@ import 'package:search_islam/utill/dimensions.dart';
 import 'package:search_islam/utill/images.dart';
 import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
+import 'package:search_islam/view/screen/doya/doya_screen.dart';
 import 'package:search_islam/view/screen/home/widget/category_widget.dart';
 import 'package:search_islam/view/screen/home/widget/drawer.dart';
 import 'package:search_islam/view/screen/home/widget/prayer_time_widget.dart';
@@ -61,7 +62,7 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CategoryWidget(title: Strings.quran_sharif, iconUrl: Images.quran_svg, routeWidget: SelectQuranScreen()),
-                CategoryWidget(title: Strings.doya, iconUrl: Images.dua_svg),
+                CategoryWidget(title: Strings.doya, iconUrl: Images.dua_svg, routeWidget: DoyaScreen()),
                 CategoryWidget(title: Strings.quran_sound, iconUrl: Images.document_svg),
                 CategoryWidget(title: Strings.questions, iconUrl: Images.question_svg),
               ],

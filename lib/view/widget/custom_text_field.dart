@@ -81,7 +81,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         obscureText: widget.isPassword ? _obscureText : false,
         inputFormatters: widget.inputType == TextInputType.phone ? <TextInputFormatter>[FilteringTextInputFormatter.allow(RegExp('[0-9+]'))] : null,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 22),
+          contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 22),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
             borderSide: BorderSide(style: BorderStyle.none, width: 0),

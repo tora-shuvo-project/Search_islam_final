@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:search_islam/provider/doya_provider.dart';
 import 'package:search_islam/provider/home_provider.dart';
 import 'package:search_islam/provider/location_provider.dart';
 import 'package:search_islam/provider/prayer_time_provider.dart';
@@ -20,6 +21,7 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (context) => di.sl<PrayerTimeProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<HomeProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<LocationProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<DoyaProvider>()),
     ],
     child: MyApp(),
   ));
