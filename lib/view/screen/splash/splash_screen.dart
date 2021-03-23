@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:search_islam/helper/database_helper.dart';
 import 'package:search_islam/provider/doya_provider.dart';
+import 'package:search_islam/provider/ojifa_provider.dart';
 import 'package:search_islam/provider/quran_sorif_provider.dart';
 import 'package:search_islam/utill/images.dart';
 import 'package:search_islam/view/screen/home/home_screen.dart';
@@ -40,6 +41,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     DatabaseHelper databaseHelper = DatabaseHelper.instance;
     Provider.of<QuraanShareefProvider>(context, listen: false).accessDatabase(databaseHelper);
     Provider.of<DoyaProvider>(context, listen: false).accessDatabase(databaseHelper);
+    Provider.of<OjifaProvider>(context, listen: false).accessDatabase(databaseHelper);
     return Scaffold(
       //backgroundColor: ColorResources.getPrimaryColor(context),
       body: Stack(

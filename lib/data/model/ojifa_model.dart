@@ -14,4 +14,9 @@ class OjifaModel {
     this.fozilot = map['FOZILOT'];
     this.niyom = map['NIYOM'];
   }
+
+  @override
+  String toString() {
+    return 'OjifaModel{topicNo: $topicNo, subtopicNo: $subtopicNo, name: $name, araby: $araby, banglaMeaning: $banglaMeaning, banglaTranslator: $banglaTranslator, fozilot: $fozilot, niyom: $niyom}';
+  }
 }

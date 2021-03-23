@@ -14,6 +14,7 @@ import 'package:search_islam/view/screen/doya/doya_screen.dart';
 import 'package:search_islam/view/screen/home/widget/category_widget.dart';
 import 'package:search_islam/view/screen/home/widget/drawer.dart';
 import 'package:search_islam/view/screen/home/widget/prayer_time_widget.dart';
+import 'package:search_islam/view/screen/ojifa/ojifa_screen.dart';
 import 'package:search_islam/view/screen/prayer_time/location_set_screen.dart';
 import 'package:search_islam/view/screen/prayer_time/prayer_time_screen.dart';
 import 'package:search_islam/view/screen/quran/select_quran_screen.dart';
@@ -63,7 +64,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 CategoryWidget(title: Strings.quran_sharif, iconUrl: Images.quran_svg, routeWidget: SelectQuranScreen()),
                 CategoryWidget(title: Strings.doya, iconUrl: Images.dua_svg, routeWidget: DoyaScreen()),
-                CategoryWidget(title: Strings.quran_sound, iconUrl: Images.document_svg),
+                CategoryWidget(title: Strings.ojifa, iconUrl: Images.ojifa_svg, routeWidget: OjifaScreen()),
                 CategoryWidget(title: Strings.questions, iconUrl: Images.question_svg),
               ],
             ),
@@ -71,7 +72,7 @@ class HomeScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CategoryWidget(title: Strings.ojifa, iconUrl: Images.ojifa_svg),
+                CategoryWidget(title: Strings.ojifa, iconUrl: Images.ojifa_svg, routeWidget: OjifaScreen()),
                 CategoryWidget(title: Strings.prayer_time, iconUrl: Images.prayer_time_svg, routeWidget: PrayerTimeScreen()),
                 CategoryWidget(title: Strings.online, iconUrl: Images.online_svg),
                 CategoryWidget(title: Strings.niyom, iconUrl: Images.method_svg),

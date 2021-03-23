@@ -12,6 +12,7 @@ class Images {
   static const String sunset_svg = 'assets/icons/sunset.svg';
   static const String document_svg = 'assets/icons/document.svg';
   static const String ojifa_svg = 'assets/icons/ojifa.svg';
+  static const String ojifa1_svg = 'assets/icons/ojifa_1.svg';
   static const String question_svg = 'assets/icons/question.svg';
   static const String method_svg = 'assets/icons/method.svg';
   static const String daily_svg = 'assets/icons/daily.svg';

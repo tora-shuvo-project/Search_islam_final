@@ -5,6 +5,7 @@ import 'package:search_islam/data/repository/quran_repo.dart';
 import 'package:search_islam/provider/doya_provider.dart';
 import 'package:search_islam/provider/home_provider.dart';
 import 'package:search_islam/provider/location_provider.dart';
+import 'package:search_islam/provider/ojifa_provider.dart';
 import 'package:search_islam/provider/prayer_time_provider.dart';
 import 'package:search_islam/provider/quran_sorif_provider.dart';
 import 'package:search_islam/provider/theme_provider.dart';
@@ -23,6 +24,7 @@ Future<void> init() async {
   sl.registerFactory(() => QuraanShareefProvider(quraanRepo: sl()));
   sl.registerFactory(() => PrayerTimeProvider(locationRepo: sl()));
   sl.registerFactory(() => HomeProvider());
+  sl.registerFactory(() => OjifaProvider());
   sl.registerFactory(() => DoyaProvider(doyaRepo: sl(), quranRepo: sl()));
   sl.registerFactory(() => LocationProvider(locationRepo: sl()));
 

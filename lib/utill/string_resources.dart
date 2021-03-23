@@ -26,6 +26,7 @@ class Strings {
   static const String sokol_doya_somuh= 'সকল দোয়াসমূহ';
   static const String questions = 'জিজ্ঞাসা';
   static const String ojifa = 'অজিফা';
+  static const String ojifa_somuh = 'অজিফা সমূহ';
   static const String niyom = 'নিয়ম';
   static const String isa_tahajjut = 'ইশা ও তাহাজ্জুদের';
   static const String fajr = 'ফজর';
@@ -65,7 +66,7 @@ class Strings {
   static const String obotirno = 'অবতীর্ণঃ';
   static const String bismillahirahmanirRahim = 'بسم الله الرحمن الرحيم';
   static const String arabi = 'আরবি';
-  static const String bangla_uccaron = 'বাংলা উচ্চারণ';
+  static const String bangla_uccaron = 'বাংলা উচ্চারণঃ';
   static const String bangla_meaning = 'বাংলা অর্থ';
   static const String copied_to_clipboard = 'Copied to Clipboard';
   static const String ayat_no_english = 'Ayat No:';
@@ -136,4 +137,14 @@ class Strings {
   static const String iman_surokkha ='ইমান-সুরক্ষা';
   static const String osustota ='অসুস্থতা';
   static const String copy_kora_hoyeche ='কপি করা হয়েছে';
+  static const String kalema ='কালেমা';
+  static const String dorud_porar_niyom ='দুরূদ পড়ার নিয়ম';
+  static const String dorud_ibrahim ='দরূদে ইব্রাহিম';
+  static const String isme_ajom ='ইসমে আজম';
+  static const String asmaye_husna ='আসমায়ে হুসনা';
+  static const String saiyedul_istikhar ='সাইয়েদুল ইস্তিখফার';
+  static const String ayate_shifa ='আয়াতে শিফা';
+  static const String salam_7 ='৭ ছালাম';
+  static const String al_hasor ='আল হাশর';
+  static const String aytul_kurse ='আয়তুল কুরসি';
 }
