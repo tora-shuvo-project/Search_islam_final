@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:search_islam/data/model/niyom_models.dart';
 import 'package:search_islam/data/model/ojifa_model.dart';
 import 'package:search_islam/helper/database_helper.dart';
 
@@ -39,5 +40,21 @@ class OjifaProvider with ChangeNotifier {
     _ojifaModel = await _getDatabaseHelper.getAllOjifaFromOjifaTable(topicNo, subTopicNo);
     print(_ojifaModel.toString());
     notifyListeners();
+  }
+
+  // // get all Niyom List
+  List<NiyomModel> _getAllNiyoms = [];
+
+  List<NiyomModel> get getAllNiyoms => _getAllNiyoms;
+
+  Future<void> initializeAllNiyoms(int categoryNo) async {
+    _getAllNiyoms = [];
+
+    _getDatabaseHelper.getNiyomCategoryFromNiyomTable(categoryNo).then((rows) {
+      rows.forEach((row) {
+        _getAllNiyoms.add(NiyomModel.fromMap(row));
+      });
+      notifyListeners();
+    });
   }
 }

@@ -147,4 +147,11 @@ class Strings {
   static const String salam_7 ='৭ ছালাম';
   static const String al_hasor ='আল হাশর';
   static const String aytul_kurse ='আয়তুল কুরসি';
+  static const String namaj ='নামাজ';
+  static const String namajer_pore_doya_somuh ='নামাজের পরে দোয়াসমূহ';
+  static const String oju ='ওজু';
+  static const String gocol ='গোসল';
+  static const String tayammum ='তায়াম্মুম';
+  static const String azan_ekamat ='আযান ও একামত';
+  static const String mreto_bekty ='মূত ব্যাক্তি';
 }
