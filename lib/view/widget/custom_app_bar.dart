@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:search_islam/provider/labbayek_provider.dart';
 import 'package:search_islam/provider/location_provider.dart';
 import 'package:search_islam/provider/quran_sorif_provider.dart';
 import 'package:search_islam/utill/string_resources.dart';
@@ -14,6 +15,7 @@ class CustomAppBar extends StatelessWidget {
   final GlobalKey<ScaffoldState> drawerKey;
   final bool isShowHafejiQuran;
   final bool isQuranSoundScreen;
+  final bool isLabbayekScreen;
 
   CustomAppBar(
       {this.title,
@@ -22,7 +24,8 @@ class CustomAppBar extends StatelessWidget {
       this.isAyatScreen = false,
       this.drawerKey,
       this.isShowHafejiQuran = false,
-      this.isQuranSoundScreen = false});
+      this.isQuranSoundScreen = false,
+      this.isLabbayekScreen = false});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +44,9 @@ class CustomAppBar extends StatelessWidget {
             IconButton(
                 icon: Icon(Icons.arrow_back, color: Colors.white),
                 onPressed: () {
-                  if (isAyatScreen) Provider.of<QuraanShareefProvider>(context, listen: false).dismissAudio();
+                  if (isAyatScreen)
+                    Provider.of<QuraanShareefProvider>(context, listen: false).dismissAudio();
+                  else if (isLabbayekScreen) Provider.of<LabbayekProvider>(context, listen: false).stopAudio();
                   Navigator.of(context).pop();
                 }),
             Expanded(child: Text(title, style: poppinsMedium.copyWith(color: Colors.white, fontSize: 15))),

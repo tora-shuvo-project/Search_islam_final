@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:search_islam/data/model/niyom_models.dart';
-import 'package:search_islam/data/model/ojifa_model.dart';
 import 'package:search_islam/provider/doya_provider.dart';
 import 'package:search_islam/provider/ojifa_provider.dart';
 import 'package:search_islam/utill/dimensions.dart';
-import 'package:search_islam/utill/string_resources.dart';
-import 'package:search_islam/utill/styles.dart';
 import 'package:search_islam/view/screen/doya/widget/doya_details_bottom_navigation_bar_widget.dart';
 import 'package:search_islam/view/widget/custom_app_bar.dart';
 

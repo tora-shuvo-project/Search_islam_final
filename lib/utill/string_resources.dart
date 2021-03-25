@@ -154,4 +154,6 @@ class Strings {
   static const String tayammum ='তায়াম্মুম';
   static const String azan_ekamat ='আযান ও একামত';
   static const String mreto_bekty ='মূত ব্যাক্তি';
+  static const String labbayek ='লাব্বাইক';
+  static const String labbayekla_humma_labbayek ='লাব্বাইকাল-লাহুম্মা-লাব্বাইক';
 }
