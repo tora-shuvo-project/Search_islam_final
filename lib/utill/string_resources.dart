@@ -17,6 +17,7 @@ class Strings {
   static const String current_oyakto = 'চলমান ওয়াক্ত';
   static const String oyakto_ses_hote_baki = 'ওয়াক্ত শেষ  হতে বাকি';
   static const String sehri = 'সেহরি';
+  static const String kibla = 'কিবলা';
   static const String iftar = 'ইফতার';
   static const String somay_baki_ace = 'সময় বাকি আছেঃ ';
   static const String quran_sorif = 'কুরআন শরীফ';
@@ -155,5 +156,8 @@ class Strings {
   static const String azan_ekamat ='আযান ও একামত';
   static const String mreto_bekty ='মূত ব্যাক্তি';
   static const String labbayek ='লাব্বাইক';
+  static const String bises_drostobbo_device_er ='বিঃদ্রঃ ডিভাইসের কারিগরি সমস্যার কারণে সঠিক দিক নির্দেশনা নাও পেতে পারেন।\n'
+      'সঠিক দিক নির্দেশনা পেতে ডিভাইসটি ভালো ভাবে ক্যালিবারেট করে নিন।';
+  static const String ei_option_ti_apnar_upossotit ='এই অপশনটি আপনার ডিভাইসে উপস্থিত ম্যাগনেটিক সেন্সরগুলিতে কাজ করে।\nএই সেন্সরগুলো আপনার  মোবাইল ডিভাইসে উপস্থিত থাকার কথা। \nকিন্তু কিছু ডিভাইসের মধ্যে সিস্টেমেটিকালি চৌম্বক সেন্সর থাকে না।\nসুতরাং,এই ডিভাইসটির মধ্যে অ্যাপ্লিকেশনটি কাজ করবে না।\nএই ব্যাপার টার জন্য আমরা সত্যিই অনেক দুঃখিত।';
   static const String labbayekla_humma_labbayek ='লাব্বাইকাল-লাহুম্মা-লাব্বাইক';
 }

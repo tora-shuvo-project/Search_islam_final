@@ -40,4 +40,6 @@ class Images {
   static const String background10 = 'assets/images/background_10.png';
   static const String number_icon = 'assets/images/number_Icon.png';
   static const String ayat_number_icon = 'assets/images/ayat_number_icon.png';
+  static const String compass = 'assets/images/compass.png';
+  static const String compass1 = 'assets/images/compass1.png';
 }
