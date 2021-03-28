@@ -11,6 +11,7 @@ import 'package:search_islam/provider/ojifa_provider.dart';
 import 'package:search_islam/provider/prayer_time_provider.dart';
 import 'package:search_islam/provider/quran_sorif_provider.dart';
 import 'package:search_islam/provider/theme_provider.dart';
+import 'package:search_islam/provider/zakat_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
@@ -28,6 +29,7 @@ Future<void> init() async {
   sl.registerFactory(() => PrayerTimeProvider(locationRepo: sl()));
   sl.registerFactory(() => HomeProvider());
   sl.registerFactory(() => OjifaProvider());
+  sl.registerFactory(() => ZakatProvider());
   sl.registerFactory(() => DoyaProvider(doyaRepo: sl(), quranRepo: sl()));
   sl.registerFactory(() => LocationProvider(locationRepo: sl()));
   sl.registerFactory(() => LabbayekProvider(labbayekRepo: sl()));

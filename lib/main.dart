@@ -9,6 +9,7 @@ import 'package:search_islam/provider/ojifa_provider.dart';
 import 'package:search_islam/provider/prayer_time_provider.dart';
 import 'package:search_islam/provider/quran_sorif_provider.dart';
 import 'package:search_islam/provider/theme_provider.dart';
+import 'package:search_islam/provider/zakat_provider.dart';
 import 'package:search_islam/view/screen/splash/splash_screen.dart';
 
 import 'di_container.dart' as di;
@@ -26,6 +27,7 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (context) => di.sl<DoyaProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<OjifaProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<LabbayekProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<ZakatProvider>()),
     ],
     child: MyApp(),
   ));

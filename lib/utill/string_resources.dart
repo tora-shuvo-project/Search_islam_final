@@ -18,6 +18,9 @@ class Strings {
   static const String oyakto_ses_hote_baki = 'ওয়াক্ত শেষ  হতে বাকি';
   static const String sehri = 'সেহরি';
   static const String kibla = 'কিবলা';
+  static const String zakat = 'জাকাত';
+  static const String zakat_calculator = 'জাকাত ক্যালকুলেটর';
+  static const String calculator = 'ক্যালকুলেট';
   static const String iftar = 'ইফতার';
   static const String somay_baki_ace = 'সময় বাকি আছেঃ ';
   static const String quran_sorif = 'কুরআন শরীফ';
@@ -160,4 +163,17 @@ class Strings {
       'সঠিক দিক নির্দেশনা পেতে ডিভাইসটি ভালো ভাবে ক্যালিবারেট করে নিন।';
   static const String ei_option_ti_apnar_upossotit ='এই অপশনটি আপনার ডিভাইসে উপস্থিত ম্যাগনেটিক সেন্সরগুলিতে কাজ করে।\nএই সেন্সরগুলো আপনার  মোবাইল ডিভাইসে উপস্থিত থাকার কথা। \nকিন্তু কিছু ডিভাইসের মধ্যে সিস্টেমেটিকালি চৌম্বক সেন্সর থাকে না।\nসুতরাং,এই ডিভাইসটির মধ্যে অ্যাপ্লিকেশনটি কাজ করবে না।\nএই ব্যাপার টার জন্য আমরা সত্যিই অনেক দুঃখিত।';
   static const String labbayekla_humma_labbayek ='লাব্বাইকাল-লাহুম্মা-লাব্বাইক';
+  static const String hand_cost ='+ হাতে নগদ';
+  static const String bank_colti_hisab ='+ ব্যাংক চলতি হিসাব';
+  static const String bank_fixed_deposit ='+ ব্যাংক ফিক্সড ডিপোজিট';
+  static const String shareBenefit ='+ শেয়ারের মূল্য লাভসহ';
+  static const String goldQuantity ='+ সোনার পরিমান';
+  static const String goldCost ='+ সোনার মূল্য (১ ভরি)';
+  static const String silverQuantity ='+ রূপার পরিমান';
+  static const String silverCost ='+ রূপার মূল্য (১ তোলা)';
+  static const String bikreoggo_mojider_mullo ='+ বিক্রিযোগ্য মজুদের মূল্য';
+  static const String bakite_bikroy_theke ='+ বাকীতে বিক্রয় থেকে প্রাপ্ত';
+  static const String onnoer_kace_prappo ='+ অন্যের কাছে প্রাপ্যধন (আদায়যোগ্য)';
+  static const String sorborahProdey ='- সরবরাহকারীদের প্রদেয়';
+  static const String kurin ='- কু-ঋণ';
 }
