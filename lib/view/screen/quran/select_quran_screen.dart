@@ -21,6 +21,8 @@ class SelectQuranScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Provider.of<QuraanShareefProvider>(context, listen: false).changeAvailableFileStatus();
+    Provider.of<QuraanShareefProvider>(context, listen: false).initializeAllQuranWords();
+
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(child: CustomAppBar(title: Strings.quran_sharif), preferredSize: Size(MediaQuery.of(context).size.width, 120)),

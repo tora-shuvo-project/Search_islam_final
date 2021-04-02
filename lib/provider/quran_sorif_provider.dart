@@ -355,7 +355,6 @@ class QuraanShareefProvider with ChangeNotifier {
   changeAvailableFileStatus() {
     isAvailableFile = false;
     storagePath = '';
-    notifyListeners();
   }
 
   downloadFile({String url, BuildContext context, String fileName, Function percentFunction}) async {

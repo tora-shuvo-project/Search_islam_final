@@ -16,7 +16,7 @@ import 'package:search_islam/view/widget/download_dialog_widget.dart';
 class QuranSoundScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Provider.of<QuraanShareefProvider>(context, listen: false).initializeAllQuranWords();
+
     Provider.of<QuraanShareefProvider>(context, listen: false).changeAvailableFileStatus();
 
     return SafeArea(
