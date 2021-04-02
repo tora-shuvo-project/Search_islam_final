@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:search_islam/helper/convert_eng_to_bangla_number.dart';
 import 'package:search_islam/provider/doya_provider.dart';
-import 'package:search_islam/utill/images.dart';
-import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
 import 'package:search_islam/view/screen/doya/widget/doya_details_bottom_navigation_bar_widget.dart';
 import 'package:search_islam/view/widget/custom_app_bar.dart';
-import 'package:share/share.dart';
 
 class DoyaDetailsScreen extends StatelessWidget {
   final String id;

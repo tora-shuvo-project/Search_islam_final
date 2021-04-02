@@ -3,16 +3,72 @@ import 'package:flutter/material.dart';
 import 'package:search_islam/utill/dimensions.dart';
 import 'package:search_islam/utill/images.dart';
 import 'package:search_islam/utill/string_resources.dart';
-import 'package:search_islam/view/widget/custom_app_bar.dart';
 
-class KiblaScreen extends StatelessWidget {
+class KiblaScreen extends StatefulWidget {
+  @override
+  _KiblaScreenState createState() => _KiblaScreenState();
+}
+
+class _KiblaScreenState extends State<KiblaScreen> {
+  String sensorType;
+
+  @override
+  void initState() {
+    super.initState();
+    checkDeviceSensors();
+  }
+
+  Future<void> checkDeviceSensors() async {
+
+    int haveSensor;
+
+    try{
+      haveSensor = await Compasstools.checkSensors;
+
+      switch(haveSensor) {
+        case 0: {
+          // statements;
+          sensorType="No sensors for Compass";
+          print('No sensors for Compass');
+        }
+        break;
+
+        case 1: {
+          //statements;
+          sensorType="Accelerometer + Magnetoneter";
+          print('Accelerometer + Magnetoneter');
+        }
+        break;
+
+        case 2: {
+          //statements;
+          sensorType="Gyroscope";
+          print('Gyroscope');
+        }
+        break;
+
+        default: {
+          //statements;
+          sensorType="Error!";
+          print('Error');
+        }
+        break;
+      }
+
+    } on Exception {
+      print('Exception');
+    }
+
+    if (!mounted) return;
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
           backgroundColor: Colors.white,
-          appBar: PreferredSize(
-              child: CustomAppBar(title: Strings.kibla, isLabbayekScreen: true), preferredSize: Size(MediaQuery.of(context).size.width, 70)),
+          appBar: AppBar(title: Text(Strings.kibla)),
           body: Container(
             child: StreamBuilder(
               stream: Compasstools.azimuthStream,

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:search_islam/provider/labbayek_provider.dart';
 import 'package:search_islam/provider/location_provider.dart';
 import 'package:search_islam/provider/quran_sorif_provider.dart';
+import 'package:search_islam/utill/dimensions.dart';
 import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
 import 'package:search_islam/view/screen/prayer_time/location_set_screen.dart';
@@ -16,6 +17,7 @@ class CustomAppBar extends StatelessWidget {
   final bool isShowHafejiQuran;
   final bool isQuranSoundScreen;
   final bool isLabbayekScreen;
+  final bool isZakatScreen;
 
   CustomAppBar(
       {this.title,
@@ -25,7 +27,8 @@ class CustomAppBar extends StatelessWidget {
       this.drawerKey,
       this.isShowHafejiQuran = false,
       this.isQuranSoundScreen = false,
-      this.isLabbayekScreen = false});
+      this.isLabbayekScreen = false,
+      this.isZakatScreen=false});
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +72,12 @@ class CustomAppBar extends StatelessWidget {
                           drawerKey.currentState.openEndDrawer();
                         },
                         child: Icon(Icons.settings_ethernet, color: Colors.white, size: 26))
+                    :isZakatScreen
+                    ? InkWell(
+                        onTap: () {
+                          openBottomSheet(context);
+                        },
+                        child: Icon(Icons.info, color: Colors.white, size: 26))
                     : isQuranSoundScreen
                         ? TextButton(
                             onPressed: () {
@@ -116,5 +125,30 @@ class CustomAppBar extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void openBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10))),
+        context: context,
+        builder: (BuildContext bc) {
+          return StatefulBuilder(builder: (BuildContext context, StateSetter state) {
+            return SingleChildScrollView(
+                child: Container(
+                    padding: EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Center(
+                          child: Text(Strings.zakater_hisab_kivabe_korben_title, style: kalpurus.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE, fontWeight: FontWeight.bold)),
+                        ),
+                        SizedBox(height: 20),
+                        Text(Strings.zakater_hisab_kivabe_korben_details, style: kalpurus.copyWith(fontSize: 18, fontWeight: FontWeight.w400)),
+                      ],
+                    )));
+          });
+        });
   }
 }

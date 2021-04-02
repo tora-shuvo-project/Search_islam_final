@@ -46,7 +46,7 @@ class QuranSoundScreen extends StatelessWidget {
                             if (await File('$dir/quran_word${quranProvider.getAllQuranWords[index].serialNo}.png').exists()) {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (_) => ImageViewScreen(
-                                      imageFile: File(quranProvider.storagePath), title: 'Task ${quranProvider.getAllQuranWords[index].serialNo}')));
+                                      imageFile: File(quranProvider.storagePath), title: 'Day-${quranProvider.getAllQuranWords[index].serialNo}')));
                             } else {
                               quranProvider.downloadFile(
                                   url: quranProvider.getAllQuranWords[index].imageUrl,

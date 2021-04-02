@@ -2,11 +2,13 @@ import 'package:get_it/get_it.dart';
 import 'package:search_islam/data/repository/doya_repo.dart';
 import 'package:search_islam/data/repository/labbayek_repo.dart';
 import 'package:search_islam/data/repository/location_repo.dart';
+import 'package:search_islam/data/repository/name_repo.dart';
 import 'package:search_islam/data/repository/quran_repo.dart';
 import 'package:search_islam/provider/doya_provider.dart';
 import 'package:search_islam/provider/home_provider.dart';
 import 'package:search_islam/provider/labbayek_provider.dart';
 import 'package:search_islam/provider/location_provider.dart';
+import 'package:search_islam/provider/name_provider.dart';
 import 'package:search_islam/provider/ojifa_provider.dart';
 import 'package:search_islam/provider/prayer_time_provider.dart';
 import 'package:search_islam/provider/quran_sorif_provider.dart';
@@ -22,6 +24,8 @@ Future<void> init() async {
   sl.registerLazySingleton(() => QuranRepo(sharedPreferences: sl()));
   sl.registerLazySingleton(() => DoyaRepo());
   sl.registerLazySingleton(() => LabbayekRepo());
+  sl.registerLazySingleton(() => NameRepo());
+
 
   // Provider
   sl.registerFactory(() => ThemeProvider(sharedPreferences: sl()));
@@ -33,6 +37,7 @@ Future<void> init() async {
   sl.registerFactory(() => DoyaProvider(doyaRepo: sl(), quranRepo: sl()));
   sl.registerFactory(() => LocationProvider(locationRepo: sl()));
   sl.registerFactory(() => LabbayekProvider(labbayekRepo: sl()));
+  sl.registerFactory(() => NameProvider(nameRepo: sl()));
 
   // External
   final sharedPreferences = await SharedPreferences.getInstance();

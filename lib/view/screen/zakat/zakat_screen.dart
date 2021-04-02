@@ -43,7 +43,7 @@ class ZakatScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        appBar: PreferredSize(child: CustomAppBar(title: Strings.zakat_calculator), preferredSize: Size(MediaQuery.of(context).size.width, 70)),
+        appBar: PreferredSize(child: CustomAppBar(title: Strings.zakat_calculator,isZakatScreen: true), preferredSize: Size(MediaQuery.of(context).size.width, 70)),
         body: Consumer<ZakatProvider>(
           builder: (context, zakatProvider, child) => Column(
             children: [
@@ -150,21 +150,20 @@ class ZakatScreen extends StatelessWidget {
                 buttonText: Strings.calculator,
                 onTap: () {
                   zakatProvider.calculateZakat(
-                    cash: double.parse(handCostController.text ?? 0.0),
-                    bankColti: double.parse(bankColtiController.text ?? 0.0),
-                    bankDeposit: double.parse(bankFixedDepositController.text ?? 0.0),
-                    shareBenefit: double.parse(shareBenefitController.text ?? 0.0),
-                    gold: double.parse(goldQuantityController.text ?? 0.0),
-                    goldMarketPrice: double.parse(goldPriceController.text ?? 0.0),
-                    silver: double.parse(silverQuantityController.text ?? 0.0),
-                    silverMarketPrice: double.parse(silverPriceController.text ?? 0.0),
-                    assets: double.parse(assetsController.text ?? 0.0),
-                    dueGetMoney: double.parse(dueCostController.text ?? 0.0),
-                    otherGetMoney: double.parse(otherGetMoneyController.text ?? 0.0),
-                    serviceCostMoney: double.parse(serviceBoyController.text ?? 0.0),
-                    badCredit: double.parse(kurenController.text ?? 0.0),
+                    cash: handCostController.text.length > 0 ? double.parse(handCostController.text ?? '0.0') : 0.0,
+                    bankColti: bankColtiController.text.length > 0 ? double.parse(bankColtiController.text ?? '0.0') : 0.0,
+                    bankDeposit: bankFixedDepositController.text.length > 0 ? double.parse(bankFixedDepositController.text) : 0.0,
+                    shareBenefit: shareBenefitController.text.length > 0 ? double.parse(shareBenefitController.text ?? '0.0') : 0.0,
+                    gold: goldQuantityController.text.length > 0 ? double.parse(goldQuantityController.text ?? '0.0') : 0.0,
+                    goldMarketPrice: goldPriceController.text.length > 0 ? double.parse(goldPriceController.text ?? '0.0') : 0.0,
+                    silver: silverQuantityController.text.length > 0 ? double.parse(silverQuantityController.text ?? '0.0') : 0.0,
+                    silverMarketPrice: silverPriceController.text.length > 0 ? double.parse(silverPriceController.text ?? '0.0') : 0.0,
+                    assets: assetsController.text.length > 0 ? double.parse(assetsController.text ?? '0.0') : 0.0,
+                    dueGetMoney: dueCostController.text.length > 0 ? double.parse(dueCostController.text ?? '0.0') : 0.0,
+                    otherGetMoney: otherGetMoneyController.text.length > 0 ? double.parse(otherGetMoneyController.text ?? '0.0') : 0.0,
+                    serviceCostMoney: serviceBoyController.text.length > 0 ? double.parse(serviceBoyController.text ?? '0.0') : 0.0,
+                    badCredit: kurenController.text.length > 0 ? double.parse(kurenController.text ?? '0.0') : 0.0,
                   );
-
                   openBottomSheet(context);
                 },
               )
@@ -196,33 +195,39 @@ class ZakatScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('মোট সম্পদঃ', style: kalpurus.copyWith(fontSize: Dimensions.FONT_SIZE_DEFAULT, fontWeight: FontWeight.w400)),
+                          Text('মোট সম্পদঃ', style: kalpurus.copyWith(fontSize: 18, fontWeight: FontWeight.w400)),
                           Text('${NumberFormatUtil.currencyFormat(zakatProvider.totalAssets.ceil() + zakatProvider.onadoyjoggo.ceil())} ৳',
-                              style: kalpurus.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE, fontWeight: FontWeight.w400)),
+                              style: kalpurus.copyWith(fontSize: 18, fontWeight: FontWeight.w400)),
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('অনাদায়যোগ্য (-)', style: kalpurus.copyWith(fontSize: Dimensions.FONT_SIZE_DEFAULT, fontWeight: FontWeight.w400)),
+                          Text('অনাদায়যোগ্য (-)', style: kalpurus.copyWith(fontSize: 18, fontWeight: FontWeight.w400)),
                           Text('${NumberFormatUtil.currencyFormat(zakatProvider.onadoyjoggo.ceil())} ৳',
-                              style: kalpurus.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE, fontWeight: FontWeight.w400)),
+                              style: kalpurus.copyWith(fontSize: 18, fontWeight: FontWeight.w400)),
                         ],
                       ),
                       Divider(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('মোট', style: kalpurus.copyWith(fontSize: Dimensions.FONT_SIZE_DEFAULT, fontWeight: FontWeight.w400)),
+                          Text('মোট', style: kalpurus.copyWith(fontSize: 18, fontWeight: FontWeight.w400)),
                           Text('${NumberFormatUtil.currencyFormat(zakatProvider.totalAssets.ceil() - zakatProvider.onadoyjoggo.ceil())} ৳',
-                              style: kalpurus.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE, fontWeight: FontWeight.w400)),
+                              style: kalpurus.copyWith(fontSize: 18, fontWeight: FontWeight.w400)),
                         ],
                       ),
-                     SizedBox(height: 20),
+                      SizedBox(height: 20),
                       Text(
-                        'শতকরা ২.৫% টাকা হিসাবে ১ লক্ষ টাকায় জাকাত আসে ২৫০০৳\n${NumberFormatUtil.currencyFormat(zakatProvider.totalAssets.ceil() - zakatProvider.onadoyjoggo.ceil())} টাকায় জাকাত হবেঃ\n${NumberFormatUtil.currencyFormat(zakatProvider.totalAssets.ceil() - zakatProvider.onadoyjoggo.ceil())}/100000\n=${NumberFormatUtil.currencyFormat(((zakatProvider.totalAssets.ceil() - zakatProvider.onadoyjoggo.ceil()) / 100000).toInt())} x 2500\n=${zakatProvider.totalZakat} ৳(মাত্র)',
-                        style: kalpurus.copyWith(fontSize: 17, fontWeight: FontWeight.w400),
-                        textAlign: TextAlign.end,
+                        'শতকরা ২.৫% টাকা হিসাবে ১ লক্ষ টাকায় জাকাত আসে ২৫০০৳',
+                        style: kalpurus.copyWith(fontSize: 18, fontWeight: FontWeight.w400),
+                        textAlign: TextAlign.start,
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        '${NumberFormatUtil.currencyFormat(zakatProvider.totalAssets.ceil() - zakatProvider.onadoyjoggo.ceil())} টাকায় জাকাত হবেঃ\ = ${zakatProvider.totalZakat} ৳(মাত্র)',
+                        style: kalpurus.copyWith(fontSize: 18, fontWeight: FontWeight.w400),
+                        textAlign: TextAlign.start,
                       ),
                     ],
                   )),

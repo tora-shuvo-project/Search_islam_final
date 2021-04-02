@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:search_islam/data/model/doya_name_models.dart';
 import 'package:search_islam/utill/styles.dart';
 import 'package:search_islam/view/screen/doya/bisoy_vittik_name_screen.dart';
 

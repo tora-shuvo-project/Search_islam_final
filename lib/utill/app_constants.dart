@@ -1,6 +1,6 @@
 class AppConstants {
   static const String nadeyatul_quran_url = 'https://duetinmehedi.000webhostapp.com/wp-content/uploads/2021/03/nadiyatul_quran.pdf';
-
+  static const String PERSON_NAME = 'person_name';
   // sharePreference
   static const String TOKEN = '';
   static const String THEME = 'theme';

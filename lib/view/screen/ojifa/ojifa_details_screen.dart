@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:search_islam/data/model/ojifa_model.dart';
 import 'package:search_islam/provider/doya_provider.dart';
 import 'package:search_islam/provider/ojifa_provider.dart';
 import 'package:search_islam/utill/dimensions.dart';

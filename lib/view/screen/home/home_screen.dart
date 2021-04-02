@@ -16,6 +16,7 @@ import 'package:search_islam/view/screen/home/widget/drawer.dart';
 import 'package:search_islam/view/screen/home/widget/prayer_time_widget.dart';
 import 'package:search_islam/view/screen/kibla/kibla_screen.dart';
 import 'package:search_islam/view/screen/labbayeak/labbayeak_screen.dart';
+import 'package:search_islam/view/screen/name/name_list_screen.dart';
 import 'package:search_islam/view/screen/niyom/niyom_screen.dart';
 import 'package:search_islam/view/screen/ojifa/ojifa_screen.dart';
 import 'package:search_islam/view/screen/prayer_time/location_set_screen.dart';
@@ -87,7 +88,7 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CategoryWidget(title: Strings.zakat, iconUrl: Images.quran_svg,routeWidget: ZakatScreen(),),
-                CategoryWidget(title: Strings.doya, iconUrl: Images.dua_svg),
+                CategoryWidget(title: Strings.name_somuh, iconUrl: Images.dua_svg,routeWidget: NameListScreen(),),
                 CategoryWidget(title: Strings.quran_sound, iconUrl: Images.document_svg),
                 CategoryWidget(title: Strings.questions, iconUrl: Images.question_svg),
               ],
