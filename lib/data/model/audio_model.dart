@@ -11,3 +11,11 @@ class AudioModel {
     this.suraLink = map['SURALINK'];
   }
 }
+
+class QareModel{
+
+  String banglaName;
+  String englishName;
+
+  QareModel({this.banglaName, this.englishName});
+}
