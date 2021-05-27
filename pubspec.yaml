@@ -75,6 +75,7 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/json/hadis_chapters.json
+    - assets/json/bukhari_sharif_bangla.json
     - assets/database/ISLAM.db
 
   # An image asset can refer to one or more resolution-specific "variants", see

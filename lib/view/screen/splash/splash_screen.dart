@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     Provider.of<QuraanShareefProvider>(context, listen: false).accessDatabase(databaseHelper);
     Provider.of<DoyaProvider>(context, listen: false).accessDatabase(databaseHelper);
     Provider.of<OjifaProvider>(context, listen: false).accessDatabase(databaseHelper);
-    Provider.of<HadisProvider>(context, listen: false).loadJsonData(context);
+    Provider.of<HadisProvider>(context, listen: false).loadHadisChapterData(context);
 
     _animationController = AnimationController(
       duration: const Duration(seconds: 1),
