@@ -1,7 +1,10 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:search_islam/helper/bangla_utilities.dart';
 import 'package:search_islam/helper/hijri_calendar/hijri_calendar.dart';
 import 'package:intl/intl.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart' show rootBundle;
 
 class HomeProvider with ChangeNotifier {
   String banglaDate;
@@ -23,4 +26,6 @@ class HomeProvider with ChangeNotifier {
     List<String> _getAllDateData = [banglaDate, englishDate, arabyDate];
     return _getAllDateData;
   }
+
+
 }

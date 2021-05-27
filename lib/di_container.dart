@@ -5,6 +5,7 @@ import 'package:search_islam/data/repository/location_repo.dart';
 import 'package:search_islam/data/repository/name_repo.dart';
 import 'package:search_islam/data/repository/quran_repo.dart';
 import 'package:search_islam/provider/doya_provider.dart';
+import 'package:search_islam/provider/hadis_provider.dart';
 import 'package:search_islam/provider/home_provider.dart';
 import 'package:search_islam/provider/labbayek_provider.dart';
 import 'package:search_islam/provider/location_provider.dart';
@@ -34,6 +35,7 @@ Future<void> init() async {
   sl.registerFactory(() => HomeProvider());
   sl.registerFactory(() => OjifaProvider());
   sl.registerFactory(() => ZakatProvider());
+  sl.registerFactory(() => HadisProvider());
   sl.registerFactory(() => DoyaProvider(doyaRepo: sl(), quranRepo: sl()));
   sl.registerFactory(() => LocationProvider(locationRepo: sl()));
   sl.registerFactory(() => LabbayekProvider(labbayekRepo: sl()));

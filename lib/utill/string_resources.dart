@@ -32,6 +32,8 @@ class Strings {
   static const String ojifa = 'অজিফা';
   static const String ojifa_somuh = 'অজিফা সমূহ';
   static const String niyom = 'নিয়ম';
+  static const String hadis = 'হাদিস';
+  static const String bokhare_shorif = 'বোখারী শরীফ';
   static const String isa_tahajjut = 'ইশা ও তাহাজ্জুদের';
   static const String fajr = 'ফজর';
   static const String dhaur = 'যুহর';

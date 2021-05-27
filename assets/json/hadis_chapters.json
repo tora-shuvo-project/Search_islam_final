@@ -1,0 +1,681 @@
+[
+  {
+    "book_id": 1,
+    "hadis_range": "1 - 7",
+    "id": 1,
+    "number": 1,
+    "title": "ওহীর সূচনা অধ্যায়"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "8 - 58",
+    "id": 5,
+    "number": 2,
+    "title": "ঈমান"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "59 - 134",
+    "id": 6,
+    "number": 3,
+    "title": "ইল্‌ম"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "135 - 247",
+    "id": 7,
+    "number": 4,
+    "title": "ওজু"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "248 - 293",
+    "id": 8,
+    "number": 5,
+    "title": "গোসল"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "294 - 333",
+    "id": 9,
+    "number": 6,
+    "title": "হায়েজ"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "334 - 348",
+    "id": 10,
+    "number": 7,
+    "title": "তায়াম্মুম"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "349 - 520",
+    "id": 11,
+    "number": 8,
+    "title": "সালাত"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "521 - 602",
+    "id": 12,
+    "number": 9,
+    "title": "সালাতের ওয়াক্তসমূহ"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "603 - 875",
+    "id": 13,
+    "number": 10,
+    "title": "আযান"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "876 - 841",
+    "id": 14,
+    "number": 11,
+    "title": "জুমু'আ"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "942 - 947",
+    "id": 15,
+    "number": 12,
+    "title": "খাওফ (ভয় ভীতির সালাত)"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "948 - 989",
+    "id": 16,
+    "number": 13,
+    "title": "দুই ঈ’দ"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "990 - 1004",
+    "id": 17,
+    "number": 14,
+    "title": "বিতর"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "1005 - 1039",
+    "id": 18,
+    "number": 15,
+    "title": "বৃষ্টির জন্য দোয়া"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "1040 - 1066",
+    "id": 19,
+    "number": 16,
+    "title": "সূর্যগ্রহণ"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "1067 - 1079",
+    "id": 20,
+    "number": 17,
+    "title": "কুরআন তিলাওয়াতের সিজ্‌দা"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "1080 - 1119",
+    "id": 21,
+    "number": 18,
+    "title": "সালাতে কসর করা"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "1120 - 1187",
+    "id": 22,
+    "number": 19,
+    "title": "তাহাজ্জুদ"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "1188 - 1197",
+    "id": 23,
+    "number": 20,
+    "title": "মক্কা ও মদীনার মসজিদে সালাতের মর্যাদা"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "1198 - 1223",
+    "id": 24,
+    "number": 21,
+    "title": "সালাতের সাথে সংশ্লিষ্ট কাজ"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "1224 - 1236",
+    "id": 25,
+    "number": 22,
+    "title": "সাহু"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "1237 - 1394",
+    "id": 26,
+    "number": 23,
+    "title": "জানাযা"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "1395 - 1512",
+    "id": 27,
+    "number": 24,
+    "title": "যাকাত"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "1513 - 1772",
+    "id": 28,
+    "number": 25,
+    "title": "হজ্জ"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "1773 - 1805",
+    "id": 29,
+    "number": 26,
+    "title": "‘উমরাহ্‌"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "1806 - 1820",
+    "id": 30,
+    "number": 27,
+    "title": "পথে আটকে পড়া ও ইহ্‌রাম অবস্থায় শিকারকারীর বিধান"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "1821 - 1866",
+    "id": 31,
+    "number": 28,
+    "title": "ইহ্‌রাম অবস্থায় শিকার ও অনুরূপ কিছুর বদলা"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "1867 - 1890",
+    "id": 32,
+    "number": 29,
+    "title": "মদীনার ফযিলত"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "1891 - 2007",
+    "id": 33,
+    "number": 30,
+    "title": "সাওম"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2008 - 2013",
+    "id": 34,
+    "number": 31,
+    "title": "তারাবীহ্‌র সালাত"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2014 - 2024",
+    "id": 35,
+    "number": 32,
+    "title": "লাইলাতুল ক্বাদ্‌র এর ফযিলত"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2025 - 2046",
+    "id": 36,
+    "number": 33,
+    "title": "ই’তিকাফ"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2047 - 2238",
+    "id": 37,
+    "number": 34,
+    "title": "ক্রয়-বিক্রয়"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2239 - 2256",
+    "id": 38,
+    "number": 35,
+    "title": "সলম ( অগ্রিম ক্রয়-বিক্রয় )"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2257 - 2259",
+    "id": 39,
+    "number": 36,
+    "title": "শুফ’আ"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2260 - 2286",
+    "id": 40,
+    "number": 37,
+    "title": "ইজারা"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2287 - 2289",
+    "id": 41,
+    "number": 38,
+    "title": "হাওয়ালাত"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2290 - 2298",
+    "id": 42,
+    "number": 39,
+    "title": "যামিন হওয়া"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2299 - 2319",
+    "id": 43,
+    "number": 40,
+    "title": "ওয়াকালাহ ( প্রতিনিধিত্ব)"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2320 - 2350",
+    "id": 44,
+    "number": 41,
+    "title": "চাষাবাদ"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2351 - 2384",
+    "id": 45,
+    "number": 42,
+    "title": "পানি সেচ"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2385 - 2409",
+    "id": 46,
+    "number": 43,
+    "title": "ঋণ গ্রহণ, ঋণ পরিশোধ, নিষেধাজ্ঞা আরোপ ও দেউলিয়া ঘোষণা"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2410 - 2425",
+    "id": 47,
+    "number": 44,
+    "title": "ঝগড়া-বিবাদ মীমাংসা"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2426 - 2439",
+    "id": 48,
+    "number": 45,
+    "title": "পড়ে থাকা বস্তু উঠানো"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2440 - 2482",
+    "id": 49,
+    "number": 46,
+    "title": "যুল্‌ম ও ক্বিসাস"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2483 - 2507",
+    "id": 50,
+    "number": 47,
+    "title": "অংশীদারিত্ব"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2508 - 2516",
+    "id": 51,
+    "number": 48,
+    "title": "বন্ধক"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2517 - 2559",
+    "id": 52,
+    "number": 49,
+    "title": "ক্রীতদাস আযাদ করা"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2560 - 2565",
+    "id": 53,
+    "number": 50,
+    "title": "মুকাতাব (চুক্তিবদ্ধ দাসের বর্ণনা)"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2566 - 2636",
+    "id": 54,
+    "number": 51,
+    "title": "হিবা ও তার ফযীলত এবং এর প্রতি উৎসাহ প্রদান"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2637 - 2689",
+    "id": 55,
+    "number": 52,
+    "title": "সাক্ষ্যদান"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2690 - 2710",
+    "id": 56,
+    "number": 53,
+    "title": "বিবাদ মিমাংসা"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2711 - 2737",
+    "id": 57,
+    "number": 54,
+    "title": "শর্তাবলী"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2738 - 2781",
+    "id": 58,
+    "number": 55,
+    "title": "অসীয়াত"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "2782 - 3090",
+    "id": 59,
+    "number": 56,
+    "title": "জিহাদ"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "3091 - 3155",
+    "id": 60,
+    "number": 57,
+    "title": "খুমুস (এক পঞ্চমাংশ)"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "3156 - 3189",
+    "id": 61,
+    "number": 58,
+    "title": "জিযিয়াহ্‌ কর ও সন্ধি স্থাপন"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "3190 - 3325",
+    "id": 62,
+    "number": 59,
+    "title": "সৃষ্টির সূচনা"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "3326 - 3488",
+    "id": 63,
+    "number": 60,
+    "title": "আম্বিয়া কিরাম ('আঃ)"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "3489 - 3648",
+    "id": 64,
+    "number": 61,
+    "title": "মর্যাদা ও বৈশিষ্ট্য"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "3649 - 3775",
+    "id": 65,
+    "number": 62,
+    "title": "সাহাবীগণের মর্যাদা"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "3776 - 3948",
+    "id": 66,
+    "number": 63,
+    "title": "আনসারগণের মর্যাদা"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "3949 - 4473",
+    "id": 67,
+    "number": 64,
+    "title": "মাগাযী"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "4474 - 4977",
+    "id": 68,
+    "number": 65,
+    "title": "তাফসীর"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "4978 - 5062",
+    "id": 69,
+    "number": 66,
+    "title": "ফাযায়িলুল কোরআন"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "5063 - 5250",
+    "id": 70,
+    "number": 67,
+    "title": "বিয়ে-শাদী"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "5151 - 5350",
+    "id": 71,
+    "number": 68,
+    "title": "তালাক"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "5351 - 5372",
+    "id": 72,
+    "number": 69,
+    "title": "ভরণ-পোষণ"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "5373 - 5466",
+    "id": 73,
+    "number": 70,
+    "title": "আহার সংক্রান্ত"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "5467 - 5474",
+    "id": 74,
+    "number": 71,
+    "title": "আকীকা"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "5475 - 5544",
+    "id": 75,
+    "number": 72,
+    "title": "যবেহ ও শিকার করা"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "5545 - 5574",
+    "id": 76,
+    "number": 73,
+    "title": "কুরবানী"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "5575 - 5639",
+    "id": 77,
+    "number": 74,
+    "title": "পানীয় দ্রব্যসমূহ"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "5640 - 5677",
+    "id": 78,
+    "number": 75,
+    "title": "রোগীদের বর্ণনা"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "5678 - 5782",
+    "id": 79,
+    "number": 76,
+    "title": "চিকিৎসা"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "5783 - 5969",
+    "id": 80,
+    "number": 77,
+    "title": "পোশাক-পরিচ্ছদ"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "5970 - 6226",
+    "id": 81,
+    "number": 78,
+    "title": "আচার-ব্যবহার"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "6227 - 6303",
+    "id": 82,
+    "number": 79,
+    "title": "অনুমতি চাওয়া"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "6304 - 6411",
+    "id": 83,
+    "number": 80,
+    "title": "দু’আ"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "6412 - 6593",
+    "id": 84,
+    "number": 81,
+    "title": "কোমল হওয়া"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "6594 - 6620",
+    "id": 85,
+    "number": 82,
+    "title": "তাক্‌দীর"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "6621 - 6707",
+    "id": 86,
+    "number": 83,
+    "title": "শপথ ও মানত"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "6708 - 6722",
+    "id": 87,
+    "number": 84,
+    "title": "শপথের কাফ্‌ফারা"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "6723 - 6771",
+    "id": 88,
+    "number": 85,
+    "title": "উত্তরাধিকার"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "6772 - 6860",
+    "id": 89,
+    "number": 86,
+    "title": "শরীয়তের শাস্তি"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "6861 - 6917",
+    "id": 90,
+    "number": 87,
+    "title": "রক্তপণ"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "6918 - 6939",
+    "id": 91,
+    "number": 88,
+    "title": "আল্লাহ্‌দ্রোহী ও ধর্মত্যাগীদেরকে তাওবার প্রতি আহ্বান ও তাদের সাথে যুদ্ধ"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "6940 - 6952",
+    "id": 92,
+    "number": 89,
+    "title": "বল প্রয়োগে বাধ্য করা"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "6953 - 6981",
+    "id": 93,
+    "number": 90,
+    "title": "কূটকৌশল"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "6982 - 7047",
+    "id": 94,
+    "number": 91,
+    "title": "স্বপ্নের ব্যখ্যা প্রদান"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "7048 - 7136",
+    "id": 95,
+    "number": 92,
+    "title": "ফিত্‌না"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "7137 - 7225",
+    "id": 96,
+    "number": 93,
+    "title": "আহকাম"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "7226 - 7245",
+    "id": 97,
+    "number": 94,
+    "title": "আকাঙ্ক্ষা"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "7246 - 7267",
+    "id": 98,
+    "number": 95,
+    "title": "খবরে ওয়াহিদ"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "7268 - 7370",
+    "id": 99,
+    "number": 96,
+    "title": "কুরআন ও সুন্নাহ্‌কে দৃঢ়ভাবে ধারণ করা"
+  },
+  {
+    "book_id": 1,
+    "hadis_range": "7370 - 7563",
+    "id": 100,
+    "number": 97,
+    "title": "জাহ্‌মিয়াদের মতের খণ্ডন ও তাওহীদ প্রসঙ্গ"
+  }
+]

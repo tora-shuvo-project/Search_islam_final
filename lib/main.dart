@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:search_islam/provider/doya_provider.dart';
+import 'package:search_islam/provider/hadis_provider.dart';
 import 'package:search_islam/provider/home_provider.dart';
 import 'package:search_islam/provider/labbayek_provider.dart';
 import 'package:search_islam/provider/location_provider.dart';
@@ -32,6 +33,7 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (context) => di.sl<LabbayekProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<ZakatProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<NameProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<HadisProvider>()),
     ],
     child: MyApp(),
   ));

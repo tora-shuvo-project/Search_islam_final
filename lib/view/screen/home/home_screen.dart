@@ -1,5 +1,6 @@
 import 'package:deivao_drawer/deivao_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:search_islam/provider/home_provider.dart';
 import 'package:search_islam/provider/location_provider.dart';
@@ -11,6 +12,7 @@ import 'package:search_islam/utill/images.dart';
 import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
 import 'package:search_islam/view/screen/doya/doya_screen.dart';
+import 'package:search_islam/view/screen/hadis/hadis_screen.dart';
 import 'package:search_islam/view/screen/home/widget/category_widget.dart';
 import 'package:search_islam/view/screen/home/widget/drawer.dart';
 import 'package:search_islam/view/screen/home/widget/prayer_time_widget.dart';
@@ -34,6 +36,8 @@ class HomeScreen extends StatelessWidget {
     Provider.of<LocationProvider>(context, listen: false).getAllDistrictName();
     Provider.of<QuraanShareefProvider>(context, listen: false).initializeSuraFromPreference();
     final drawerController = DeivaoDrawerController();
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.green, statusBarBrightness: Brightness.dark));
+
     return DeivaoDrawer(
       controller: drawerController,
       drawer: CustomDrawer(),
@@ -87,9 +91,17 @@ class HomeScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CategoryWidget(title: Strings.zakat, iconUrl: Images.quran_svg,routeWidget: ZakatScreen(),),
-                CategoryWidget(title: Strings.name_somuh, iconUrl: Images.dua_svg,routeWidget: NameListScreen(),),
-                CategoryWidget(title: Strings.quran_sound, iconUrl: Images.document_svg),
+                CategoryWidget(
+                  title: Strings.zakat,
+                  iconUrl: Images.quran_svg,
+                  routeWidget: ZakatScreen(),
+                ),
+                CategoryWidget(
+                  title: Strings.name_somuh,
+                  iconUrl: Images.dua_svg,
+                  routeWidget: NameListScreen(),
+                ),
+                CategoryWidget(title: Strings.hadis, iconUrl: Images.document_svg, routeWidget: HadisScreen()),
                 CategoryWidget(title: Strings.questions, iconUrl: Images.question_svg),
               ],
             ),
