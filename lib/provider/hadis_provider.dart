@@ -30,6 +30,7 @@ class HadisProvider with ChangeNotifier {
     _hadisDetailsModel = [];
     String data = await DefaultAssetBundle.of(context).loadString("assets/json/bukhari_sharif_bangla.json");
     final dmap = json.decode(data);
+    // ignore: unnecessary_statements
     for(startIndex;startIndex<=endIndex;startIndex++){
       _hadisDetailsModel.add(HadisDetailsModel.fromJson(dmap.elementAt(startIndex-1)));
     }

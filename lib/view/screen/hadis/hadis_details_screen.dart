@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:search_islam/data/model/hadis_chapter_model.dart';
 import 'package:search_islam/helper/convert_eng_to_bangla_number.dart';
 import 'package:search_islam/provider/hadis_provider.dart';
 import 'package:search_islam/utill/dimensions.dart';
-import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
 import 'package:search_islam/view/widget/custom_app_bar.dart';
 import 'package:share/share.dart';
@@ -29,7 +27,7 @@ class HadisDetailsScreen extends StatelessWidget {
                   physics: BouncingScrollPhysics(),
                   padding: EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT),
                   itemBuilder: (context, index) {
-                    return HadisChapterWidget(index, hadisProvider);
+                    return hadisChapterWidget(index, hadisProvider);
                   })
               : CircularProgressIndicator(),
         ),
@@ -37,7 +35,7 @@ class HadisDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget HadisChapterWidget(int index, HadisProvider hadisProvider) {
+  Widget hadisChapterWidget(int index, HadisProvider hadisProvider) {
     return Container(
       padding: EdgeInsets.only(left: 10, right: 10, top: 5,bottom: 10),
       margin: EdgeInsets.only(bottom: 10),

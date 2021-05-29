@@ -11,6 +11,7 @@ import 'package:search_islam/utill/dimensions.dart';
 import 'package:search_islam/utill/images.dart';
 import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
+import 'package:search_islam/view/screen/comment/comment_question_screen.dart';
 import 'package:search_islam/view/screen/doya/doya_screen.dart';
 import 'package:search_islam/view/screen/hadis/hadis_screen.dart';
 import 'package:search_islam/view/screen/home/widget/category_widget.dart';
@@ -74,7 +75,7 @@ class HomeScreen extends StatelessWidget {
                 CategoryWidget(title: Strings.quran_sharif, iconUrl: Images.quran_svg, routeWidget: SelectQuranScreen()),
                 CategoryWidget(title: Strings.doya, iconUrl: Images.dua_svg, routeWidget: DoyaScreen()),
                 CategoryWidget(title: Strings.ojifa, iconUrl: Images.ojifa_svg, routeWidget: OjifaScreen()),
-                CategoryWidget(title: Strings.questions, iconUrl: Images.question_svg),
+                CategoryWidget(title: Strings.questions, iconUrl: Images.question_svg,routeWidget: CommentQuestionScreen(),),
               ],
             ),
             SizedBox(height: 15),
