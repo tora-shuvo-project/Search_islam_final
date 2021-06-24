@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:search_islam/data/model/janun_model.dart';
 import 'package:search_islam/utill/dimensions.dart';
 import 'package:search_islam/utill/styles.dart';
+import 'package:share/share.dart';
 
 class ProphetDetailsScreen extends StatelessWidget {
   final JanunModel janunModel;
@@ -40,6 +41,15 @@ class ProphetDetailsScreen extends StatelessWidget {
                         janunModel.title,
                         style: poppinsMedium.copyWith(fontSize: 16),
                       ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Share.share(
+                            '${janunModel.title}\n\n${janunModel.description.replaceAll("\\n", "\n")}\n\nDownload Islamic Apps (Search Islam)',
+                            subject: '${janunModel.title}');
+                      },
+                      icon: Icon(Icons.share, color: Colors.green),
+                      padding: EdgeInsets.zero,
                     ),
                   ],
                 ),

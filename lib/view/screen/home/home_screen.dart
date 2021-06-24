@@ -17,14 +17,15 @@ import 'package:search_islam/view/screen/hadis/hadis_screen.dart';
 import 'package:search_islam/view/screen/home/widget/category_widget.dart';
 import 'package:search_islam/view/screen/home/widget/drawer.dart';
 import 'package:search_islam/view/screen/home/widget/prayer_time_widget.dart';
+import 'package:search_islam/view/screen/islamic_resource/islamic_resource_screen.dart';
 import 'package:search_islam/view/screen/kibla/kibla_screen.dart';
 import 'package:search_islam/view/screen/labbayeak/labbayeak_screen.dart';
-import 'package:search_islam/view/screen/muhammad_sallalahualihimussalam/phophet_screen.dart';
 import 'package:search_islam/view/screen/name/name_list_screen.dart';
 import 'package:search_islam/view/screen/niyom/niyom_screen.dart';
 import 'package:search_islam/view/screen/ojifa/ojifa_screen.dart';
 import 'package:search_islam/view/screen/prayer_time/location_set_screen.dart';
 import 'package:search_islam/view/screen/prayer_time/prayer_time_screen.dart';
+import 'package:search_islam/view/screen/prophet_muhammad/phophet_screen.dart';
 import 'package:search_islam/view/screen/quran/select_quran_screen.dart';
 import 'package:search_islam/view/screen/zakat/zakat_screen.dart';
 
@@ -111,7 +112,7 @@ class HomeScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CategoryWidget(title: Strings.ojifa, iconUrl: Images.ojifa_svg),
+                CategoryWidget(title: Strings.islamic_resource, iconUrl: Images.ojifa_svg,routeWidget: IslamicResourceScreen(),),
                 CategoryWidget(title: Strings.prayer_time, iconUrl: Images.prayer_time_svg),
                 CategoryWidget(title: Strings.online, iconUrl: Images.online_svg),
                 CategoryWidget(title: Strings.niyom, iconUrl: Images.method_svg),

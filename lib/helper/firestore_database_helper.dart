@@ -8,18 +8,19 @@ import 'package:search_islam/utill/app_constants.dart';
 final collectionComment = 'comments';
 final collectionReply = 'reply';
 final phophet = 'prophet';
+final islamic_resource_klnowledge = 'islamic_resource_knowledge';
 
 class FirestoreDatabaseHelper {
   static final FirebaseFirestore db = FirebaseFirestore.instance;
 
   // for janun section:
-  static Future addJanunToFirebase(JanunModel janunModel) async {
-    return db.collection(phophet).doc(janunModel.id.toString()).set(janunModel.tomap());
+  static Future addJanunToFirebase(JanunModel janunModel, {bool isProphet = true}) async {
+    return db.collection(isProphet?phophet:islamic_resource_klnowledge).doc(janunModel.id.toString()).set(janunModel.tomap());
   }
 
   // ignore: missing_return
-  static Future<List<JanunModel>> janunLists() async {
-    QuerySnapshot snapshot = await db.collection(phophet).get();
+  static Future<List<JanunModel>> janunLists({bool isProphet = true}) async {
+    QuerySnapshot snapshot = await db.collection(isProphet?phophet:islamic_resource_klnowledge).get();
     if (snapshot != null) {
       return snapshot.docs.map((e) => JanunModel.fromMap(e.data())).toList();
     }

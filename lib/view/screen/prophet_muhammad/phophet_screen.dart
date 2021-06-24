@@ -3,7 +3,7 @@ import 'package:search_islam/data/model/janun_model.dart';
 import 'package:search_islam/helper/firestore_database_helper.dart';
 import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
-import 'package:search_islam/view/screen/muhammad_sallalahualihimussalam/prophet_details_screen.dart';
+import 'package:search_islam/view/screen/prophet_muhammad/prophet_details_screen.dart';
 
 class ProphetScreen extends StatelessWidget {
   const ProphetScreen({Key key}) : super(key: key);
