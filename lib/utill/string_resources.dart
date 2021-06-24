@@ -29,7 +29,9 @@ class Strings {
   static const String bisoy_somuh = 'বিষয় ভিত্তিক';
   static const String sokol_doya_somuh = 'সকল দোয়াসমূহ';
   static const String questions = 'জিজ্ঞাসা';
+  static const String phophet = 'মুহাম্মাদ (সাঃ)';
   static const String ojifa = 'অজিফা';
+  static const String islamic_resource = 'ইসলামিক রিসোর্স';
   static const String ojifa_somuh = 'অজিফা সমূহ';
   static const String niyom = 'নিয়ম';
   static const String hadis = 'হাদিস';

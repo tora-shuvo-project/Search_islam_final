@@ -11,11 +11,13 @@ import 'package:search_islam/utill/dimensions.dart';
 import 'package:search_islam/utill/images.dart';
 import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
+import 'package:search_islam/view/screen/comment/comment_question_screen.dart';
 import 'package:search_islam/view/screen/doya/doya_screen.dart';
 import 'package:search_islam/view/screen/hadis/hadis_screen.dart';
 import 'package:search_islam/view/screen/home/widget/category_widget.dart';
 import 'package:search_islam/view/screen/home/widget/drawer.dart';
 import 'package:search_islam/view/screen/home/widget/prayer_time_widget.dart';
+import 'package:search_islam/view/screen/islamic_resource/islamic_resource_screen.dart';
 import 'package:search_islam/view/screen/kibla/kibla_screen.dart';
 import 'package:search_islam/view/screen/labbayeak/labbayeak_screen.dart';
 import 'package:search_islam/view/screen/name/name_list_screen.dart';
@@ -23,6 +25,7 @@ import 'package:search_islam/view/screen/niyom/niyom_screen.dart';
 import 'package:search_islam/view/screen/ojifa/ojifa_screen.dart';
 import 'package:search_islam/view/screen/prayer_time/location_set_screen.dart';
 import 'package:search_islam/view/screen/prayer_time/prayer_time_screen.dart';
+import 'package:search_islam/view/screen/prophet_muhammad/phophet_screen.dart';
 import 'package:search_islam/view/screen/quran/select_quran_screen.dart';
 import 'package:search_islam/view/screen/zakat/zakat_screen.dart';
 
@@ -74,7 +77,7 @@ class HomeScreen extends StatelessWidget {
                 CategoryWidget(title: Strings.quran_sharif, iconUrl: Images.quran_svg, routeWidget: SelectQuranScreen()),
                 CategoryWidget(title: Strings.doya, iconUrl: Images.dua_svg, routeWidget: DoyaScreen()),
                 CategoryWidget(title: Strings.ojifa, iconUrl: Images.ojifa_svg, routeWidget: OjifaScreen()),
-                CategoryWidget(title: Strings.questions, iconUrl: Images.question_svg),
+                CategoryWidget(title: Strings.questions, iconUrl: Images.question_svg,routeWidget: CommentQuestionScreen(),),
               ],
             ),
             SizedBox(height: 15),
@@ -102,14 +105,14 @@ class HomeScreen extends StatelessWidget {
                   routeWidget: NameListScreen(),
                 ),
                 CategoryWidget(title: Strings.hadis, iconUrl: Images.document_svg, routeWidget: HadisScreen()),
-                CategoryWidget(title: Strings.questions, iconUrl: Images.question_svg),
+                CategoryWidget(title: Strings.phophet, iconUrl: Images.question_svg,routeWidget: ProphetScreen(),),
               ],
             ),
             SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CategoryWidget(title: Strings.ojifa, iconUrl: Images.ojifa_svg),
+                CategoryWidget(title: Strings.islamic_resource, iconUrl: Images.ojifa_svg,routeWidget: IslamicResourceScreen(),),
                 CategoryWidget(title: Strings.prayer_time, iconUrl: Images.prayer_time_svg),
                 CategoryWidget(title: Strings.online, iconUrl: Images.online_svg),
                 CategoryWidget(title: Strings.niyom, iconUrl: Images.method_svg),

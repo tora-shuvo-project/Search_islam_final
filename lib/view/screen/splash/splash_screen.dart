@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:search_islam/helper/database_helper.dart';
 import 'package:search_islam/provider/doya_provider.dart';
 import 'package:search_islam/provider/hadis_provider.dart';
-import 'package:search_islam/provider/home_provider.dart';
 import 'package:search_islam/provider/ojifa_provider.dart';
 import 'package:search_islam/provider/quran_sorif_provider.dart';
 import 'package:search_islam/utill/images.dart';

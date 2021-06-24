@@ -1,12 +1,30 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:search_islam/data/model/comment_feedback_models.dart';
+import 'package:search_islam/data/model/comment_models.dart';
+import 'package:search_islam/data/model/janun_model.dart';
 import 'package:search_islam/data/model/name_model.dart';
 import 'package:search_islam/utill/app_constants.dart';
 
-// final COLLECTION_COMMENT='comments';
-// final COLLECTION_REPLY='reply';
+final collectionComment = 'comments';
+final collectionReply = 'reply';
+final phophet = 'prophet';
+final islamic_resource_klnowledge = 'islamic_resource_knowledge';
 
 class FirestoreDatabaseHelper {
   static final FirebaseFirestore db = FirebaseFirestore.instance;
+
+  // for janun section:
+  static Future addJanunToFirebase(JanunModel janunModel, {bool isProphet = true}) async {
+    return db.collection(isProphet?phophet:islamic_resource_klnowledge).doc(janunModel.id.toString()).set(janunModel.tomap());
+  }
+
+  // ignore: missing_return
+  static Future<List<JanunModel>> janunLists({bool isProphet = true}) async {
+    QuerySnapshot snapshot = await db.collection(isProphet?phophet:islamic_resource_klnowledge).get();
+    if (snapshot != null) {
+      return snapshot.docs.map((e) => JanunModel.fromMap(e.data())).toList();
+    }
+  }
 
   // add person Name
 
@@ -22,31 +40,33 @@ class FirestoreDatabaseHelper {
     }
   }
 
-// static Future addComment(CommentModels commentModels)async{
-//   final doc=db.collection(COLLECTION_COMMENT).document(commentModels.id);
-//   return await doc.setData(commentModels.tomap());
-// }
-// static Future UpdateFeedBack(CommentModels commentModels)async{
-//   return db.collection(COLLECTION_COMMENT).document(commentModels.id).updateData(commentModels.tomap());
-// }
-//
-// static Future addFeedBack(ComentFeedBackModels comentFeedBackModels)async{
-//   final doc=db.collection(COLLECTION_REPLY).document(comentFeedBackModels.id).collection('reply').document(comentFeedBackModels.dateKey);
-//   return await doc.setData(comentFeedBackModels.tomap());
-// }
-//
-// static Future<List<CommentModels>> getAllCommentModels()async{
-//   QuerySnapshot snapshot=await db.collection(COLLECTION_COMMENT).getDocuments();
-//   if(snapshot!=null){
-//     return snapshot.documents.map((e) => CommentModels.fromMap(e.data)).toList();
-//   }
-// }
-//
-// static Future<List<ComentFeedBackModels>> getAllReplySpecifyQuestion(String id)async{
-//   QuerySnapshot snapshot=await db.collection(COLLECTION_REPLY).document(id).collection('reply').getDocuments();
-//   if(snapshot!=null){
-//     return snapshot.documents.map((e) => ComentFeedBackModels.fromMap(e.data)).toList();
-//   }
-// }
+  static Future addComment(CommentModels commentModels) async {
+    final doc = db.collection(collectionComment).doc(commentModels.id);
+    return await doc.set(commentModels.tomap());
+  }
 
+  static Future updateFeedBack(CommentModels commentModels) async {
+    return db.collection(collectionComment).doc(commentModels.id).update(commentModels.tomap());
+  }
+
+  static Future addFeedBack(ComentFeedBackModels comentFeedBackModels) async {
+    final doc = db.collection(collectionReply).doc(comentFeedBackModels.id).collection('reply').doc(comentFeedBackModels.dateKey);
+    return await doc.set(comentFeedBackModels.tomap());
+  }
+
+// ignore: missing_return
+  static Future<List<CommentModels>> getAllCommentModels() async {
+    QuerySnapshot snapshot = await db.collection(collectionComment).get();
+    if (snapshot != null) {
+      return snapshot.docs.map((e) => CommentModels.fromMap(e.data())).toList();
+    }
+  }
+
+// ignore: missing_return
+  static Future<List<ComentFeedBackModels>> getAllReplySpecifyQuestion(String id) async {
+    QuerySnapshot snapshot = await db.collection(collectionReply).doc(id).collection('reply').get();
+    if (snapshot != null) {
+      return snapshot.docs.map((e) => ComentFeedBackModels.fromMap(e.data())).toList();
+    }
+  }
 }
