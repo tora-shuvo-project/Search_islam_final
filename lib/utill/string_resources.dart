@@ -4,7 +4,14 @@ class Strings {
   static const String other = 'অন্যান্য';
   static const String dua = 'দোয়া';
   static const String prayer_time = 'সময়সূচি';
+  static const String tasbih = 'তাসবিহ';
+  static const String calendar = 'ক্যালেন্ডার';
+  static const String blog = 'ব্লগ';
+  static const String nosihat = 'নসিহাত';
   static const String online = 'অনলাইন';
+  static const String dan_korun = 'দান করুণ';
+  static const String janun = 'জানুন';
+  static const String off_korun = 'বন্ধ করুণ';
   static const String last_read = 'সর্বশেষ পঠিত';
   static const String ayat_no = 'আয়াত নংঃ';
   static const String go_to = 'প্রবেশ করুণ >';
@@ -54,6 +61,7 @@ class Strings {
   static const String date = 'তারিখ';
   static const String location = 'লোকেশন';
   static const String zila_nirbacon_korun = 'জেলা নির্বাচন করুন';
+  static const String tasbih_select_korun = 'তাসবিহ সিলেক্ট করুন';
   static const String kare_nirbacon_korun = 'ক্বারি নির্বাচন করুনঃ';
   static const String nirdistro_zila_select_korun = 'নির্দিষ্ট একটি জেলা নির্বাচন করতে চাই।';
   static const String gps_er_maddome_automatc = 'gps এর মাধ্যমে অটোমেটিক পদ্ধতি';
@@ -91,6 +99,7 @@ class Strings {
   static const String boundho_korun = 'ডাউনলোডটি বন্ধ করুণ';
   static const String odioti = 'অডিওটি';
   static const String pdfti = 'পিডিএফটি';
+  static const String inshaallah_poroborti_update = 'ইং-শা-আল্লাহ পরবর্তি আপডেট এ এটি Add করা হবে।';
   static const String imageti = 'ইমেজটি';
   static const String download_hoccce = 'ডাউনলোড হচ্ছে!';
   static const String sompurno_vabe_download_hocce = 'সম্পূর্ণভাবে ডাউনলোড হয়েছে:)';

@@ -19,7 +19,7 @@ class DoyaProvider with ChangeNotifier {
   accessDatabase(DatabaseHelper db) {
     _getDatabaseHelper = db;
     initializeDoyaNames();
-    notifyListeners();
+    //notifyListeners();
   }
 
   // for page view builder
@@ -57,7 +57,7 @@ class DoyaProvider with ChangeNotifier {
           _allDoyaNameList.add(DoyaNameModels.fromMap(row));
         });
       });
-      notifyListeners();
+      //notifyListeners();
     }
   }
 

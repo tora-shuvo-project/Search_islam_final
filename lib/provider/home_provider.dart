@@ -18,7 +18,7 @@ class HomeProvider with ChangeNotifier {
     englishDate = DateFormat('dd MMMM,yyyy').format(DateTime.now());
     dayName = DateFormat('EEEE').format(DateTime.now());
 
-    notifyListeners();
+    //notifyListeners();
   }
 
   List<String> allDate() {

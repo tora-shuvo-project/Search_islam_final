@@ -41,7 +41,7 @@ class LocationProvider with ChangeNotifier {
       allDistrictName.clear();
       allDistrictName=locationRepo.districtNames;
       initializeDistrict = locationRepo.districtNames.first;
-      notifyListeners();
+      //notifyListeners();
     }
   }
 

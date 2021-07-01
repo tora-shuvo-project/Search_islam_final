@@ -28,7 +28,6 @@ class _TestScreenState extends State<TestScreen> {
         });
       });
     }
-    ;
   }
 
   @override

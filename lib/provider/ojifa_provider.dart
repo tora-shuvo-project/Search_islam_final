@@ -10,7 +10,7 @@ class OjifaProvider with ChangeNotifier {
 
   accessDatabase(DatabaseHelper db) {
     _getDatabaseHelper = db;
-    notifyListeners();
+    //notifyListeners();
   }
 
   // get all Ojifa List

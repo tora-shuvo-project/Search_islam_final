@@ -227,7 +227,7 @@ class PrayerTimeProvider with ChangeNotifier {
     tommorwIshaTimeStart = DateConverter.formatDateHHMM(nextPrayerTimes.isha);
     tommorwIshaTimeEnd = DateConverter.formatDateHHMM(nextPrayerTimes.fajr.subtract(Duration(minutes: 5)));
 
-    notifyListeners();
+    //notifyListeners();
   }
 
   // for get Number of days of all month
@@ -238,7 +238,7 @@ class PrayerTimeProvider with ChangeNotifier {
     var firstDayThisMonth = new DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
     var firstDayNextMonth = new DateTime(firstDayThisMonth.year, firstDayThisMonth.month + 1, firstDayThisMonth.day);
     monthLength = firstDayNextMonth.difference(firstDayThisMonth).inDays;
-    notifyListeners();
+    //notifyListeners();
   }
 
 // get All month Prayer Time
