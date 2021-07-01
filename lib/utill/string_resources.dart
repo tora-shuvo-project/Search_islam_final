@@ -6,7 +6,7 @@ class Strings {
   static const String prayer_time = 'সময়সূচি';
   static const String tasbih = 'তাসবিহ';
   static const String calendar = 'ক্যালেন্ডার';
-  static const String blog = 'ব্লগ';
+  static const String blog = 'ইসলামিক ব্লগ';
   static const String nosihat = 'নসিহাত';
   static const String online = 'অনলাইন';
   static const String dan_korun = 'দান করুণ';

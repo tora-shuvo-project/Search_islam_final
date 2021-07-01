@@ -11,6 +11,7 @@ import 'package:search_islam/utill/dimensions.dart';
 import 'package:search_islam/utill/images.dart';
 import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
+import 'package:search_islam/view/screen/blog/blog_screen.dart';
 import 'package:search_islam/view/screen/comment/comment_question_screen.dart';
 import 'package:search_islam/view/screen/doya/doya_screen.dart';
 import 'package:search_islam/view/screen/hadis/hadis_screen.dart';
@@ -116,7 +117,7 @@ class HomeScreen extends StatelessWidget {
                 CategoryWidget(title: Strings.islamic_resource, iconUrl: Images.ojifa_svg,routeWidget: IslamicResourceScreen(),),
                 CategoryWidget(title: Strings.tasbih, iconUrl: Images.prayer_time_svg,routeWidget: TasbihScreen()),
                 CategoryWidget(title: Strings.calendar, iconUrl: Images.online_svg),
-                CategoryWidget(title: Strings.blog, iconUrl: Images.method_svg),
+                CategoryWidget(title: Strings.blog, iconUrl: Images.method_svg,routeWidget: BlogScreen()),
               ],
             ),
             SizedBox(height: 15),
