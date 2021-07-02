@@ -24,6 +24,7 @@ import 'package:search_islam/view/screen/kibla/kibla_screen.dart';
 import 'package:search_islam/view/screen/labbayeak/labbayeak_screen.dart';
 import 'package:search_islam/view/screen/name/name_list_screen.dart';
 import 'package:search_islam/view/screen/niyom/niyom_screen.dart';
+import 'package:search_islam/view/screen/nosihat/nosihat_screen.dart';
 import 'package:search_islam/view/screen/ojifa/ojifa_screen.dart';
 import 'package:search_islam/view/screen/prayer_time/location_set_screen.dart';
 import 'package:search_islam/view/screen/prayer_time/prayer_time_screen.dart';
@@ -125,7 +126,7 @@ class HomeScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CategoryWidget(title: Strings.nosihat, iconUrl: Images.quran_svg),
+                CategoryWidget(title: Strings.nosihat, iconUrl: Images.quran_svg,routeWidget: NosihatScreen()),
                 CategoryWidget(title: Strings.dan_korun, iconUrl: Images.dua_svg),
                 CategoryWidget(title: Strings.janun, iconUrl: Images.document_svg),
                 CategoryWidget(title: Strings.off_korun, iconUrl: Images.document_svg),
