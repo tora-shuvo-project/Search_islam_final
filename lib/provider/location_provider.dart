@@ -1,34 +1,19 @@
 import 'package:flutter/foundation.dart';
-import 'package:geocoder/geocoder.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:search_islam/data/repository/location_repo.dart';
 
+class LatLng{
+  double latitude;
+  double longitude;
+  LatLng(this.latitude, this.longitude);
+}
 class LocationProvider with ChangeNotifier {
   final LocationRepo locationRepo;
 
   LocationProvider({this.locationRepo});
 
-  Position currentLocation;
-
   void _getLatLngWithData(LatLng latLng) {
     locationRepo.saveLatitude(latLng.latitude);
     locationRepo.saveLongitude(latLng.longitude);
-    notifyListeners();
-  }
-
-  void getUserLocation() async {
-    currentLocation = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    notifyListeners();
-  }
-
-  saveUserLocation()async{
-    final coordinates = new Coordinates(currentLocation.latitude, currentLocation.longitude);
-    var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
-    var first = addresses.first;
-    var district = first.subAdminArea.toString().replaceAll(' District', "");
-    saveDistrictName(district);
-    districtCheck(district);
     notifyListeners();
   }
 
@@ -60,32 +45,10 @@ class LocationProvider with ChangeNotifier {
   }
 
 
-
-  // radio button
-
-
-  int selectedRadio = 0;
-
-  void handleRadioValueChange(int value) {
-    selectedRadio = value;
-
-    switch (selectedRadio) {
-      case 0:
-        setDistrictName(initializeDistrict);
-        break;
-      case 1:
-        saveUserLocation();
-        break;
-    }
-    notifyListeners();
-  }
-
   setDistrictName(String name) async{
     initializeDistrict = name;
-    if(selectedRadio==0){
-      saveDistrictName(name);
-      districtCheck(name);
-    }
+    saveDistrictName(name);
+    districtCheck(name);
 
     notifyListeners();
   }

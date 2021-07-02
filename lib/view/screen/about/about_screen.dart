@@ -6,7 +6,7 @@ import 'package:search_islam/utill/styles.dart';
 import 'package:search_islam/view/widget/show_custom_snakbar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AboutPages extends StatelessWidget {
+class AboutScreen extends StatelessWidget {
   _launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);

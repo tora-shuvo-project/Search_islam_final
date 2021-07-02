@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:deivao_drawer/deivao_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,7 +12,7 @@ import 'package:search_islam/utill/dimensions.dart';
 import 'package:search_islam/utill/images.dart';
 import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
-import 'package:search_islam/view/screen/about/about_pages.dart';
+import 'package:search_islam/view/screen/about/about_screen.dart';
 import 'package:search_islam/view/screen/blog/blog_screen.dart';
 import 'package:search_islam/view/screen/calendar/calendar_screen.dart';
 import 'package:search_islam/view/screen/comment/comment_question_screen.dart';
@@ -51,23 +52,26 @@ class HomeScreen extends StatelessWidget {
       controller: drawerController,
       drawer: CustomDrawer(),
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
+          elevation: 5,
           backgroundColor: Colors.white,
           leading: IconButton(icon: Icon(Icons.menu, color: ColorResources.primaryColor), onPressed: drawerController.toggle),
           title: Text(Strings.apps_name, style: poppinsMedium.copyWith(color: ColorResources.primaryColor, fontSize: 18)),
           actions: [
-            InkWell(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (_) => LocationSetScreen()));
-              },
-              child: Row(
-                children: <Widget>[
-                  Icon(Icons.location_on, color: ColorResources.primaryColor),
-                  Text('| ${Provider.of<LocationProvider>(context).getDistrictName()}   ',
-                      style: poppinsRegular.copyWith(color: ColorResources.primaryColor, fontSize: 17))
-                ],
-              ),
-            )
+            IconButton(onPressed: () {}, icon: Icon(Icons.settings, color: Colors.green))
+            // InkWell(
+            //   onTap: () {
+            //     Navigator.of(context).push(MaterialPageRoute(builder: (_) => LocationSetScreen()));
+            //   },
+            //   child: Row(
+            //     children: <Widget>[
+            //       Icon(Icons.location_on, color: ColorResources.primaryColor),
+            //       Text('| ${Provider.of<LocationProvider>(context).getDistrictName()}   ',
+            //           style: poppinsRegular.copyWith(color: ColorResources.primaryColor, fontSize: 17))
+            //     ],
+            //   ),
+            // ),
           ],
         ),
         body: ListView(
@@ -76,14 +80,32 @@ class HomeScreen extends StatelessWidget {
           children: [
             // for namajer time
             PrayerTimeWidget(),
-            SizedBox(height: 25),
+            SizedBox(height: 15),
+            Consumer<HomeProvider>(
+              builder: (context, homeProvider, child) => Container(
+                height: 30,
+                alignment: Alignment.center,
+                child: ScaleAnimatedTextKit(
+                  duration: Duration(seconds: 10),
+                  isRepeatingAnimation: true,
+                  repeatForever: true,
+                  text: homeProvider.allDate(),
+                  textStyle: kalpurus.copyWith(color: Colors.green, fontSize: 17),
+                  textAlign: TextAlign.start,
+                ),
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CategoryWidget(title: Strings.quran_sharif, iconUrl: Images.quran_svg, routeWidget: SelectQuranScreen()),
                 CategoryWidget(title: Strings.doya, iconUrl: Images.dua_svg, routeWidget: DoyaScreen()),
                 CategoryWidget(title: Strings.ojifa, iconUrl: Images.ojifa_svg, routeWidget: OjifaScreen()),
-                CategoryWidget(title: Strings.questions, iconUrl: Images.question_svg,routeWidget: CommentQuestionScreen(),),
+                CategoryWidget(
+                  title: Strings.questions,
+                  iconUrl: Images.question_svg,
+                  routeWidget: CommentQuestionScreen(),
+                ),
               ],
             ),
             SizedBox(height: 15),
@@ -111,31 +133,38 @@ class HomeScreen extends StatelessWidget {
                   routeWidget: NameListScreen(),
                 ),
                 CategoryWidget(title: Strings.hadis, iconUrl: Images.document_svg, routeWidget: HadisScreen()),
-                CategoryWidget(title: Strings.phophet, iconUrl: Images.question_svg,routeWidget: ProphetScreen(),),
+                CategoryWidget(
+                  title: Strings.phophet,
+                  iconUrl: Images.question_svg,
+                  routeWidget: ProphetScreen(),
+                ),
               ],
             ),
             SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CategoryWidget(title: Strings.islamic_resource, iconUrl: Images.ojifa_svg,routeWidget: IslamicResourceScreen(),),
-                CategoryWidget(title: Strings.tasbih, iconUrl: Images.prayer_time_svg,routeWidget: TasbihScreen()),
-                CategoryWidget(title: Strings.calendar, iconUrl: Images.online_svg,routeWidget: CalendarScreen()),
-                CategoryWidget(title: Strings.blog, iconUrl: Images.method_svg,routeWidget: BlogScreen()),
+                CategoryWidget(
+                  title: Strings.islamic_resource,
+                  iconUrl: Images.ojifa_svg,
+                  routeWidget: IslamicResourceScreen(),
+                ),
+                CategoryWidget(title: Strings.tasbih, iconUrl: Images.prayer_time_svg, routeWidget: TasbihScreen()),
+                CategoryWidget(title: Strings.calendar, iconUrl: Images.online_svg, routeWidget: CalendarScreen()),
+                CategoryWidget(title: Strings.blog, iconUrl: Images.method_svg, routeWidget: BlogScreen()),
               ],
             ),
             SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CategoryWidget(title: Strings.nosihat, iconUrl: Images.quran_svg,routeWidget: NosihatScreen()),
-                CategoryWidget(title: Strings.dan_korun, iconUrl: Images.dua_svg,routeWidget: DonateScreen()),
-                CategoryWidget(title: Strings.janun, iconUrl: Images.document_svg,routeWidget: AboutPages()),
+                CategoryWidget(title: Strings.nosihat, iconUrl: Images.quran_svg, routeWidget: NosihatScreen()),
+                CategoryWidget(title: Strings.dan_korun, iconUrl: Images.dua_svg, routeWidget: DonateScreen()),
+                CategoryWidget(title: Strings.janun, iconUrl: Images.document_svg, routeWidget: AboutScreen()),
                 CategoryWidget(title: Strings.off_korun, iconUrl: Images.document_svg),
               ],
             ),
             SizedBox(height: 15),
-
           ],
         ),
       ),

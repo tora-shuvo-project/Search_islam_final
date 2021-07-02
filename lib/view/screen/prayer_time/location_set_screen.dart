@@ -1,7 +1,4 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:search_islam/provider/location_provider.dart';
 import 'package:search_islam/utill/string_resources.dart';
@@ -10,16 +7,8 @@ import 'package:search_islam/view/widget/custom_app_bar.dart';
 
 // ignore: must_be_immutable
 class LocationSetScreen extends StatelessWidget {
-  Completer<GoogleMapController> _completer = Completer();
-
-  void _onmapCreated(GoogleMapController controller) {
-    _completer.complete(controller);
-  }
-
   @override
   Widget build(BuildContext context) {
-    Provider.of<LocationProvider>(context, listen: false).getUserLocation();
-
     return SafeArea(
         child: Scaffold(
       appBar:
@@ -68,57 +57,8 @@ class LocationSetScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 25),
-                Row(
-                  children: <Widget>[
-                    Container(height: 50, width: 3, color: Colors.green),
-                    SizedBox(width: 10),
-                    Expanded(child: Text("${Strings.gps_na_paoya_gele}", style: kalpurus)),
-                  ],
-                ),
-                SizedBox(height: 25),
-                Text("${Strings.elaka_nirbaconer_jonno}", style: kalpurus.copyWith(fontWeight: FontWeight.bold)),
-                Column(
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Radio(
-                          value: 0,
-                          groupValue: locationProvider.selectedRadio,
-                          activeColor: Colors.green,
-                          onChanged: locationProvider.handleRadioValueChange,
-                        ),
-                        Text("${Strings.nirdistro_zila_select_korun}")
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Radio(
-                          value: 1,
-                          groupValue: locationProvider.selectedRadio,
-                          activeColor: Colors.green,
-                          onChanged: locationProvider.handleRadioValueChange,
-                        ),
-                        Text("${Strings.gps_er_maddome_automatc}")
-                      ],
-                    ),
-                  ],
-                ),
-                locationProvider.currentLocation != null
-                    ? Container(
-                        height: 400,
-                        child: GoogleMap(
-                          onMapCreated: _onmapCreated,
-                          initialCameraPosition: CameraPosition(
-                              target: LatLng(
-                                  locationProvider.currentLocation.latitude ?? 23.7115253, locationProvider.currentLocation.longitude ?? 90.4111451),
-                              zoom: 17),
-                          mapType: MapType.satellite,
-                          myLocationButtonEnabled: true,
-                          myLocationEnabled: true,
-                          //markers: markers,
-                        ))
-                    : SizedBox.shrink(),
+
+
               ],
             ),
           ),
