@@ -1,17 +1,21 @@
 import 'package:flutter/foundation.dart';
 import 'package:search_islam/data/repository/location_repo.dart';
 
-class LatLng{
+class LatLng {
   double latitude;
   double longitude;
+
   LatLng(this.latitude, this.longitude);
 }
+
 class LocationProvider with ChangeNotifier {
   final LocationRepo locationRepo;
 
   LocationProvider({this.locationRepo});
 
   void _getLatLngWithData(LatLng latLng) {
+    print(latLng.latitude);
+    print(latLng.longitude);
     locationRepo.saveLatitude(latLng.latitude);
     locationRepo.saveLongitude(latLng.longitude);
     notifyListeners();
@@ -19,25 +23,20 @@ class LocationProvider with ChangeNotifier {
 
   // initialize location
   List<String> allDistrictName = [];
-  String initializeDistrict='';
+  String initializeDistrict = '';
 
   getAllDistrictName() {
-    if(allDistrictName.length==0){
+    if (allDistrictName.length == 0) {
       allDistrictName.clear();
-      allDistrictName=locationRepo.districtNames;
+      allDistrictName = locationRepo.districtNames;
       initializeDistrict = locationRepo.districtNames.first;
       //notifyListeners();
     }
   }
 
   // Save District Name
-
-
-
-  saveDistrictName(String name) async{
-
-    return  locationRepo.saveDistrictFromPreference(name);
-
+  saveDistrictName(String name) async {
+    return locationRepo.saveDistrictFromPreference(name);
   }
 
   String getDistrictName() {
@@ -45,11 +44,11 @@ class LocationProvider with ChangeNotifier {
   }
 
 
-  setDistrictName(String name) async{
+
+  setDistrictName(String name) async {
     initializeDistrict = name;
     saveDistrictName(name);
     districtCheck(name);
-
     notifyListeners();
   }
 

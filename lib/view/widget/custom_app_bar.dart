@@ -6,7 +6,7 @@ import 'package:search_islam/provider/quran_sorif_provider.dart';
 import 'package:search_islam/utill/dimensions.dart';
 import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
-import 'package:search_islam/view/screen/prayer_time/location_set_screen.dart';
+import 'package:search_islam/view/screen/settings/settings_screen.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String title;
@@ -28,7 +28,7 @@ class CustomAppBar extends StatelessWidget {
       this.isShowHafejiQuran = false,
       this.isQuranSoundScreen = false,
       this.isLabbayekScreen = false,
-      this.isZakatScreen=false});
+      this.isZakatScreen = false});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class CustomAppBar extends StatelessWidget {
             isLocation
                 ? InkWell(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (_) => LocationSetScreen()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (_) => SettingsScreen()));
                     },
                     child: Row(
                       children: <Widget>[
@@ -72,37 +72,37 @@ class CustomAppBar extends StatelessWidget {
                           drawerKey.currentState.openEndDrawer();
                         },
                         child: Icon(Icons.settings_ethernet, color: Colors.white, size: 26))
-                    :isZakatScreen
-                    ? InkWell(
-                        onTap: () {
-                          openBottomSheet(context);
-                        },
-                        child: Icon(Icons.info, color: Colors.white, size: 26))
-                    : isQuranSoundScreen
-                        ? TextButton(
-                            onPressed: () {
-                              showModalBottomSheet(
-                                  context: context,
-                                  isScrollControlled: true,
-                                  builder: (context) {
-                                    return Container(
-                                        color: Color(0xFF737373),
-                                        child: ClipRRect(
-                                            clipBehavior: Clip.hardEdge,
-                                            borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25)),
-                                            child: Container(
-                                              color: Color(0xFFFFFFFF),
-                                              height: MediaQuery.of(context).size.height * 0.80,
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.only(topLeft: const Radius.circular(10), topRight: const Radius.circular(10))),
-                                                  child: _shururKotha()),
-                                            )));
-                                  });
+                    : isZakatScreen
+                        ? InkWell(
+                            onTap: () {
+                              openBottomSheet(context);
                             },
-                            child: Text(Strings.surur_kotha, style: TextStyle(color: Colors.white, fontSize: 17)))
-                        : SizedBox.shrink(),
+                            child: Icon(Icons.info, color: Colors.white, size: 26))
+                        : isQuranSoundScreen
+                            ? TextButton(
+                                onPressed: () {
+                                  showModalBottomSheet(
+                                      context: context,
+                                      isScrollControlled: true,
+                                      builder: (context) {
+                                        return Container(
+                                            color: Color(0xFF737373),
+                                            child: ClipRRect(
+                                                clipBehavior: Clip.hardEdge,
+                                                borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25)),
+                                                child: Container(
+                                                  color: Color(0xFFFFFFFF),
+                                                  height: MediaQuery.of(context).size.height * 0.80,
+                                                  child: Container(
+                                                      decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.only(
+                                                              topLeft: const Radius.circular(10), topRight: const Radius.circular(10))),
+                                                      child: _shururKotha()),
+                                                )));
+                                      });
+                                },
+                                child: Text(Strings.surur_kotha, style: TextStyle(color: Colors.white, fontSize: 17)))
+                            : SizedBox.shrink(),
           ],
         ),
       ),
@@ -142,7 +142,8 @@ class CustomAppBar extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Center(
-                          child: Text(Strings.zakater_hisab_kivabe_korben_title, style: kalpurus.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE, fontWeight: FontWeight.bold)),
+                          child: Text(Strings.zakater_hisab_kivabe_korben_title,
+                              style: kalpurus.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE, fontWeight: FontWeight.bold)),
                         ),
                         SizedBox(height: 20),
                         Text(Strings.zakater_hisab_kivabe_korben_details, style: kalpurus.copyWith(fontSize: 18, fontWeight: FontWeight.w400)),

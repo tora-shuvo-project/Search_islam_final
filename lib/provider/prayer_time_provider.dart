@@ -38,9 +38,25 @@ class PrayerTimeProvider with ChangeNotifier {
 
   PrayerTimes currentPrayerTimes;
 
+
+  // Save Majhab Name
+  saveMajhabName(String name) async {
+    return locationRepo.saveMajhabFromPreference(name);
+  }
+
+  String getMajhabName() {
+    return locationRepo.getMajhabNameFromPreference();
+  }
+
   initializeCurrentPrayerTime() {
     final myCoordinates = Coordinates(locationRepo.getLatitude(), locationRepo.getLongitude());
-    final params = CalculationMethod.karachi.getParameters()..madhab = Madhab.hanafi;
+    var params;
+    if(getMajhabName()=="hanafi"){
+      params = CalculationMethod.karachi.getParameters()..madhab = Madhab.hanafi;
+    }else{
+      params = CalculationMethod.karachi.getParameters()..madhab = Madhab.shafi;
+    }
+
     currentPrayerTimes = PrayerTimes.today(myCoordinates, params);
 
     sehriTime = DateConverter.formatDateHHMMAA(currentPrayerTimes.fajr.subtract(Duration(minutes: 4)));
@@ -206,7 +222,12 @@ class PrayerTimeProvider with ChangeNotifier {
 
   initializeTommorwPrayerTime() {
     final myCoordinates = Coordinates(locationRepo.getLatitude(), locationRepo.getLongitude());
-    final params = CalculationMethod.karachi.getParameters()..madhab = Madhab.hanafi;
+    var params;
+    if(getMajhabName()=="hanafi"){
+      params = CalculationMethod.karachi.getParameters()..madhab = Madhab.hanafi;
+    }else{
+      params = CalculationMethod.karachi.getParameters()..madhab = Madhab.shafi;
+    }
     final nextPrayerTimes = PrayerTimes.getByDatePrayerTime(myCoordinates, params, DateTime.now().add(Duration(days: 1)));
 
     tommorwSehriTime = DateConverter.formatDateHHMMAA(nextPrayerTimes.fajr.subtract(Duration(minutes: 4)));
@@ -246,8 +267,12 @@ class PrayerTimeProvider with ChangeNotifier {
 
   initializeAllMonthPrayerTimeData() {
     final myCoordinates = Coordinates(locationRepo.getLatitude(), locationRepo.getLongitude());
-    final params = CalculationMethod.karachi.getParameters()..madhab = Madhab.hanafi;
-
+    var params;
+    if(getMajhabName()=="hanafi"){
+      params = CalculationMethod.karachi.getParameters()..madhab = Madhab.hanafi;
+    }else{
+      params = CalculationMethod.karachi.getParameters()..madhab = Madhab.shafi;
+    }
     prayerTimePojoClass = [];
 
     for (int i = 0; i < monthLength; i++) {

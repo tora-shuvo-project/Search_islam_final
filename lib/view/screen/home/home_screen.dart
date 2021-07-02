@@ -29,7 +29,6 @@ import 'package:search_islam/view/screen/name/name_list_screen.dart';
 import 'package:search_islam/view/screen/niyom/niyom_screen.dart';
 import 'package:search_islam/view/screen/nosihat/nosihat_screen.dart';
 import 'package:search_islam/view/screen/ojifa/ojifa_screen.dart';
-import 'package:search_islam/view/screen/prayer_time/location_set_screen.dart';
 import 'package:search_islam/view/screen/prayer_time/prayer_time_screen.dart';
 import 'package:search_islam/view/screen/prophet_muhammad/phophet_screen.dart';
 import 'package:search_islam/view/screen/quran/select_quran_screen.dart';
@@ -59,17 +58,34 @@ class HomeScreen extends StatelessWidget {
           leading: IconButton(icon: Icon(Icons.menu, color: ColorResources.primaryColor), onPressed: drawerController.toggle),
           title: Text(Strings.apps_name, style: poppinsMedium.copyWith(color: ColorResources.primaryColor, fontSize: 18)),
           actions: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.settings, color: Colors.green))
-            // InkWell(
-            //   onTap: () {
-            //     Navigator.of(context).push(MaterialPageRoute(builder: (_) => LocationSetScreen()));
-            //   },
-            //   child: Row(
-            //     children: <Widget>[
-            //       Icon(Icons.location_on, color: ColorResources.primaryColor),
-            //       Text('| ${Provider.of<LocationProvider>(context).getDistrictName()}   ',
-            //           style: poppinsRegular.copyWith(color: ColorResources.primaryColor, fontSize: 17))
-            //     ],
+            // IconButton(onPressed: () {
+            //   Navigator.of(context).push(MaterialPageRoute(builder: (_) => SettingsScreen()));
+            // }, icon: Icon(Icons.settings, color: Colors.green))
+            // Container(
+            //   alignment: Alignment.centerRight,
+            //   width: 152,
+            //   child: InkWell(
+            //     onTap: () {
+            //       Navigator.of(context).push(MaterialPageRoute(builder: (_) => SettingsScreen()));
+            //
+            //     },
+            //     child: Flexible(
+            //       child: Row(
+            //         //mainAxisAlignment: MainAxisAlignment.end,
+            //         //crossAxisAlignment: CrossAxisAlignment.end,
+            //         mainAxisSize: MainAxisSize.min,
+            //         children: <Widget>[
+            //           Icon(Icons.location_on, color: ColorResources.primaryColor),
+            //           Expanded(
+            //             child: Text('| ${Provider.of<LocationProvider>(context).getDistrictName()}   ',
+            //                 overflow: TextOverflow.ellipsis,
+            //                 maxLines: 1,
+            //                 softWrap: false,
+            //                 style: poppinsRegular.copyWith(color: ColorResources.primaryColor, fontSize: 17)),
+            //           )
+            //         ],
+            //       ),
+            //     ),
             //   ),
             // ),
           ],
@@ -85,6 +101,7 @@ class HomeScreen extends StatelessWidget {
               builder: (context, homeProvider, child) => Container(
                 height: 30,
                 alignment: Alignment.center,
+                // ignore: deprecated_member_use
                 child: ScaleAnimatedTextKit(
                   duration: Duration(seconds: 10),
                   isRepeatingAnimation: true,

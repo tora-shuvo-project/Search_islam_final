@@ -61,6 +61,7 @@ class Strings {
   static const String date = 'তারিখ';
   static const String location = 'লোকেশন';
   static const String zila_nirbacon_korun = 'জেলা নির্বাচন করুন';
+  static const String namajer_jonno_madhab_select_korun = 'নামাজের জন্য মাজহাব সিলেক্ট করুণ';
   static const String tasbih_select_korun = 'তাসবিহ সিলেক্ট করুন';
   static const String kare_nirbacon_korun = 'ক্বারি নির্বাচন করুনঃ';
   static const String nirdistro_zila_select_korun = 'নির্দিষ্ট একটি জেলা নির্বাচন করতে চাই।';
