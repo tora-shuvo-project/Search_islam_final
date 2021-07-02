@@ -31,6 +31,10 @@ class Images {
   static const String app_logo = 'assets/images/app_logo.png';
   static const String tasbih_logo = 'assets/images/tasbeeh.png';
   static const String splash = 'assets/images/splash.png';
+  static const String call = 'assets/images/call.png';
+  static const String fb = 'assets/images/fb.png';
+  static const String gmail = 'assets/images/gmail.png';
+  static const String whatsapp = 'assets/images/whatsapp.png';
   static const String splash_text = 'assets/images/splash_text.png';
   static const String blue_background = 'assets/images/blue_background.png';
   static const String blue_light_background = 'assets/images/blue_light_background.png';
