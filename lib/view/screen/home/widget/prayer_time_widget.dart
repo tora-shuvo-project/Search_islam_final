@@ -1,4 +1,3 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -90,26 +89,26 @@ class PrayerTimeWidget extends StatelessWidget {
                       width: MediaQuery.of(context).size.width,
                       height: 2,
                       color: isPrayerTimeScreen ? ColorResources.primaryColor : Colors.white,
-                      margin: EdgeInsets.only(top: 5,bottom: 15)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('${Strings.today}', style: kalpurus.copyWith(color: isPrayerTimeScreen ? Colors.black : Colors.white, fontSize: 17)),
-
-                      ScaleAnimatedTextKit(
-                        duration: Duration(milliseconds: 5000),
-                        isRepeatingAnimation: true,
-                        text: homeProvider.allDate(),
-                        textStyle: poppinsMedium.copyWith(fontSize: 17.0, color: isPrayerTimeScreen ? Colors.black : Colors.white),
-                        textAlign: TextAlign.start,
-                      ),
-                    ],
-                  ),
-                  Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 2,
-                      color: isPrayerTimeScreen ? ColorResources.primaryColor : Colors.white,
-                      margin: EdgeInsets.only(top: 10, bottom: 10)),
+                      margin: EdgeInsets.only(top: 0,bottom: 15)),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: [
+                  //     Text('${Strings.today}', style: kalpurus.copyWith(color: isPrayerTimeScreen ? Colors.black : Colors.white, fontSize: 17)),
+                  //
+                  //     ScaleAnimatedTextKit(
+                  //       duration: Duration(milliseconds: 5000),
+                  //       isRepeatingAnimation: true,
+                  //       text: homeProvider.allDate(),
+                  //       textStyle: poppinsMedium.copyWith(fontSize: 17.0, color: isPrayerTimeScreen ? Colors.black : Colors.white),
+                  //       textAlign: TextAlign.start,
+                  //     ),
+                  //   ],
+                  // ),
+                  // Container(
+                  //     width: MediaQuery.of(context).size.width,
+                  //     height: 2,
+                  //     color: isPrayerTimeScreen ? ColorResources.primaryColor : Colors.white,
+                  //     margin: EdgeInsets.only(top: 10, bottom: 10)),
                   Row(
                     children: [
                       Expanded(

@@ -6,6 +6,19 @@ final SharedPreferences sharedPreferences;
 
 LocationRepo({this.sharedPreferences});
 
+// Save Majhab Name
+  Future<void> saveMajhabFromPreference(String dristricName)async{
+    try{
+      await sharedPreferences.setString(AppConstants.MAJHAB, dristricName);
+    }catch(error){
+      throw error;
+    }
+  }
+
+   String getMajhabNameFromPreference(){
+    return  sharedPreferences.getString(AppConstants.MAJHAB)??'hanafi';
+  }
+
 // Save Zila Name
   Future<void> saveDistrictFromPreference(String dristricName)async{
     try{
@@ -32,6 +45,7 @@ LocationRepo({this.sharedPreferences});
     try{
       await sharedPreferences.setDouble(AppConstants.LONGITUDE, longitude);
     }catch(error){
+      print('shuvo ${error.toString()}');
       throw error;
     }
   }

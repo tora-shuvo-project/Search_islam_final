@@ -11,6 +11,7 @@ import 'package:search_islam/provider/name_provider.dart';
 import 'package:search_islam/provider/ojifa_provider.dart';
 import 'package:search_islam/provider/prayer_time_provider.dart';
 import 'package:search_islam/provider/quran_sorif_provider.dart';
+import 'package:search_islam/provider/tasbih_provider.dart';
 import 'package:search_islam/provider/theme_provider.dart';
 import 'package:search_islam/provider/zakat_provider.dart';
 import 'package:search_islam/view/screen/splash/splash_screen.dart';
@@ -34,6 +35,7 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (context) => di.sl<ZakatProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<NameProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<HadisProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<TasbihProvider>()),
     ],
     child: MyApp(),
   ));

@@ -38,9 +38,25 @@ class PrayerTimeProvider with ChangeNotifier {
 
   PrayerTimes currentPrayerTimes;
 
+
+  // Save Majhab Name
+  saveMajhabName(String name) async {
+    return locationRepo.saveMajhabFromPreference(name);
+  }
+
+  String getMajhabName() {
+    return locationRepo.getMajhabNameFromPreference();
+  }
+
   initializeCurrentPrayerTime() {
     final myCoordinates = Coordinates(locationRepo.getLatitude(), locationRepo.getLongitude());
-    final params = CalculationMethod.karachi.getParameters()..madhab = Madhab.hanafi;
+    var params;
+    if(getMajhabName()=="hanafi"){
+      params = CalculationMethod.karachi.getParameters()..madhab = Madhab.hanafi;
+    }else{
+      params = CalculationMethod.karachi.getParameters()..madhab = Madhab.shafi;
+    }
+
     currentPrayerTimes = PrayerTimes.today(myCoordinates, params);
 
     sehriTime = DateConverter.formatDateHHMMAA(currentPrayerTimes.fajr.subtract(Duration(minutes: 4)));
@@ -206,7 +222,12 @@ class PrayerTimeProvider with ChangeNotifier {
 
   initializeTommorwPrayerTime() {
     final myCoordinates = Coordinates(locationRepo.getLatitude(), locationRepo.getLongitude());
-    final params = CalculationMethod.karachi.getParameters()..madhab = Madhab.hanafi;
+    var params;
+    if(getMajhabName()=="hanafi"){
+      params = CalculationMethod.karachi.getParameters()..madhab = Madhab.hanafi;
+    }else{
+      params = CalculationMethod.karachi.getParameters()..madhab = Madhab.shafi;
+    }
     final nextPrayerTimes = PrayerTimes.getByDatePrayerTime(myCoordinates, params, DateTime.now().add(Duration(days: 1)));
 
     tommorwSehriTime = DateConverter.formatDateHHMMAA(nextPrayerTimes.fajr.subtract(Duration(minutes: 4)));
@@ -227,7 +248,7 @@ class PrayerTimeProvider with ChangeNotifier {
     tommorwIshaTimeStart = DateConverter.formatDateHHMM(nextPrayerTimes.isha);
     tommorwIshaTimeEnd = DateConverter.formatDateHHMM(nextPrayerTimes.fajr.subtract(Duration(minutes: 5)));
 
-    notifyListeners();
+    //notifyListeners();
   }
 
   // for get Number of days of all month
@@ -238,7 +259,7 @@ class PrayerTimeProvider with ChangeNotifier {
     var firstDayThisMonth = new DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
     var firstDayNextMonth = new DateTime(firstDayThisMonth.year, firstDayThisMonth.month + 1, firstDayThisMonth.day);
     monthLength = firstDayNextMonth.difference(firstDayThisMonth).inDays;
-    notifyListeners();
+    //notifyListeners();
   }
 
 // get All month Prayer Time
@@ -246,8 +267,12 @@ class PrayerTimeProvider with ChangeNotifier {
 
   initializeAllMonthPrayerTimeData() {
     final myCoordinates = Coordinates(locationRepo.getLatitude(), locationRepo.getLongitude());
-    final params = CalculationMethod.karachi.getParameters()..madhab = Madhab.hanafi;
-
+    var params;
+    if(getMajhabName()=="hanafi"){
+      params = CalculationMethod.karachi.getParameters()..madhab = Madhab.hanafi;
+    }else{
+      params = CalculationMethod.karachi.getParameters()..madhab = Madhab.shafi;
+    }
     prayerTimePojoClass = [];
 
     for (int i = 0; i < monthLength; i++) {

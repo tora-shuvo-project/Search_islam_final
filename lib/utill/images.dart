@@ -1,6 +1,21 @@
 class Images {
   // for SVG
   static const String quran_svg = 'assets/icons/quran.svg';
+  static const String blog_svg = 'assets/icons/blog.svg';
+  static const String calendar_svg = 'assets/icons/calendar.svg';
+  static const String close_svg = 'assets/icons/close.svg';
+  static const String donate_svg = 'assets/icons/donate.svg';
+  static const String info_svg = 'assets/icons/info.svg';
+  static const String islamic_resources_svg = 'assets/icons/islamic_resources.svg';
+  static const String knowledge_svg = 'assets/icons/knowledge.svg';
+  static const String muhammad_svg = 'assets/icons/muhammad.svg';
+  static const String names_svg = 'assets/icons/names.svg';
+  static const String tasbih_svg = 'assets/icons/tasbih.svg';
+  static const String zakat_svg = 'assets/icons/zakat.svg';
+  static const String home_svg = 'assets/icons/home.svg';
+  static const String labbayek_svg = 'assets/icons/labbayek.svg';
+  static const String settings_svg = 'assets/icons/settings.svg';
+  static const String share_svg = 'assets/icons/share.svg';
   static const String quran1_svg = 'assets/icons/quran_1.svg';
   static const String quran2_svg = 'assets/icons/quran_2.svg';
   static const String dua_svg = 'assets/icons/dua.svg';
@@ -29,7 +44,12 @@ class Images {
 
   // for image
   static const String app_logo = 'assets/images/app_logo.png';
+  static const String tasbih_logo = 'assets/images/tasbeeh.png';
   static const String splash = 'assets/images/splash.png';
+  static const String call = 'assets/images/call.png';
+  static const String fb = 'assets/images/fb.png';
+  static const String gmail = 'assets/images/gmail.png';
+  static const String whatsapp = 'assets/images/whatsapp.png';
   static const String splash_text = 'assets/images/splash_text.png';
   static const String blue_background = 'assets/images/blue_background.png';
   static const String blue_light_background = 'assets/images/blue_light_background.png';

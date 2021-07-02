@@ -48,7 +48,8 @@ class DoyaDetailsBottomNavigationBarWidget extends StatelessWidget {
 
                   Clipboard.setData(ClipboardData(text: message));
                   ScaffoldMessenger.of(context).showSnackBar(new SnackBar(content: Text(Strings.copy_kora_hoyeche), backgroundColor: Colors.green));
-                },
+
+                  },
                 child: Icon(Icons.content_copy, color: Colors.white, size: 25)),
             InkWell(
                 onTap: () {

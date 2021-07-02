@@ -27,7 +27,7 @@ class QuraanShareefProvider with ChangeNotifier {
     _getDatabaseHelper = db;
     initializeSuraModels();
     initializeParaModels();
-    notifyListeners();
+    //notifyListeners();
   }
 
   // for sura List
@@ -44,7 +44,7 @@ class QuraanShareefProvider with ChangeNotifier {
           _allSuraList.add(SuraModel.formMap(row));
         });
       });
-      notifyListeners();
+      //notifyListeners();
     }
   }
 
@@ -64,7 +64,7 @@ class QuraanShareefProvider with ChangeNotifier {
           _allParaList.add(ParaModel.formMap(row));
         });
       });
-      notifyListeners();
+      //notifyListeners();
     }
   }
 
@@ -275,7 +275,7 @@ class QuraanShareefProvider with ChangeNotifier {
     _getDatabaseHelper.getAudioBySuraAndQareName(suraNo, qareName).then((rows) async {
       audioModel = rows;
     });
-    notifyListeners();
+    //notifyListeners();
   }
 
   cancelDownload() {
@@ -589,7 +589,7 @@ class QuraanShareefProvider with ChangeNotifier {
   initializeSuraFromPreference() {
     _suraModel = SuraModel();
     _suraModel = quraanRepo.getSuraNameFromPreference();
-    notifyListeners();
+    //notifyListeners();
   }
 
   saveSurToPreference(SuraModel suraModel)async {

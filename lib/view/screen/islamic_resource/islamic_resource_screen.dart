@@ -4,7 +4,6 @@ import 'package:search_islam/helper/firestore_database_helper.dart';
 import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
 import 'package:search_islam/view/screen/islamic_resource/islamic_resource_details_screen.dart';
-import 'package:search_islam/view/screen/test/test.dart';
 
 class IslamicResourceScreen extends StatelessWidget {
   const IslamicResourceScreen({Key key}) : super(key: key);

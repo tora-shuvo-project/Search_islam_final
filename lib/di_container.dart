@@ -13,6 +13,7 @@ import 'package:search_islam/provider/name_provider.dart';
 import 'package:search_islam/provider/ojifa_provider.dart';
 import 'package:search_islam/provider/prayer_time_provider.dart';
 import 'package:search_islam/provider/quran_sorif_provider.dart';
+import 'package:search_islam/provider/tasbih_provider.dart';
 import 'package:search_islam/provider/theme_provider.dart';
 import 'package:search_islam/provider/zakat_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,6 +37,7 @@ Future<void> init() async {
   sl.registerFactory(() => OjifaProvider());
   sl.registerFactory(() => ZakatProvider());
   sl.registerFactory(() => HadisProvider());
+  sl.registerFactory(() => TasbihProvider());
   sl.registerFactory(() => DoyaProvider(doyaRepo: sl(), quranRepo: sl()));
   sl.registerFactory(() => LocationProvider(locationRepo: sl()));
   sl.registerFactory(() => LabbayekProvider(labbayekRepo: sl()));

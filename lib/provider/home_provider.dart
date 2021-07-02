@@ -9,6 +9,9 @@ class HomeProvider with ChangeNotifier {
   String banglaDate;
   String arabyDate;
   String englishDate;
+  String banglaDateWithMessage;
+  String arabyDateWithMessage;
+  String englishDateWithMessage;
   String dayName;
 
   initializeAllDate() {
@@ -17,12 +20,14 @@ class HomeProvider with ChangeNotifier {
     arabyDate = _today.toFormat("dd MMMM,yyyy");
     englishDate = DateFormat('dd MMMM,yyyy').format(DateTime.now());
     dayName = DateFormat('EEEE').format(DateTime.now());
-
-    notifyListeners();
+    banglaDateWithMessage='Today: $banglaDate';
+    arabyDateWithMessage='Today: $arabyDate';
+    englishDateWithMessage='Today: $englishDate';
+    //notifyListeners();
   }
 
   List<String> allDate() {
-    List<String> _getAllDateData = [banglaDate, englishDate, arabyDate];
+    List<String> _getAllDateData = [banglaDateWithMessage, englishDateWithMessage, arabyDateWithMessage];
     return _getAllDateData;
   }
 

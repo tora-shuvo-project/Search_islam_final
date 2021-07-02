@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:search_islam/data/model/janun_model.dart';
 import 'package:search_islam/utill/dimensions.dart';
-import 'package:search_islam/utill/string_resources.dart';
 import 'package:search_islam/utill/styles.dart';
 import 'package:share/share.dart';
 

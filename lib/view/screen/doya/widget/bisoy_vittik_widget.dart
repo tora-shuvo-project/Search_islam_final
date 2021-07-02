@@ -24,6 +24,7 @@ class BisoyVittikWidget extends StatelessWidget {
                       width: MediaQuery.of(context).size.width,
                       height: 200,
                       alignment: Alignment.center,
+                      // ignore: deprecated_member_use
                       child: RotateAnimatedTextKit(
                         duration: Duration(milliseconds: 6000),
                         text: doyaProvider.allAnimationText,
