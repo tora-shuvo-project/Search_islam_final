@@ -14,6 +14,7 @@ import 'package:search_islam/utill/styles.dart';
 import 'package:search_islam/view/screen/blog/blog_screen.dart';
 import 'package:search_islam/view/screen/calendar/calendar_screen.dart';
 import 'package:search_islam/view/screen/comment/comment_question_screen.dart';
+import 'package:search_islam/view/screen/donate/donate_screen.dart';
 import 'package:search_islam/view/screen/doya/doya_screen.dart';
 import 'package:search_islam/view/screen/hadis/hadis_screen.dart';
 import 'package:search_islam/view/screen/home/widget/category_widget.dart';
@@ -127,7 +128,7 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CategoryWidget(title: Strings.nosihat, iconUrl: Images.quran_svg,routeWidget: NosihatScreen()),
-                CategoryWidget(title: Strings.dan_korun, iconUrl: Images.dua_svg),
+                CategoryWidget(title: Strings.dan_korun, iconUrl: Images.dua_svg,routeWidget: DonateScreen()),
                 CategoryWidget(title: Strings.janun, iconUrl: Images.document_svg),
                 CategoryWidget(title: Strings.off_korun, iconUrl: Images.document_svg),
               ],
