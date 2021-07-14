@@ -44,6 +44,7 @@ class HomeScreen extends StatelessWidget {
     Provider.of<PrayerTimeProvider>(context, listen: false).checkDaysInMonth();
     Provider.of<HomeProvider>(context, listen: false).initializeAllDate();
     Provider.of<LocationProvider>(context, listen: false).getAllDistrictName();
+    Provider.of<QuraanShareefProvider>(context, listen: false).initializeAllQare();
     Provider.of<QuraanShareefProvider>(context, listen: false).initializeSuraFromPreference();
     final drawerController = DeivaoDrawerController();
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.green, statusBarBrightness: Brightness.dark));

@@ -21,7 +21,7 @@ class SelectQuranScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Provider.of<QuraanShareefProvider>(context, listen: false).changeAvailableFileStatus();
-    Provider.of<QuraanShareefProvider>(context, listen: false).initializeAllQuranWords();
+    //Provider.of<QuraanShareefProvider>(context, listen: false).initializeAllQuranWords();
 
     return SafeArea(
       child: Scaffold(
@@ -160,28 +160,26 @@ class SelectQuranScreen extends StatelessWidget {
   }
 
   Widget _itemCategoryWidget({BuildContext context, String title, Function onTap}) {
-    return Expanded(
-      child: InkWell(
-        onTap: onTap,
-        child: Container(
-          height: 50,
-          alignment: Alignment.center,
-          padding: EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(Dimensions.PADDING_SIZE_SMALL),
-            color: Colors.green,
-            boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.1), spreadRadius: 3, blurRadius: 3, offset: Offset(0, 3))],
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(title, style: kalpurus.copyWith(fontWeight: FontWeight.w400, color: Colors.white, fontSize: 17)),
-              Icon(
-                Icons.keyboard_arrow_right,
-                color: Colors.white,
-              )
-            ],
-          ),
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        height: 50,
+        alignment: Alignment.center,
+        padding: EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(Dimensions.PADDING_SIZE_SMALL),
+          color: Colors.green,
+          boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.1), spreadRadius: 3, blurRadius: 3, offset: Offset(0, 3))],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(title, style: kalpurus.copyWith(fontWeight: FontWeight.w400, color: Colors.white, fontSize: 17)),
+            Icon(
+              Icons.keyboard_arrow_right,
+              color: Colors.white,
+            )
+          ],
         ),
       ),
     );

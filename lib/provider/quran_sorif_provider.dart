@@ -27,7 +27,7 @@ class QuraanShareefProvider with ChangeNotifier {
     _getDatabaseHelper = db;
     initializeSuraModels();
     initializeParaModels();
-    //notifyListeners();
+    notifyListeners();
   }
 
   // for sura List
@@ -44,7 +44,7 @@ class QuraanShareefProvider with ChangeNotifier {
           _allSuraList.add(SuraModel.formMap(row));
         });
       });
-      //notifyListeners();
+      notifyListeners();
     }
   }
 
@@ -64,7 +64,7 @@ class QuraanShareefProvider with ChangeNotifier {
           _allParaList.add(ParaModel.formMap(row));
         });
       });
-      //notifyListeners();
+      notifyListeners();
     }
   }
 
@@ -127,14 +127,15 @@ class QuraanShareefProvider with ChangeNotifier {
 
   List<AyatModel> get getAllAyat => _getAllAyat;
 
-  initializeAyatBySuraId(int id) async {
-    _getAllAyat.clear();
+  Future<void> initializeAyatBySuraId(int id) async {
+    _getAllAyat = [];
     _getDatabaseHelper.getAllAyatFromAyatTable(id).then((rows) {
       rows.forEach((row) {
         _getAllAyat.add(AyatModel.formMap(row));
       });
       notifyListeners();
     });
+
   }
 
   initializeAyatByParaId(int id) async {
@@ -416,10 +417,16 @@ class QuraanShareefProvider with ChangeNotifier {
       final result = await InternetAddress.lookup('google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
         try {
-          paraPlayer = AudioPlayer();
-          suraPlayer.stop();
-          ayatPlayer.stop();
-          paraPlayer.play(audioUrl);
+
+
+          isPlaying = !isPlaying;
+
+          if (isPlaying) {
+            paraPlayer.play(audioUrl);
+          } else {
+            paraPlayer.pause();
+          }
+
 
           paraPlayer.onPlayerStateChanged.listen((s) {
             if (s == AudioPlayerState.PLAYING) {
@@ -427,9 +434,10 @@ class QuraanShareefProvider with ChangeNotifier {
               notifyListeners();
             } else if (s == AudioPlayerState.COMPLETED) {
               isPlaying = false;
-              notifyListeners();
+
             }
           });
+          notifyListeners();
         }
 
         /// on catching Exception return null
@@ -459,7 +467,7 @@ class QuraanShareefProvider with ChangeNotifier {
     await ayatPlayer.stop();
     await paraPlayer.stop();
     isPlaying = false;
-    saveSuraNo(null);
+    //saveSuraNo(null);
     notifyListeners();
   }
 
@@ -570,15 +578,18 @@ class QuraanShareefProvider with ChangeNotifier {
   // quran sound
   List<QuranWordModels> getAllQuranWords = [];
 
-  Future<void> initializeAllQuranWords() async {
+  Future<List<QuranWordModels>> initializeAllQuranWords() async {
     if (getAllQuranWords.length == 0) {
+      getAllQuranWords = [];
       _getDatabaseHelper.getAllQuranWordFromTable().then((rows) {
         rows.forEach((row) {
           getAllQuranWords.add(QuranWordModels.fromMap(row));
         });
       });
-      notifyListeners();
+
     }
+    //notifyListeners();
+    return getAllQuranWords;
   }
 
   // save sura
@@ -593,8 +604,11 @@ class QuraanShareefProvider with ChangeNotifier {
   }
 
   saveSurToPreference(SuraModel suraModel)async {
-    await quraanRepo.saveSuraToPreference(suraModel);
-    _suraModel = quraanRepo.getSuraNameFromPreference();
-    notifyListeners();
+    if(suraModel!=null){
+      await quraanRepo.saveSuraToPreference(suraModel);
+      _suraModel = quraanRepo.getSuraNameFromPreference();
+      notifyListeners();
+    }
+
   }
 }

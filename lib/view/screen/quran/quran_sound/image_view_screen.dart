@@ -1,7 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:photo_view/photo_view.dart';
+import 'package:search_islam/helper/scrollable_image_view.dart';
 import 'package:search_islam/view/widget/custom_app_bar.dart';
 
 class ImageViewScreen extends StatelessWidget {
@@ -15,9 +14,13 @@ class ImageViewScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(child: CustomAppBar(title: title), preferredSize: Size(MediaQuery.of(context).size.width, 100)),
-        body: Container(
-          child: PhotoView(backgroundDecoration: BoxDecoration(color: Colors.white), imageProvider: FileImage(imageFile), enableRotation: true),
-        ),
+        // body: Container(
+        //   child: PhotoView(backgroundDecoration: BoxDecoration(color: Colors.white), imageProvider: FileImage(imageFile), enableRotation: true),
+        // ),
+        body:ScrollableImageView(
+          imagePath: imageFile,
+          viewSize: Size(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height)
+        )
       ),
     );
   }

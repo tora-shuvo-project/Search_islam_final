@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:search_islam/data/model/para_models.dart';
@@ -22,7 +21,7 @@ class SuraWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         if (isShowHafejiQuranSystem) {
           Navigator.of(context).push(MaterialPageRoute(builder: (_) => HafejiQuranScreen(paraModel: paraModel)));
@@ -46,24 +45,30 @@ class SuraWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Stack(children: <Widget>[
-                  Image.asset(Images.number_icon, height: 50, width: 50, fit: BoxFit.cover, color: Colors.grey),
+                  Image.asset(Images.number_icon, height: 50, width: 50, fit: BoxFit.cover, color: Colors.white),
                   Container(
                       width: 50,
                       height: 50,
                       alignment: Alignment.center,
-                      child: Text('${convertEngToBangla(isFromSuraListScreen ? suraModel.suraNo : paraModel.paraNo)}'))
+                      child: Text(
+                        '${convertEngToBangla(isFromSuraListScreen ? suraModel.suraNo : paraModel.paraNo)}',
+                        style: poppinsRegular.copyWith(color: Colors.white),
+                      ))
                 ]),
                 SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
                 Expanded(
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
                     isFromSuraListScreen
                         ? Row(children: [
-                            Text(suraModel.banglaTranslator),
+                            Text(suraModel.banglaTranslator, style: kalpurus.copyWith(color: Colors.white,fontWeight: FontWeight.bold)),
                             SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
-                            Text('( ${suraModel.arbiSuraNam} )', style: madina.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE))
+                            Text('( ${suraModel.arbiSuraNam} )',
+                                style: madina.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE, color: Colors.white))
                           ])
-                        : Text(paraModel.nameAraby, style: madina.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
-                    isFromSuraListScreen ? Text(suraModel.banglaMeaning) : Text(paraModel.nameBangla)
+                        : Text(paraModel.nameAraby, style: madina.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE, color: Colors.white)),
+                    isFromSuraListScreen
+                        ? Text(suraModel.banglaMeaning, style: kalpurus.copyWith(color: Colors.white))
+                        : Text(paraModel.nameBangla, style: kalpurus.copyWith(color: Colors.white))
                   ]),
                 ),
                 isFromSuraListScreen
@@ -82,22 +87,22 @@ class SuraWidget extends StatelessWidget {
                                         height: 330,
                                         child: Container(
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.only(topLeft: const Radius.circular(10), topRight: const Radius.circular(10))),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: const Radius.circular(10), topRight: const Radius.circular(10))),
                                             child: suraInfoBotomNavigationBar())),
                                   ),
                                 );
                               });
                         },
-                        child: Icon(Icons.info, color: Colors.grey))
+                        child: Icon(Icons.info, color: Colors.white))
                     : SizedBox.shrink()
               ],
             ),
             SizedBox(height: 5),
             Container(
                 height: 3,
-                decoration:
-                    BoxDecoration(gradient: LinearGradient(colors: [const Color(0xffffffff), const Color(0xff178723), const Color(0xffffffff)])))
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: [const Color(0xffffffff), const Color(0xff023d08), const Color(0xffffffff)])))
           ],
         ),
       ),
@@ -115,8 +120,8 @@ class SuraWidget extends StatelessWidget {
           ),
           Container(
               height: 3,
-              decoration:
-                  BoxDecoration(gradient: LinearGradient(colors: [const Color(0xffffffff), const Color(0xff178723), const Color(0xffffffff)]))),
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [const Color(0xffffffff), const Color(0xff178723), const Color(0xffffffff)]))),
           Container(
             padding: const EdgeInsets.only(left: 16, top: 8, bottom: 4),
             child: Row(

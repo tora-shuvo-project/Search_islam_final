@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:search_islam/data/model/audio_model.dart';
 import 'package:search_islam/data/model/key_model.dart';
 import 'package:search_islam/provider/location_provider.dart';
 import 'package:search_islam/provider/prayer_time_provider.dart';
@@ -15,6 +16,8 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Provider.of<QuraanShareefProvider>(context, listen: false).initializeAllFontStyle();
+    Provider.of<LocationProvider>(context, listen: false).getAllDistrictName();
+    Provider.of<QuraanShareefProvider>(context, listen: false).initializeAllQare();
     return Scaffold(
       appBar: AppBar(title: Text('Settings')),
       body: Consumer3<LocationProvider, PrayerTimeProvider, QuraanShareefProvider>(
@@ -49,7 +52,7 @@ class SettingsScreen extends StatelessWidget {
                     }).toList(),
                     isExpanded: true,
                     underline: SizedBox.shrink(),
-                    value: locationProvider.getDistrictName(),
+                    //value: locationProvider.initializeDistrict,
                     onChanged: (value) {
                       showCustomSnackBar('Selected District: $value', context);
                       locationProvider.setDistrictName(value);
@@ -124,6 +127,36 @@ class SettingsScreen extends StatelessWidget {
                 ],
               ),
             ),
+
+
+            // qare select korun
+            Container(
+              padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
+              margin: EdgeInsets.only(bottom: 15),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [BoxShadow(color: Colors.green.shade100, spreadRadius: 1, blurRadius: 5)],
+                  borderRadius: BorderRadius.circular(10)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('${Strings.kare_nirbacon_korun}', style: kalpurus.copyWith(fontWeight: FontWeight.w700)),
+                  DropdownButton<QareModel>(
+                    items: quranProvider.qares.map((qareModel) {
+                      return new DropdownMenuItem<QareModel>(
+                          value: qareModel, child: new Text(qareModel.banglaName, style: poppinsRegular));
+                    }).toList(),
+                    isExpanded: true,
+                    underline: SizedBox.shrink(),
+                    value: quranProvider.qareModel,
+                    onChanged: (qare) {
+                      quranProvider.changeQareName(qare);
+                    },
+                  ),
+                ],
+              ),
+            ),
+
           ],
         ),
       ),

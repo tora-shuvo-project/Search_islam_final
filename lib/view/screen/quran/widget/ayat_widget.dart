@@ -57,23 +57,20 @@ class AyatWidget extends StatelessWidget {
                                     child: Text(Strings.bismillahirahmanirRahim,
                                         style: madina.copyWith(fontSize: 19, color: Colors.red, fontWeight: FontWeight.bold)))
                                 : SizedBox.shrink(),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Expanded(
-                                child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: quranProvider.isShowArabic()
-                                        ? Text(
-                                             quranProvider.arabicStyleKeyModel.value == Strings.araby_uth_manik_english
-                                                    ? ayatModel.arabicUtmanic
-                                                    : ayatModel.arabicIndopak,
-                                            style: TextStyle(
-                                                fontSize: quranProvider.fontSize + 4.00,
-                                                fontFamily: quranProvider.getFontStyle,
-                                                color: !isSuraWiseShowAyat && ayatModel.ayatno == 1 ? Colors.green : Colors.black))
-                                        : SizedBox.shrink())),
-                          ],
+                        Container(
+                          alignment: Alignment.centerRight,
+                          child: Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: quranProvider.isShowArabic()
+                                  ? Text(
+                                       quranProvider.arabicStyleKeyModel.value == Strings.araby_uth_manik_english
+                                              ? ayatModel.arabicUtmanic
+                                              : ayatModel.arabicIndopak,
+                                      style: TextStyle(
+                                          fontSize: quranProvider.fontSize + 4.00,
+                                          fontFamily: quranProvider.getFontStyle,
+                                          color: !isSuraWiseShowAyat && ayatModel.ayatno == 1 ? Colors.green : Colors.black))
+                                  : SizedBox.shrink()),
                         ),
                         SizedBox(height: ayatModel.sejda != "0" ? 3 : 0),
                         ayatModel.sejda != "0"
