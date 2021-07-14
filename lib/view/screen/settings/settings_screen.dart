@@ -16,7 +16,7 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Provider.of<QuraanShareefProvider>(context, listen: false).initializeAllFontStyle();
-    Provider.of<LocationProvider>(context, listen: false).getAllDistrictName();
+    //Provider.of<LocationProvider>(context, listen: false).getAllDistrictName();
     Provider.of<QuraanShareefProvider>(context, listen: false).initializeAllQare();
     return Scaffold(
       appBar: AppBar(title: Text('Settings')),
@@ -44,15 +44,12 @@ class SettingsScreen extends StatelessWidget {
                     items: locationProvider.allDistrictName.map((String district) {
                       return new DropdownMenuItem<String>(
                         value: district,
-                        child: new Text(
-                          district,
-                          style: poppinsRegular,
-                        ),
+                        child: new Text(district, style: poppinsRegular),
                       );
                     }).toList(),
                     isExpanded: true,
                     underline: SizedBox.shrink(),
-                    //value: locationProvider.initializeDistrict,
+                    value: locationProvider.getDistrictName(),
                     onChanged: (value) {
                       showCustomSnackBar('Selected District: $value', context);
                       locationProvider.setDistrictName(value);
@@ -128,7 +125,6 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
 
-
             // qare select korun
             Container(
               padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
@@ -156,7 +152,6 @@ class SettingsScreen extends StatelessWidget {
                 ],
               ),
             ),
-
           ],
         ),
       ),

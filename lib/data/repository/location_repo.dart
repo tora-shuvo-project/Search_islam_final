@@ -72,7 +72,7 @@ LocationRepo({this.sharedPreferences});
     " Chuadanga	"	,
     " Comilla	"	,
     " Cox's Bazar	"	,
-    " Dhaka	"	,
+    "Dhaka"	,
     " Dinajpur	"	,
     " Faridpur	"	,
     " Feni	"	,

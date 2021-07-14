@@ -25,13 +25,12 @@ class LocationProvider with ChangeNotifier {
   List<String> allDistrictName = [];
   String initializeDistrict = '';
 
-  getAllDistrictName() {
+  getAllDistrictName() async{
     if (allDistrictName.length == 0) {
-      allDistrictName.clear();
+      allDistrictName = [];
       allDistrictName = locationRepo.districtNames;
-      initializeDistrict = getDistrictName();
-      notifyListeners();
     }
+    notifyListeners();
   }
 
   // Save District Name
@@ -42,8 +41,6 @@ class LocationProvider with ChangeNotifier {
   String getDistrictName() {
     return locationRepo.getDistrictNameFromPreference();
   }
-
-
 
   setDistrictName(String name) async {
     initializeDistrict = name;

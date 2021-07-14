@@ -14,9 +14,6 @@ class ImageViewScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(child: CustomAppBar(title: title), preferredSize: Size(MediaQuery.of(context).size.width, 100)),
-        // body: Container(
-        //   child: PhotoView(backgroundDecoration: BoxDecoration(color: Colors.white), imageProvider: FileImage(imageFile), enableRotation: true),
-        // ),
         body:ScrollableImageView(
           imagePath: imageFile,
           viewSize: Size(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height)
